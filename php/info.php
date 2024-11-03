@@ -1,6 +1,4 @@
 <?php 
-include "menu.php";
-
 $servidor='localhost';
 $cuenta='root';
 $password='';
