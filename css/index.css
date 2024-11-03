@@ -1,0 +1,142 @@
+/* HEADER */
+.header {
+    background-image: url('../imagenes/background.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 83vh !important; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    text-align: center; 
+    padding: 20px; 
+    position: relative;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1b1b1bc0;
+}
+
+.header h2 {
+    position: relative;
+    font-size: 52px;
+    font-weight: bold;
+}
+
+/* TENDENCIAS */
+
+.tendencias {
+    padding: 50px;
+    background-color: #1B1B1B;
+    color: #FFFFFF;
+}
+
+.tendencia {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+.ver-todo {
+    color: white; 
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+}
+
+.ver-todo:hover {
+    color: #5AE2A8;
+    transition: color 0.3s ease;
+}
+
+.fa-arrow-right {
+    margin-left: 10px;
+}
+
+/* COOMING SOON */
+
+.carousel-item {
+    opacity: 0;
+   transition: opacity 1s ease-in-out !important; 
+} 
+
+.carousel-item.active {
+    opacity: 1; 
+}
+
+.carousel {
+    position: relative; 
+    height: 90vh; 
+}
+
+.carousel-item img {
+    object-fit: cover; 
+    height: 90vh; 
+    width: 100%; 
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1b1b1b98; 
+    opacity: 4;
+    transition: opacity 1s ease-in-out; 
+    z-index: 1; 
+}
+
+.carousel-item.active::before {
+    opacity: 1; 
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 45%;
+    left: 50px !important;
+    transform: translateY(-45%);
+    text-align: left !important;
+    z-index: 2;
+}
+
+.carousel-caption .carousel-title {
+    font-weight: bold !important;
+    font-size: 70px;
+}
+
+.carousel-caption .carousel-genero {
+    font-size: 35px;
+    font-weight: lighter !important;
+}
+
+
+.carousel-caption .carousel-classification {
+    font-size: 20px;
+    background-color: #5AE2A8;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.carousel-caption .carousel-platform {
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.carousel-caption .carousel-text {
+    font-size: 60px;
+}
+
