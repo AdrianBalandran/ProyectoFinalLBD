@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/altas.css">
     <script src="https://kit.fontawesome.com/da89e5beb6.js" crossorigin="anonymous"></script>
     <title>Altas | GoodWatch</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/altas.js"></script>
 </head>
 <body>
@@ -60,7 +60,6 @@
                         if(isset($_FILES["file"]) && !(empty($_FILES["file"]["tmp_name"]))){
                             $targetDir = "../imagenes/";  // Directorio donde se guardarán las imágenes
                             $targetFile = $targetDir . basename($_FILES["file"]["name"]);
-                            echo $targetFile;
                     
                             $check = getimagesize($_FILES["file"]["tmp_name"]);
                             if ($check !== false) {
@@ -76,18 +75,8 @@
                     }
                     $consF = "INSERT INTO FILME VALUES ('$idP', '$nombreP', '$descriP','$targetFile','$fechaP','$clasifP','$idiomaP','$paisP','$tipoP');";
                     $consP = "INSERT INTO PELICULA VALUES ('$idP','$duracionP');";
-                    
-                    if ($conexion->query($consF) === TRUE) {
-                        echo "Nuevo registro creado en FILME.";
-                    } else {
-                        echo "Error: " . $consF . "<br>" . $conexion->error;
-                    }
-                    
-                    if ($conexion->query($consP) === TRUE) {
-                        echo "Nuevo registro creado en PELICULA.";
-                    } else {
-                        echo "Error: " . $consP . "<br>" . $conexion->error;
-                    }
+                    $final = $conexion -> query($consF);
+                    $final2 = $conexion -> query($consP);
                     
                     unset($_POST['idP']);
                 }else{ //reparto o serie
@@ -233,7 +222,7 @@
                         </div>
                     </div>
                     <div class="botonP">
-                        <button class="btn btn-success" type="submit" name="submit" id="submit">
+                        <button class="btn btn-success" type="submit" name="submit-pelicula" id="submit">
                         Agregar
                         </button>
                     </div>
