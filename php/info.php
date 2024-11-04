@@ -1,5 +1,5 @@
 <?php 
-include "menu.php";
+// include "encabezado.php";
 
 function datos($conexion, $id){
     $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
@@ -162,6 +162,10 @@ if($conexion->connect_errno) {
         <?php datos($conexion, '00100') ?>
     </section>
 </body>
+<?php 
+// include "footer.php";
+?>
+
 
 </html>
 
