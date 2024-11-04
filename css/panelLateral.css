@@ -1,0 +1,24 @@
+.barra-lat{
+    height: 100vh;
+}
+.opcion{
+    margin-bottom: 20px;
+}
+.opcion:hover{
+    background-color: #5ae2a8;
+}
+.opcion:active{
+    background-color: #5ae2a8;
+}
+.contenido{
+    padding: 40px 100px 40px 100px;
+    background-color: rgb(243, 244, 244);
+    width: 78vw;
+}
+i{
+    margin-right: 10px;
+}
+#company{
+    color: rgb(101, 113, 125);
+    text-align: center;
+}

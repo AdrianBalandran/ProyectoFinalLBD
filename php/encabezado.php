@@ -24,6 +24,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">PELÍCULAS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/altas.php">ADMINISTRADOR</a>
+                        </li>
                     </ul>
                 </div>
                 <a class="navbar-brand mx-auto" href="#">Logo</a> 

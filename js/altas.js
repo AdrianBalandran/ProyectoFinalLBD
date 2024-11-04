@@ -1,0 +1,41 @@
+function mostrarImagen(event) {
+    var archivo = event.target.files[0];
+    var lector = new FileReader();
+
+    lector.onload = function(e) {
+    var imagen = document.getElementById('imagen');
+    imagen.src = e.target.result;
+    imagen.style.display = 'block';
+    }
+
+    lector.readAsDataURL(archivo);
+}
+
+$(document).ready(function() {
+    console.log($('#formulario-pelicula').length);
+
+    $("#formulario-pelicula").on("submit", function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "altas.php",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function(response) {
+                console.log("Solicitud AJAX exitosa");
+                console.log(response);
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+});
+
+
