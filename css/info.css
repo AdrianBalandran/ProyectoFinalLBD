@@ -1,0 +1,167 @@
+*{
+    /* font-family: "Itim", cursive; */
+    font-family: "Instrument Serif", serif;
+    letter-spacing: 1px;
+
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.info{
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info_filme{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+    "one two two";
+    font-family: "Itim", cursive;
+}
+.info_filme .primer{
+    grid-area: one;
+    /* grid-column: 1; */
+}
+.info_filme .segundo{
+    grid-area: two;
+    margin-left: 90px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info_filme .segundo .peliculaDatos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info_filme .imagen img{
+    width: 400px;
+    height: auto;
+}
+.info_filme .imagen{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.info_filme h2{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.info_filme .segundo .peliculaDatos div.desc{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.info_filme .segundo .peliculaDatos div.estreno, .info_filme .segundo .peliculaDatos div.idioma, .info_filme .segundo .peliculaDatos div.clasif, .info_filme .segundo .peliculaDatos div.pais{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+} 
+.info_filme .segundo .peliculaDatos > div:nth-child(odd){
+    display: flex;
+    justify-content: start;
+    padding-right: 5px;
+}
+
+.info_filme .segundo .peliculaDatos > div:nth-child(even){
+    display: flex;
+    justify-content: end;
+}
+.info_filme .segundo .peliculaDatos > div{
+    margin-bottom: 20px;
+}
+.info_filme .segundo .peliculaDatos  > div > div:last-child {
+    margin-left: 20px;
+}
+
+.backg{
+    background-color: #DDDBDA;
+    border-radius: 40px;
+    width: 180px;
+    height: 100%;
+    font-size: 20px;
+}
+
+.backginfo{
+    background-color: #DDDBDA;
+    border-radius: 40px;
+    width: 80%;
+    height: 310px;
+    padding: 10.75px 28px;
+    text-align: justify;
+    font-size: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.backg p{
+    text-align: center;
+    padding: 10.75px 0;
+}
+
+.actordirector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 50px;
+}
+.actordirector .actores, .actordirector .generos{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+.actordirector .actores .divtit{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+.actordirector .actores .lista{
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    flex-wrap: wrap;
+    width: 80%;
+    padding-left: 20px;
+}
+.actordirector .generos .lista{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
+    width: 80%;
+    padding-left: 20px;
+
+}
+
+.actordirector .actores .lista > div{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.actordirector .generos .lista > div{
+    margin-right: 20px;
+    background-color: #69ACC2;
+}
+
+.actordirector .generos .lista > div{
+    width: 180px;
+}
