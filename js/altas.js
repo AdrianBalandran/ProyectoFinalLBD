@@ -35,8 +35,12 @@ $(document).ready(function() {
                     text: 'Pelicula agregada',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
-                  });
-                //location.reload();
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        document.getElementById("formulario-pelicula").reset();
+                        location.reload();
+                    }
+                });
             },
             error: function(xhr, status, error) {
                 console.error("Error:", error);
