@@ -1,24 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000000; /* Cambia el color según lo que necesites */
+    overflow-x: hidden;
+  }
+
 .peliculas-sec {
     background-color: #000000;
-    width: 1000%;
-    height: 1000%;
 }
 
-.card-sep {
-    padding: 40px;
+.colocacion {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    gap: 36px;
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    width: 100%; /* Asegura que ocupe el ancho completo hasta el máximo permitido */
+}
+
+.card-sep{
+    padding: 30px;
 }
 
 .nbcolor{
     background-color: #1B1B1B;
 }
 
+.card{
+    width: 270px;
+    height: auto;
+}
+
 .nbcolor h5{
     color: white;
 }
 
-.nbcolor p{
+.npcolor {
     background-color: #5ae2a8;
-    width: auto;
+    width: 40%;
+    border-radius: 4px;
     color: #1B1B1B;
     font-size: small;
+} 
+
+.npcolor p{
+    margin-left: 10px;
 }
