@@ -1,3 +1,7 @@
+
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +17,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/ea44ba5a78.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
-
+<header>
+    <?php
+        // include ("../php/encabezado.php");
+    ?>
+</header>
 <body>
     <main>
         
         <section class="div_Registro">
-            <h2>Crear cuenta</h2>
+            <h2>Regístrate</h2>
             <div class="linea"></div>
             <form class="form" action="Registro_insertar.php" method="post">
                     <div class="col-md-6">
@@ -82,4 +91,55 @@
     <script src="../js/script_Registro.js"></script>
 
 </body>
+<?php 
+    // include ("../php/footer.php");
+?>
 </html>
+
+<?php 
+    // include ('Regis_script.php');
+?>
+
+<?php
+session_start();
+if(isset($_SESSION['repetido'])){
+    ?><script>
+        swal.fire({
+            icon: "error",
+            title: "Lo sentimos",
+            text: "Usuario en uso.",
+        });
+    </script><?php
+}elseif(isset($_SESSION['insertar'])){
+    unset($_SESSION['insertar']);
+    ?><script>
+        Swal.fire({
+        icon: "success",
+        title: "¡Felicidades!",
+        text: "Usuario creado",            
+        background: "#fff",
+        backdrop: `
+        rgba(107, 107, 107,0.2)
+        url("../imagenes/star.gif")
+        left top
+        no-repeat
+        `
+         }).then((result) => {
+            if (result.isConfirmed) {
+                location. assign('../index.php')
+         }});
+    </script>
+        <?php
+}elseif(isset($_SESSION['cont'])){
+    ?><script>
+        swal.fire({
+            icon: "question",
+            title: "Lo sentimos",
+            text: "Las contraseñas no coinciden.",
+        });
+    </script><?php
+}
+unset($_SESSION['cont']);
+unset($_SESSION['repetido']);
+unset($_SESSION['insertar']);
+?>
