@@ -7,6 +7,13 @@
     margin: 0px;
     padding: 0px;
 }
+/* Colores */
+/* 
+#5AE2A8
+#000000
+#1B1B1B
+#FFFFFF 
+*/
 .info{
     margin: 50px;
     display: flex;
@@ -40,7 +47,6 @@
     align-items: center;
     flex-wrap: wrap;
 }
-
 .info_filme .imagen img{
     width: 400px;
     height: auto;
@@ -51,10 +57,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 30px;
 }
 
-.info_filme h2{
+h2{
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
@@ -93,7 +99,7 @@
 .backg{
     background-color: #DDDBDA;
     border-radius: 40px;
-    width: 180px;
+    width: 175px;
     height: 100%;
     font-size: 20px;
 }
@@ -164,4 +170,78 @@
 
 .actordirector .generos .lista > div{
     width: 180px;
+}
+.estrellas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.estrellas img{
+    width: 40px;
+    height: 40px;
+}
+.estno{
+    text-align: center;
+    font-size: 20px;
+}
+hr{
+    width: 70%;
+    background-color: #DDDBDA;
+    margin: 50px auto;
+}
+.agregarvis{
+    margin: 50px;
+
+}
+
+.formVisua button{
+    background-color: white;
+    border: none;
+}
+.formVisua button img{
+    width: 40px;
+    height: auto;
+}
+form.formVisua{
+    display: flex;
+    justify-content: space-between; 
+    align-items: start;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+input, select, textarea{
+    text-align: center;
+    padding: 10.75px 0;
+    background-color: #DDDBDA;
+    border: none;
+    margin: 0px auto;
+    width: 100%;
+    border-radius: 40px;
+    height: 100%;
+    font-size: 20px;
+}
+
+.formbtn {
+    width: 30%;
+    display: flex;
+    justify-content: center; 
+    align-items: start;
+    gap: 20px;
+    height: auto;
+}
+
+.textarea{
+    width: 65%;
+    display: flex;
+    justify-content: start; 
+    gap: 20px;
+}
+
+.textarea .backg:nth-child(2) {
+    width: 71%;
+    height: 100%;
 }

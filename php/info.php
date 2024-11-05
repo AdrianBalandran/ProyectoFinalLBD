@@ -1,5 +1,5 @@
 <?php 
-// include "encabezado.php";
+include "menu.php";
 
 function datos($conexion, $id){
     $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
@@ -10,6 +10,14 @@ function datos($conexion, $id){
             <div class="primer">
                 <div class="imagen">
                     <img src="../recursos/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
+                </div>
+                <div class="estrellas">
+                    <img src="../recursos/start.png" alt="Estrellas">
+                    <img src="../recursos/start.png" alt="Estrellas">
+                    <img src="../recursos/start.png" alt="Estrellas">
+                </div>
+                <div class="estno">
+                    <p class="nocali">5 calificaciones</p>
                 </div>
             </div>
             <div class="segundo">
@@ -161,11 +169,72 @@ if($conexion->connect_errno) {
     <section class="info" id="info">
         <?php datos($conexion, '00100') ?>
     </section>
+    <hr>
+    <section class="agregarvis">
+        <h2>Agregar</h2>
+        <form action="InsertarVis.php" method="POST" id="formulario" class="formVisua">
+            <div class="formbtn">
+                <div class="backg">
+                    <label for="fecha" class="label"><p>Fecha:</p></label>
+                </div>
+                <div class="backg">
+                    <input type="date" class="input" id="fecha">
+                </div>
+            </div>
+            <div class="formbtn">
+                <div class="backg">
+                    <label for="idioma" class="label"><p>Idioma:</p></label>
+                </div>
+                <div class="backg">
+                    <select name="idioma" id="idioma">
+                    <?php 
+                        $sql = "SELECT NOMBRE FROM IDIOMA;";
+                        $resultado = $conexion -> query($sql);
+                        while( $fila = $resultado -> fetch_assoc() ){?>
+                            <option value="<?php echo $fila['NOMBRE'] ?>"><?php echo $fila['NOMBRE'] ?></option>
+                        <?php 
+                        }?>
+                    </select>
+                </div>
+            </div>
+            <div class="formbtn">
+                <div class="backg">
+                    <label for="plataforma" class="label"><p>Plataforma:</p></label>
+                </div>
+                <div class="backg">
+                <select name="plataforma" id="plataforma">
+                    <?php 
+                        $sql = "SELECT NOMBRE FROM PLATAFORMA;";
+                        $resultado = $conexion -> query($sql);
+                        while( $fila = $resultado -> fetch_assoc() ){?>
+                            <option value="<?php echo $fila['NOMBRE'] ?>"><?php echo $fila['NOMBRE'] ?></option>
+                        <?php 
+                        }?>
+                    </select>                
+                </div>
+            </div>
+            <div class="formbtn textarea">
+                <div class="backg">
+                    <label for="opinion" class="label"><p>Opinión:</p></label>
+                </div>
+                <div class="backg">
+                    <textarea name="opinion" id="opinion" rows="7" cols="50"></textarea>
+                </div>
+            </div>
+            <div class="formbtn">
+                <div class="backg">
+                    <label for="calificacion" class="label"><p>Calificación:</p></label>
+                </div>
+                <div class="backg">
+                    <input type="number" class="input" id="clasificacion" min="0" max="5" step=".1">
+                </div>
+            </div>
+            <div class="formbtn">
+                <button class="favorito" id="favorito"><img src="../recursos/heart.png" alt="heart"></button>
+            </div>
+        </form>
+    </section>
 </body>
-<?php 
-// include "footer.php";
-?>
-
 
 </html>
 

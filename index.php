@@ -1,5 +1,5 @@
 <?php 
-    include ("php/info.php");
+    // include ("php/info.php");
 
     // $query = "
     //     SELECT f.NOMBRE AS NombrePelicula, g.NOMBRE AS Genero
