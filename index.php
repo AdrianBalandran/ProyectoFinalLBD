@@ -24,6 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <header>
@@ -175,4 +176,26 @@
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
     <script src="js/carrusel.js"></script>
 </body>
+<?php 
+include ("php/footer.php");
+?>
 </html>
+
+<?php 
+    session_start();
+
+    if(isset($_SESSION['logout'])){
+        ?>
+        <script>
+            Swal.fire({
+            icon: "success",
+            title: "Abandonarás tu sesión",
+            text: "¡Has cerrado sesión de tu cuenta!",
+            })
+        </script>
+        <?php 
+        unset($_SESSION['logout']);
+        unset($_SESSION['captcha']);
+        unset($_SESSION['intentos']);
+    }
+?>

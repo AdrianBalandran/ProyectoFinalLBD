@@ -21,33 +21,109 @@
 </head>
 
 <body>
+    <!-- Encabezado -->
     <header>
-        <?php
-        include("../php/encabezado.php");
-        ?>
-    </header>
-
-    <section>
-        <div class="peliculas-sec">
-
-            <!-- Carta de datos de pelicula -->
-             <div class="card-sep">
-             <div class="card" style="width: 18rem;">
-                <img src="../imagenes/rapidosyfuriosos2.jpg" class="card-img-top" alt="..." width="auto" height="250px">
-                <div class="card-body nbcolor">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Clasificación</p>
-                  
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start w-100">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">SERIES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../php/peliculas.php">PELÍCULAS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../php/altas.php">ADMINISTRADOR</a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="navbar-brand mx-auto" href="#"><img src="../imagenes/LogoFinal.png" alt="No Disponible" width="150px" height="auto"></a> 
+                <div class="d-flex justify-content-end">
+                    <form class="d-flex position-relative" role="search">
+                        <div class="input-container">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input class="form-control buscar" type="search" placeholder="BUSCAR..." aria-label="Search">
+                        </div>
+                    </form>
+                    <?php 
+                        if(!isset($_SESSION['usuario'])){?>
+                            <a href="php/login.php" class="navbar-nav" data-bs-toggle="tooltip" data-bs-title="Iniciar Sesión">
+                                <span class="nav-link">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                            </a>
+                        <?php } elseif(isset($_SESSION['usuario'])){ ?>
+                            <a href="php/logout.php" class="navbar-nav" data-bs-toggle="tooltip" data-bs-title="Cerrar Sesión">
+                                <span class="nav-link">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </span>
+                            </a>
+                        <?php } ?>
                 </div>
             </div>
-             </div>
-        </div>
-    </section>
+        </nav>
+    </header>
 
+    <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 
+    <div class="peliculas-sec">
+    <!-- Colocación de las tarjetas -->
+    <div class="colocacion">
 
+    <?php
+        $servername = 'localhost:3306';
+        $cuenta = 'root';
+        $password = '';
+        $bd = 'goodWatch';
 
+        // Conexión a la base de datos 
+        $conexion = new mysqli($servername, $cuenta, $password, $bd);
+
+        if ($conexion->connect_errno) {
+            die('Error en la conexion');
+        }
+
+        function datos($conexion) {
+            $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
+            $resultado = $conexion->query($sql);
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+    ?>
+    
+    
+                <!-- Carta de datos de película -->
+                <div class="card-sep">
+                    <div class="card border-dark mb-3">
+                        <img src="../imagenes/<?php echo $fila['IMAGEN']?>" class="card-img-top" alt="Imagen de película" width="auto" height="250px">
+                        <div class="card-body nbcolor">
+                            <h5 class="card-title"><?php echo $fila['NOMBRE']?></h5>
+                            <h4><?php echo $fila['FECHA_ESTRENO']?></h4>
+                            <div class="npcolor">
+                                <p class="card-text"><?php echo $fila['CLASIFICACION']?></p>
+                            </div>
+                            <h5 class="card-title"><?php echo $fila['DURACION']?> min.</h5>
+                        </div>
+                    </div>
+                </div>
+   
+
+    <?php 
+                }
+            } else {
+                echo "<p>No se encontraron películas.</p>";
+            }
+        }
+        
+        // Llamada a la función para mostrar los datos
+        datos($conexion);
+    ?>
+
+    </div>
+    </div>
 
 </body>
 
