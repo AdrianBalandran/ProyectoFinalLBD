@@ -67,42 +67,63 @@
             </div>
         </nav>
     </header>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="js/navbar.js"></script>
+
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 
+    <div class="peliculas-sec">
+    <!-- Colocación de las tarjetas -->
+    <div class="colocacion">
 
-    <!-- Peliculas -->
-    <section>
-        <div class="peliculas-sec">
+    <?php
+        $servername = 'localhost:3306';
+        $cuenta = 'root';
+        $password = '';
+        $bd = 'goodWatch';
 
-        <!-- Colocacion de las tarjetas -->
-         <div class="colocacion">
+        // Conexión a la base de datos 
+        $conexion = new mysqli($servername, $cuenta, $password, $bd);
 
-         <!-- Carta de datos de pelicula -->
-         <div class="card-sep">
-             <div class="card  border-dark mb-3">
-                <img src="../imagenes/rapidosyfuriosos2.jpg" class="card-img-top" alt="..." width="auto" height="250px">
-                <div class="card-body nbcolor">
-                    <h5 class="card-title">Card title</h5>
-                    <div class="npcolor">
-                        <p class="card-text">Clasificación</p>
+        if ($conexion->connect_errno) {
+            die('Error en la conexion');
+        }
+
+        function datos($conexion) {
+            $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
+            $resultado = $conexion->query($sql);
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+    ?>
+    
+    
+                <!-- Carta de datos de película -->
+                <div class="card-sep">
+                    <div class="card border-dark mb-3">
+                        <img src="../imagenes/<?php echo $fila['IMAGEN']?>" class="card-img-top" alt="Imagen de película" width="auto" height="250px">
+                        <div class="card-body nbcolor">
+                            <h5 class="card-title"><?php echo $fila['NOMBRE']?></h5>
+                            <h4><?php echo $fila['FECHA_ESTRENO']?></h4>
+                            <div class="npcolor">
+                                <p class="card-text"><?php echo $fila['CLASIFICACION']?></p>
+                            </div>
+                            <h5 class="card-title"><?php echo $fila['DURACION']?> min.</h5>
+                        </div>
                     </div>
-                
                 </div>
-            </div>
-             </div>
+   
 
-         </div>
+    <?php 
+                }
+            } else {
+                echo "<p>No se encontraron películas.</p>";
+            }
+        }
         
-        </div>
-    </section>
+        // Llamada a la función para mostrar los datos
+        datos($conexion);
+    ?>
 
-
-
-
+    </div>
+    </div>
 
 </body>
 
