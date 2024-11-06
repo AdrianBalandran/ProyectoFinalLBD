@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoodWatchn | Series</title>
+    <title>GoodWatch | Series</title>
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/series.css">
@@ -30,10 +30,10 @@
                 <div class="d-flex justify-content-start w-100">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
+                            <a class="nav-link" aria-current="page" href="../index.php">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../php/series.php">SERIES</a>
+                            <a class="nav-link active" href="../php/series.php">SERIES</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../php/peliculas.php">PELÍCULAS</a>
