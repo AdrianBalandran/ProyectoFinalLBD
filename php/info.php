@@ -11,7 +11,7 @@ function datos($conexion, $id){
         <div class="info_filme">
             <div class="primer">
                 <div class="imagen">
-                    <img src="../imagenes/recursos/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
+                    <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
                 </div>
                 <div class="estrellas">
                     <img src="../imagenes/recursos/start.png" alt="Estrellas">
