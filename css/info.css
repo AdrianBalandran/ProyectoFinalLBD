@@ -6,7 +6,17 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    color: #FFFFFF;
 }
+body{
+    background-color: #000000;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type=number] { -moz-appearance:textfield; }
 /* Colores */
 /* 
 #5AE2A8
@@ -43,9 +53,10 @@
 
 .info_filme .segundo .peliculaDatos{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
 }
 .info_filme .imagen img{
     width: 400px;
@@ -75,7 +86,7 @@ h2{
 }
 
 .info_filme .segundo .peliculaDatos div.estreno, .info_filme .segundo .peliculaDatos div.idioma, .info_filme .segundo .peliculaDatos div.clasif, .info_filme .segundo .peliculaDatos div.pais{
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: end;
 } 
@@ -90,23 +101,19 @@ h2{
     justify-content: end;
 }
 .info_filme .segundo .peliculaDatos > div{
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 .info_filme .segundo .peliculaDatos  > div > div:last-child {
     margin-left: 20px;
 }
 
 .backg{
-    background-color: #DDDBDA;
-    border-radius: 40px;
     width: 175px;
     height: 100%;
     font-size: 20px;
 }
 
 .backginfo{
-    background-color: #DDDBDA;
-    border-radius: 40px;
     width: 80%;
     height: 310px;
     padding: 10.75px 28px;
@@ -119,6 +126,12 @@ h2{
 .backg p{
     text-align: center;
     padding: 10.75px 0;
+    color: #5AE2A8;
+    font-weight: bold;
+}
+
+.colorwhite p{
+    color: #FFFFFF;
 }
 
 .actordirector{
@@ -127,7 +140,7 @@ h2{
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .actordirector .actores, .actordirector .generos{
     width: 100%;
@@ -148,6 +161,9 @@ h2{
     width: 80%;
     padding-left: 20px;
 }
+.actordirector .actores .lista .backg p{
+    text-align: start;
+}
 .actordirector .generos .lista{
     display: flex;
     justify-content: start;
@@ -165,12 +181,23 @@ h2{
 
 .actordirector .generos .lista > div{
     margin-right: 20px;
-    background-color: #69ACC2;
 }
 
 .actordirector .generos .lista > div{
     width: 180px;
 }
+
+.divcont{
+    background-color: #1B1B1B;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.info_filme .segundo .actordirector > div{
+    margin-bottom: 50px;
+}
+
+
 .estrellas{
     display: flex;
     justify-content: center;
@@ -193,44 +220,38 @@ hr{
     margin: 50px auto;
 }
 .agregarvis{
-    margin: 50px;
-
+    margin: 80px;
 }
 
-.formVisua button{
-    background-color: white;
-    border: none;
-}
-.formVisua button img{
-    width: 40px;
-    height: auto;
-}
 form.formVisua{
     display: flex;
     justify-content: space-between; 
     align-items: start;
     flex-wrap: wrap;
-    row-gap: 20px;
+    row-gap: 50px;
 }
 
 input, select, textarea{
     text-align: center;
     padding: 10.75px 0;
-    background-color: #DDDBDA;
+    background-color: #1B1B1B;
     border: none;
     margin: 0px auto;
     width: 100%;
     border-radius: 40px;
     height: 100%;
     font-size: 20px;
+    color: #FFFFFF;
 }
-
+textarea{
+    text-align: start;
+    padding: 10px 15px;
+}
 .formbtn {
     width: 30%;
     display: flex;
     justify-content: center; 
     align-items: start;
-    gap: 20px;
     height: auto;
 }
 
@@ -242,6 +263,55 @@ input, select, textarea{
 }
 
 .textarea .backg:nth-child(2) {
-    width: 71%;
+    width: 80%;
     height: 100%;
+}
+.textarea .backg:nth-child(1) p{
+    text-align: end;
+    width: auto;
+}
+
+button.agregar{
+    background-color: #5AE2A8;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #fff;
+    width: 175px;
+    height: 100%;
+    border: none;
+}
+button.agregar p{
+    color: #fff;
+}
+button.agregar:hover{
+    background-color: #FFFFFF;
+} 
+button.agregar p:hover{
+    color: #000000;
+}
+.boton{
+    width: 100%;
+}
+.conta{
+    width: 30%;
+}
+.conta .formbtn{
+    width: 100%
+}
+.formVisua .favorito{
+    background-color: #000000;
+    border: none;
+}
+.formVisua img{
+    width: 40px;
+    height: auto;
+}
+.favorito{
+    margin-top: 50px;
+}
+.visu{
+    margin-top: 50px;
+}
+.agregarvis, .block{
+    display: none;
 }

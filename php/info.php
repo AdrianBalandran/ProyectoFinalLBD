@@ -1,5 +1,7 @@
 <?php 
-include "menu.php";
+// include "encabezado.php";
+session_start();
+date_default_timezone_set('America/Mexico_City');
 
 function datos($conexion, $id){
     $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
@@ -9,21 +11,30 @@ function datos($conexion, $id){
         <div class="info_filme">
             <div class="primer">
                 <div class="imagen">
-                    <img src="../recursos/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
+                    <img src="../imagenes/recursos/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
                 </div>
                 <div class="estrellas">
-                    <img src="../recursos/start.png" alt="Estrellas">
-                    <img src="../recursos/start.png" alt="Estrellas">
-                    <img src="../recursos/start.png" alt="Estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
                 </div>
                 <div class="estno">
                     <p class="nocali">5 calificaciones</p>
                 </div>
+                <?php 
+                    if(isset($_SESSION['usuario'])){
+                ?>
+                <div class="formbtn boton visu">
+                    <div class="backg">
+                        <button class="agregar" type="button" id="desplegar"><p>Agregar</p></button>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
             <div class="segundo">
                 <div class="peliculaDatos">
                     <h2><?php echo $fila['NOMBRE'] ?></h2>
-                    <div class="desc">
+                    <div class="desc divcont">
                         <div class="backg">
                             <p>Descripción:</p>
                         </div>
@@ -31,41 +42,41 @@ function datos($conexion, $id){
                             <p><?php echo $fila['DESCRIPCION'] ?></p>
                         </div>
                     </div>
-                    <div class="estreno">
+                    <div class="estreno divcont">
                         <div class="backg">
                             <p>Estreno:</p>
                         </div>
-                        <div class="backg">
+                        <div class="backg colorwhite">
                             <p><?php echo $fila['FECHA_ESTRENO'] ?></p>
                         </div>
                     </div>
-                    <div class="clasif">
+                    <div class="clasif divcont">
                         <div class="backg">
                             <p>Clasificación:</p>
                         </div>
-                        <div class="backg">
+                        <div class="backg colorwhite">
                             <p><?php echo $fila['CLASIFICACION'] ?></p>
                         </div>
                     </div>
-                    <div class="idioma">
+                    <div class="idioma divcont">
                         <div class="backg">
                             <p>Idioma:</p>
                         </div>
-                        <div class="backg">
+                        <div class="backg colorwhite">
                             <p><?php echo $fila['IDIOMA'] ?></p>
                         </div>
                     </div>
-                    <div class="pais">
+                    <div class="pais divcont">
                         <div class="backg">
                             <p>País:</p>
                         </div>
-                        <div class="backg">
+                        <div class="backg colorwhite">
                             <p><?php echo $fila['PAIS'] ?></p>
                         </div>
                     </div>              
                 </div>
                 <diV class="actordirector">
-                    <div class="actores">
+                    <div class="actores divcont">
                         <div class="divtit">
                             <div class="backg">
                                 <p>Actores:</p>
@@ -77,7 +88,7 @@ function datos($conexion, $id){
                         $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'A';";
                         $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){?>
-                            <div class="backg">
+                            <div class="backg colorwhite">
                                 <p><?php echo $fila1['NOM_ART'] ?></p>
                             </div>
                         <?php 
@@ -89,13 +100,13 @@ function datos($conexion, $id){
                         $resultado1 = $conexion -> query($sql1);
                         $row = mysqli_fetch_array($resultado1,MYSQLI_ASSOC);
                         if(count($row)!=0) {?>
-                    <div class="actores">
+                    <div class="actores divcont">
                         <div class="divtit">
                             <div class="backg">
                                 <p>Directores:</p>
                             </div>
                         </div>
-                        <div class="lista">
+                        <div class="lista colorwhite">
                         <?php 
                         $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'D';";
                         $resultado1 = $conexion -> query($sql1);                        
@@ -108,13 +119,13 @@ function datos($conexion, $id){
                         </div>
                     </div>
                     <?php }?>
-                        <div class="generos">
+                        <div class="generos divcont">
                         <div class="divtit">
                             <div class="backg">
                                 <p>Géneros:</p>
                             </div>
                         </div>
-                        <div class="lista">
+                        <div class="lista colorwhite">
                         <?php 
                         // $sql1 = "SELECT *FROM REPARTO";
                         $sql1 = "SELECT GE.NOMBRE FROM GENERO GE, GENERO_FILME GEFI, FILME FI WHERE GE.ID_GENERO = GEFI.ID_GENERO AND FI.ID_FILME = GEFI.ID_FILME AND FI.ID_FILME = '$id';";
@@ -169,24 +180,24 @@ if($conexion->connect_errno) {
     <section class="info" id="info">
         <?php datos($conexion, '00100') ?>
     </section>
+    <section class="agregarvis" id="agregarvis">
     <hr>
-    <section class="agregarvis">
         <h2>Agregar</h2>
-        <form action="InsertarVis.php" method="POST" id="formulario" class="formVisua">
-            <div class="formbtn">
+        <form action="Nueva_Visua.php" method="POST" id="formulario" class="formVisua">
+            <div class="formbtn divcont">
                 <div class="backg">
                     <label for="fecha" class="label"><p>Fecha:</p></label>
                 </div>
                 <div class="backg">
-                    <input type="date" class="input" id="fecha">
+                    <input type="date" class="input" id="fecha" name="fecha" max="<?php echo date('Y-m-d')?>" required>
                 </div>
             </div>
-            <div class="formbtn">
+            <div class="formbtn divcont">
                 <div class="backg">
                     <label for="idioma" class="label"><p>Idioma:</p></label>
                 </div>
                 <div class="backg">
-                    <select name="idioma" id="idioma">
+                    <select name="idioma" id="idioma" name="idioma" required>
                     <?php 
                         $sql = "SELECT NOMBRE FROM IDIOMA;";
                         $resultado = $conexion -> query($sql);
@@ -197,12 +208,12 @@ if($conexion->connect_errno) {
                     </select>
                 </div>
             </div>
-            <div class="formbtn">
+            <div class="formbtn divcont">
                 <div class="backg">
                     <label for="plataforma" class="label"><p>Plataforma:</p></label>
                 </div>
                 <div class="backg">
-                <select name="plataforma" id="plataforma">
+                <select name="plataforma" id="plataforma" required>
                     <?php 
                         $sql = "SELECT NOMBRE FROM PLATAFORMA;";
                         $resultado = $conexion -> query($sql);
@@ -213,7 +224,7 @@ if($conexion->connect_errno) {
                     </select>                
                 </div>
             </div>
-            <div class="formbtn textarea">
+            <div class="formbtn textarea divcont">
                 <div class="backg">
                     <label for="opinion" class="label"><p>Opinión:</p></label>
                 </div>
@@ -221,20 +232,31 @@ if($conexion->connect_errno) {
                     <textarea name="opinion" id="opinion" rows="7" cols="50"></textarea>
                 </div>
             </div>
-            <div class="formbtn">
-                <div class="backg">
-                    <label for="calificacion" class="label"><p>Calificación:</p></label>
+            <div class="conta">
+                <div class="formbtn divcont">
+                    <div class="backg">
+                        <label for="calificacion" class="label"><p>Calificación:</p></label>
+                    </div>
+                    <div class="backg">
+                        <input type="number" class="input" id="clasificacion" min="0" max="5" step=".1" name="calificacion" value="0" required>
+                    </div>
                 </div>
-                <div class="backg">
-                    <input type="number" class="input" id="clasificacion" min="0" max="5" step=".1">
+                <div class="formbtn favorito">
+                    <button type="button" class="favorito" id="fav"><img id="imgfav" src="../imagenes/recursos/whiteheart.png" alt="heart"></button>
                 </div>
             </div>
-            <div class="formbtn">
-                <button class="favorito" id="favorito"><img src="../recursos/heart.png" alt="heart"></button>
+            <div class="formbtn boton">
+                <div class="backg">
+                    <button class="agregar" type="submit" name="agregar"><p>Agregar</p></button>
+                </div>
             </div>
+            <input class="block" id="favorito" name="favorito" type="text" value="N">
+            <input class="block" id="filme" name="filme" type="text" value="00100">
         </form>
     </section>
 </body>
+<script src="../js/info.js"></script>
+
 
 </html>
 
