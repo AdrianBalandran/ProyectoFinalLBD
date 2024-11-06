@@ -3,6 +3,7 @@
 session_start();
 date_default_timezone_set('America/Mexico_City');
 
+$nombre = "";
 function datos($conexion, $id){
     $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
     $resultado = $conexion -> query($sql);
@@ -13,20 +14,41 @@ function datos($conexion, $id){
                 <div class="imagen">
                     <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
                 </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="Estrellas">
-                </div>
+                <div class="estrellas"> <?php
+                    $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id'";
+                        $resultado1 = $conexion -> query($sql1);
+                        while( $fila1 = $resultado1 -> fetch_assoc() ){
+                            for ($i = 1; $i <= (int)$fila1['CALI']; $i++) { ?>
+                                <img src="../imagenes/recursos/start.png" alt="Estrellas">
+                            <?php }
+                            // $num = (float)4.7 - (int)4.7;
+                            $num = (float)$fila1['CALI'] - (int)$fila1['CALI']; 
+                            if($num >= 0.3 && $num <= 0.8){ ?>
+                                <img src="../imagenes/recursos/startmedia.png" alt="Estrellas" class="media">
+                            <?php }
+                        }?> 
+                        </div>
                 <div class="estno">
-                    <p class="nocali">5 calificaciones</p>
+                    <?php
+                    $sql1 = "SELECT COUNT(*) NOM FROM VISUALIZACION WHERE ID_FILME = '$id' GROUP BY ID_FILME;";
+                        $resultado1 = $conexion -> query($sql1);
+                        while( $fila1 = $resultado1 -> fetch_assoc() ){
+                            if($fila1['NOM'] == 1){?>                            
+                            <p class="nocali"><?php echo $fila1['NOM'] ?> Calificación</p>
+                        <?php } else{
+                            ?>                            
+                            <p class="nocali"><?php echo $fila1['NOM'] ?> Calificaciones</p>
+                        <?php }
+                            ?>
+                        <?php 
+                        }?>
                 </div>
                 <?php 
                     if(isset($_SESSION['usuario'])){
                 ?>
                 <div class="formbtn boton visu">
                     <div class="backg">
-                        <button class="agregar" type="button" id="desplegar"><p>Agregar</p></button>
+                        <button class="agregar" type="button" id="desplegar"><p>Añadir</p></button>
                     </div>
                 </div>
                 <?php } ?>
@@ -168,7 +190,7 @@ if($conexion->connect_errno) {
 
     <!-- Favicon -->
 
-    <title>Info</title>
+    <title>GoodWatch | Información></title>
     <link rel="stylesheet" href="../css/info.css">
 
     <!-- Letra -->
@@ -182,7 +204,7 @@ if($conexion->connect_errno) {
     </section>
     <section class="agregarvis" id="agregarvis">
     <hr>
-        <h2>Agregar</h2>
+        <h2>Nueva Película</h2>
         <form action="Nueva_Visua.php" method="POST" id="formulario" class="formVisua">
             <div class="formbtn divcont">
                 <div class="backg">
@@ -238,7 +260,7 @@ if($conexion->connect_errno) {
                         <label for="calificacion" class="label"><p>Calificación:</p></label>
                     </div>
                     <div class="backg">
-                        <input type="number" class="input" id="clasificacion" min="0" max="5" step=".1" name="calificacion" value="0" required>
+                        <input type="number" class="input" id="calificacion" min="0" max="5" step=".1" name="calificacion" value="0" required>
                     </div>
                 </div>
                 <div class="formbtn favorito">

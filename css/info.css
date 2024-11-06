@@ -8,6 +8,14 @@
     padding: 0px;
     color: #FFFFFF;
 }
+textarea:focus  {
+	outline: 2px solid #5AE2A8;
+	outline-offset: -2px;
+}
+input:focus, select:focus{
+    outline: none;
+}
+
 body{
     background-color: #000000;
 }
@@ -76,6 +84,9 @@ h2{
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
+}
+.agregarvis h2{
+    margin-bottom: 40px;
 }
 
 .info_filme .segundo .peliculaDatos div.desc{
@@ -210,6 +221,11 @@ h2{
     width: 40px;
     height: 40px;
 }
+.estrellas img.media{
+    width: 20px;
+    height: 40px;
+}
+
 .estno{
     text-align: center;
     font-size: 20px;
@@ -217,7 +233,7 @@ h2{
 hr{
     width: 70%;
     background-color: #DDDBDA;
-    margin: 50px auto;
+    margin: 80px auto;
 }
 .agregarvis{
     margin: 80px;
@@ -238,7 +254,7 @@ input, select, textarea{
     border: none;
     margin: 0px auto;
     width: 100%;
-    border-radius: 40px;
+    border-radius: 10px;
     height: 100%;
     font-size: 20px;
     color: #FFFFFF;
