@@ -1,3 +1,17 @@
+<?php 
+    // include ("php/info.php");
+
+    // $query = "
+    //     SELECT f.NOMBRE AS NombrePelicula, g.NOMBRE AS Genero
+    //     FROM FILME f
+    //     JOIN GENERO_FILME gf ON f.ID_FILME = gf.ID_FILME
+    //     JOIN GENERO g ON gf.ID_GENERO = g.ID_GENERO
+    //     WHERE f.CALIFICACION BETWEEN '9' AND '10'
+    // ";
+
+    // $result = $conexion->query($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
