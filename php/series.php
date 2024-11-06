@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoodWatchn | Peliculas</title>
+    <title>GoodWatchn | Series</title>
 
     <!-- Estilos -->
-    <link rel="stylesheet" href="../css/peliculas.css">
+    <link rel="stylesheet" href="../css/series.css">
     <link rel="stylesheet" href="../css/encabezado.css">
 
     <!-- Bootstrap -->
@@ -23,7 +23,6 @@
     <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 </head>
 
-<body>
     <!-- Encabezado -->
     <header>
         <nav class="navbar navbar-expand-lg">
@@ -71,6 +70,8 @@
         </nav>
     </header>
 
+<body>
+
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 
     <div class="peliculas-sec">
@@ -92,7 +93,7 @@
 
             function datos($conexion)
             {
-                $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
+                $sql = "SELECT FI.NOMBRE NOMBRE, S.IMAGENTEM IMAGEN, FI.CLASIFICACION CLASIFICACION, S.FECHA_ESTRENO FECHA_ESTRENO, S.NUMERO_EPISODIOS EPISODIOS, S.TEMPORADA TEMPORADA FROM FILME FI, SERIE S WHERE FI.ID_FILME = S.ID_FILME;";
                 $resultado = $conexion->query($sql);
                 if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
@@ -113,7 +114,11 @@
                                             <p class="card-text"><?php echo $fila['CLASIFICACION'] ?></p>
                                         </div>
                                     </div>
-                                    <h5 class="card-title"><?php echo $fila['DURACION'] ?> min.</h5>
+                                    <div class="infoserie">
+                                        <h4>TEMPORADA <?php echo $fila['TEMPORADA'] ?></h4>
+                                    <h4><?php echo $fila['EPISODIOS'] ?> EPISODIOS</h4>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -121,7 +126,7 @@
             <?php
                     }
                 } else {
-                    echo "<p>No se encontraron películas.</p>";
+                    echo "<p>No se encontraron series.</p>";
                 }
             }
 

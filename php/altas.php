@@ -11,6 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/altas.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 </head>
 <body>
     <div class="d-flex flex-nowrap">
@@ -22,7 +25,7 @@
             <h2 style="margin: 0 auto;">Altas</h2>
             <?php
                 
-                $servername = "localhost:33065";
+                $servername = "localhost:3306";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';

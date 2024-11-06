@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 </head>
 <body>
     <header>
@@ -19,7 +21,7 @@
                             <a class="nav-link active" aria-current="page" href="../index.php">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">SERIES</a>
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/series.php">SERIES</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../ProyectoFinalLBD/php/peliculas.php">PELÍCULAS</a>

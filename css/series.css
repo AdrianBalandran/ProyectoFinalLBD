@@ -92,6 +92,10 @@ body {
     padding: 0 5px;
 }
 
+.infoserie{
+    padding-top: 5px;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .colocacion {
