@@ -1,15 +1,24 @@
-function mostrarImagen(event) {
+function mostrarImagen(event, id) {
     var archivo = event.target.files[0];
     var lector = new FileReader();
 
     lector.onload = function(e) {
-    var imagen = document.getElementById('imagen');
+        if(id==1){
+            var imagen = document.getElementById('imagen');
+        } else if(id==2){
+            var imagen = document.getElementById('imagen2');
+        } else if(id==3){
+            var imagen = document.getElementById('imagen3');
+        }
+    
     imagen.src = e.target.result;
     imagen.style.display = 'block';
     }
 
     lector.readAsDataURL(archivo);
 }
+
+
 
 $(document).ready(function() {
     console.log($('#formulario-pelicula').length);
@@ -21,7 +30,7 @@ $(document).ready(function() {
         var formData = new FormData(this);
 
         $.ajax({
-            url: "altas.php",
+            url: "altasP.php",
             type: "POST",
             data: formData,
             processData: false,

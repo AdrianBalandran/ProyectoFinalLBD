@@ -22,10 +22,10 @@
             document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
-            <h2 style="margin: 0 auto;">Altas</h2>
+            <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de películas</h2>
             <?php
                 
-                $servername = "localhost:3306";
+                $servername = "localhost:33065";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -84,8 +84,6 @@
                     $final2 = $conexion -> query($consP);
                     $final3 = $conexion -> query($consGF);
 
-
-                    
                     unset($_POST['idP']);
                 }else{ //reparto o serie
 
@@ -93,45 +91,7 @@
                     
             ?>
 
-            <!-- Cambio de formularios -->
-            <div class="select">
-                <div class="Filtro">
-                    <div class="radio-inputs">
-                        <label class="radio">
-                            <input type="radio" name="radio" value="pelicula" checked>
-                            <span class="name">Pelicula</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="radio" value="serie">
-                            <span class="name">Serie</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="radio" value="reparto">
-                            <span class="name">Reparto</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <script>
-                //Cambiar vistas
-                $('input[name="radio"]').change(function(){
-                    var valorCambiado = $(this).val();
-
-                    //Ocultar todos
-                    $('#form-pelicula, #form-reparto, #form-serie').hide();
-                    
-                    //Mostrar seleccionado
-                    if (valorCambiado === 'reparto') {
-                        $('#form-reparto').show();
-                    } else if(valorCambiado === 'serie') {
-                        $('#form-serie').show();
-                    } else{
-                        $('#form-pelicula').show();
-                    }
-                });
-            </script>
-
-            <!-- Formulario de películas y series -->
+            <!-- Formulario de películas-->
             <div id="form-pelicula" class="form-pelicula formulario">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-pelicula">
                     <div class="row">
@@ -240,7 +200,7 @@
                             <div class="mb-3">
                                 <label for="file">Imagen:</label>
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="mostrarImagen(event)" required>
+                                    <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="mostrarImagen(event,1)" required>
                                 </div>
                             </div>
                             
@@ -260,24 +220,6 @@
                     </div>
                 </form>
             </div>
-
-            <!-- Formulario de serie -->
-            <div id="form-serie" class="form-serie formulario" style="display: none;">
-                <form action="">
-                    <div class="col-2 mb-3">
-                        prueba
-                        
-                    </div>
-                </form>
-            </div>
-
-            <!-- Formulario de reparto -->
-            <div id="form-reparto" class="form-reparto formulario" style="display: none;">
-                <form action="">
-                    <h1>formulario reparto</h1>
-                </form>
-            </div>
-    
             <?php
             
                 }
