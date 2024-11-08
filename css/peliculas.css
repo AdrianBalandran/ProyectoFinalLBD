@@ -111,13 +111,13 @@ body {
     }
 }
 
-button{
+.colocacion button{
     background-color: black;
     border: none;
     outline: none;
     box-shadow: none;
     text-align: start;
 }
-form{
+form.form{
     width: 100%;
 }

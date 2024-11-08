@@ -75,7 +75,7 @@
 
     <div class="peliculas-sec">
         <!-- Colocación de las tarjetas -->
-        <form action="info.php" method="POST" id="formulario" class="form">
+        <form action="Info_Peliculas.php" method="POST" id="formulario" class="form">
         <div class="colocacion">
 
             <?php
