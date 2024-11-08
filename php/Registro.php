@@ -26,7 +26,7 @@
     ?>
 </header>
 <body>
-    <main>
+    <main class="MainRegistro">
         
         <section class="div_Registro">
             <h2>Regístrate</h2>
@@ -36,7 +36,7 @@
                         <label for="alias" class="form-label">Alias:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" name="user" class="form-control" id="user"  required>
+                            <input type="text" name="user" class="form-control" id="user" maxlength="20" required>
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                         <label for="name" class="form-label">Nombre:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" name="name" class="form-control" id="name" required>
+                            <input type="text" name="name" class="form-control" id="name" maxlength="30" required>
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@
                         <label for="email" class="form-label">Email:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="email" name="email" class="form-control" id="email" required>
+                            <input type="email" name="email" class="form-control" id="email" maxlength="30" required>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                         <label for="tel" class="form-label">Teléfono:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-phone" ></i></span>
-                            <input type="tel" name="tel" class="form-control" id="tel" required>
+                            <input type="tel" name="tel" class="form-control" id="tel" maxlength="10" required>
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                         <label for="pass" class="form-label">Contraseña:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-lock" ></i></span>
-                            <input type="password" name="pass" class="form-control" id="pass" required>
+                            <input type="password" name="pass" class="form-control" id="pass" minlength="8" maxlength="15" required>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@
                         <label for="pass" class="form-label">Repetir contraseña:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-lock" ></i></span>
-                            <input type="password" name="pass1" class="form-control" id="pass1" required>
+                            <input type="password" name="pass1" class="form-control" id="pass1" minlength="8" maxlength="15"  required>
                         </div>
                         <small id="formulario_error">Ambas contraseñas deben ser iguales</small>
                     </div>
@@ -92,7 +92,7 @@
 
 </body>
 <?php 
-    // include ("../php/footer.php");
+    include ("../php/footer.php");
 ?>
 </html>
 

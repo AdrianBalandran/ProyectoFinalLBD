@@ -5,6 +5,7 @@
 }
 
 .footer{
+    font-family: "Itim", cursive;
     color: rgb(189, 189, 189);
     width: 100%;
     /* background-color: #69ACC2; */
@@ -27,11 +28,25 @@
 .footer .links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center;  */
     padding: 17px 0px;
 }
 
+.footer .links .Primera, .footer .links .Segunda{
+    display: flex;
+    width: 50%;
+}
+
+.footer .links .Primera{
+    justify-content: flex-end;
+}
+
+.footer .links .Segunda{
+    justify-content: flex-start;
+}
+
 .footer .links p{
+    display: inline;
     padding: 0px 30px;
 }
 
@@ -69,12 +84,12 @@
     color: #5AE2A8;
 }
 
-span :hover{
+.footer span :hover{
     color: #5AE2A8;
     cursor: pointer;;
 }
   
-.fa-brands, .fas {
+.footer .fa-brands, .fas {
     font-weight: 900;
 }
 

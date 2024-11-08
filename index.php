@@ -177,7 +177,7 @@
     <script src="js/carrusel.js"></script>
 </body>
 <?php 
-include ("php/footer.php");
+include ("footer.php");
 ?>
 </html>
 
