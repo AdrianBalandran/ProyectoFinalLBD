@@ -30,7 +30,7 @@
                             <a class="nav-link" href="../ProyectoFinalLBD/php/peliculas.php">PELÍCULAS</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../ProyectoFinalLBD/php/altas.php">ADMINISTRADOR</a>
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/altasP.php">ADMINISTRADOR</a>
                         </li>
                     </ul>
                 </div>
