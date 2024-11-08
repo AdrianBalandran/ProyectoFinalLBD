@@ -15,6 +15,7 @@ $(document).ready(function() {
     console.log($('#formulario-pelicula').length);
 
     $("#formulario-pelicula").on("submit", function(event) {
+        console.log("Formulario enviado");
         event.preventDefault();
 
         var formData = new FormData(this);
@@ -29,7 +30,17 @@ $(document).ready(function() {
             success: function(response) {
                 console.log("Solicitud AJAX exitosa");
                 console.log(response);
-                location.reload();
+                Swal.fire({
+                    title: 'Exito',
+                    text: 'Pelicula agregada',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        document.getElementById("formulario-pelicula").reset();
+                        location.reload();
+                    }
+                });
             },
             error: function(xhr, status, error) {
                 console.error("Error:", error);

@@ -1,4 +1,5 @@
 * {
+    /* font-family: "Itim", cursive; */
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -33,14 +34,14 @@
     font-weight: bold;
 }
 
-.fa-user {
+.navbar .fa-user {
     color: #ffffff !important;
     font-size: 25px;
     cursor: pointer;
     margin-left: 20px;
 }
 
-.fa-user:hover {
+.navbar .fa-user:hover {
     color: #5AE2A8 !important;
     transition: color 0.3s ease;
 }
@@ -68,7 +69,7 @@
     opacity: 0.5 !important; 
 }
 
-.fa-magnifying-glass {
+.navbar .fa-magnifying-glass {
     position: absolute !important;
     left: 10px !important; 
     top: 40% !important; 

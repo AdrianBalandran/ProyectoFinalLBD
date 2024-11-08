@@ -1,5 +1,5 @@
 <?php 
-    include ("php/info.php");
+    // include ("php/info.php");
 
     // $query = "
     //     SELECT f.NOMBRE AS NombrePelicula, g.NOMBRE AS Genero
@@ -17,12 +17,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GoodWatchs</title>
+    <title>GoodWatch | Inicio</title>
     <link rel="stylesheet" href="css/index.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../ProyectoFinalLBD/imagenes/faviconi.png"/>
+
+
 </head>
 <body>
     <header>
@@ -42,19 +49,9 @@
         </div>
 
         <div class="peliculas">
-            <!-- <?php 
-                // if ($result->num_rows > 0) {
-                //     // Peliculas en tendencia
-                //     while ($row = $result->fetch_assoc()) {
-                //         echo "<div class='pelicula'>";
-                //         echo "<h4>" . $row['NombrePelicula'] . "</h4>";
-                //         echo "<p>Género: " . $row['Genero'] . "</p>";
-                //         echo "</div>";
-                //     }
-                // } else {
-                //     echo "No se encontraron películas con calificación entre 9 y 10.";
-                // }
-            ?> -->
+            <?php 
+                
+            ?>
         </div>
 
         <div class="tendencia">
@@ -162,11 +159,11 @@
         </div>
     </section>
 
-    <!-- <footer>
+    <footer>
         <?php
-           // include ("php/footer.php");
+           include ("php/footer.php");
         ?>
-    </footer> -->
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -174,4 +171,27 @@
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
     <script src="js/carrusel.js"></script>
 </body>
+
+<?php 
+include ("footer.php");
+?>
 </html>
+
+<?php 
+    session_start();
+
+    if(isset($_SESSION['logout'])){
+        ?>
+        <script>
+            Swal.fire({
+            icon: "success",
+            title: "Abandonarás tu sesión",
+            text: "¡Has cerrado sesión de tu cuenta!",
+            })
+        </script>
+        <?php 
+        unset($_SESSION['logout']);
+        unset($_SESSION['captcha']);
+        unset($_SESSION['intentos']);
+    }
+?>

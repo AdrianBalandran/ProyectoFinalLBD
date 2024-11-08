@@ -1,7 +1,6 @@
 *{
   padding: 0px;
   margin: 0px;
-  font-family: "Itim", cursive;
 }
 
 main{
@@ -10,21 +9,27 @@ main{
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  font-family: "Itim", cursive;
+  color: #FFFFFF;
+}
+
+.MainRegistro, .MainLogin, main{
+  background-color:rgb(189, 189, 189);
 }
 
 .div_Registro .form-control, .div_Registro .input-group-text {
-  border: 1px solid #243c44;
+  border: 1px solid #FFF;
 }
 
 .div_Registro .input-group-text{
-  background-color: #69ACC2;
+  background-color: #1B1B1B;
 }
 
 .div_Registro{
-    background-color: rgba(105, 172, 194, 0.7);
-    border: 1px solid #69ACC2;
+    background-color: #1B1B1B;
+    border: 1px solid #1B1B1B;
     width: 500px;
-    height: 670px;
+    height: 720px;
     text-align: center;
     align-items: center;
 }
@@ -52,15 +57,16 @@ main{
 }
 
 .button button{
-  background-color: #213E60;
-  border: 1px solid #213E60;
+  background-color: #5AE2A8;
+  border: 1px solid #5AE2A8;
   width: 200px;
 }
 
 .button button:hover{
-  background-color: #5d81a9;
+  background-color: #FFF;
   border: 1px solid #213E60;
   width: 200px;
+  color: black;
 }
 
 .button{
@@ -68,15 +74,22 @@ main{
 }
 
 .div_Registro .input-group-text i {
-  color: #213E60;
+  color: #FFF;
 }
+
+.div_Registro .input-group-text i:hover {
+  color: #FFF;
+  color: #5AE2A8 !important;
+  transition: color 0.3s ease;
+}
+
 
 fa-solid, .fas {
   font-weight: 900;
 }
 
 .div_Registro small{
-  color: #243c44;
+  color: #5AE2A8;
 }
 
 .div_Registro #formulario_error {
@@ -90,3 +103,19 @@ fa-solid, .fas {
 .error{
   position: relative;
 }
+
+.div_Login{
+  height: 400px;
+
+}
+
+.div_Login .registro{
+  margin-top: 25px;
+  font-size: 17px;
+  color: white;
+}
+
+.div_Login .registro a{
+    color: #5AE2A8;
+}
+

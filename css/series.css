@@ -1,0 +1,116 @@
+/* General */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000000;
+    overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.peliculas-sec {
+    background-color: #000000;
+    padding: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Contenedor de la cuadrícula usando Grid */
+.colocacion {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual ancho */
+    gap: 45px; /* Espacio entre las tarjetas */
+    max-width: 1200px; /* Ajusta el ancho máximo según necesites */
+    width: 100%;
+}
+
+/* Tarjeta */
+.card-sep {
+    width: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible en la columna */
+    transition: transform 0.2s;
+}
+
+.card-sep:hover {
+    transform: scale(1.1);
+}
+
+.nbcolor {
+    background-color: #1B1B1B;
+    color: white;
+    padding: 10px;
+    flex-grow: 1; /* Permite que el cuerpo de la tarjeta ocupe el espacio restante */
+}
+/* Tamaño fijo de la imagen */
+.card-img-top {
+    height: 380px; /* Ajusta según prefieras */
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Asegura que todas las cards tengan la misma altura */
+.card-size {
+    height: 100%; /* Asegura que todas las tarjetas mantengan el mismo alto */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido para que no cambie el tamaño */
+}
+
+
+.nbcolor h5 {
+    color: white;
+    font-weight: bold;
+}
+
+.card-body h5{
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.card-body h4{
+    color: white;
+    font-size:smaller;
+    padding-top: 4px;
+}
+
+.npcolor {
+    background-color: #5ae2a8;
+    border-radius: 4px;
+    color: #1B1B1B;
+    font-size: small;
+    padding: 5px;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+.npcolor p {
+    margin: 0;
+    padding: 0 5px;
+}
+
+.infoserie{
+    padding-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .colocacion {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .colocacion {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .colocacion {
+        grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+    }
+}
