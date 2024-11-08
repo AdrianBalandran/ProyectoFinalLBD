@@ -75,6 +75,7 @@
 
     <div class="peliculas-sec">
         <!-- Colocación de las tarjetas -->
+        <form action="info.php" method="POST" id="formulario" class="form">
         <div class="colocacion">
 
             <?php
@@ -92,31 +93,32 @@
 
             function datos($conexion)
             {
-                $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
+                $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION, FI.ID_FILME FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
                 $resultado = $conexion->query($sql);
                 if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
                         // Convertir la fecha al formato DD/MM/YYYY
                         $fechaEstreno = new DateTime($fila['FECHA_ESTRENO']);
                         $fechaFormateada = $fechaEstreno->format('d/m/Y');
-            ?>
-
-                        <div class="card-sep">
-                            <div class="card border-dark mb-3 card-size">
-                                <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" class="card-img-top" alt="Imagen de película">
-                                <div class="card-body nbcolor d-flex flex-column justify-content-between">
-                                    <div>
-                                        <h5 class="card-title"><?php echo $fila['NOMBRE'] ?></h5>
-                                        <!-- Mostrar la fecha en formato DD/MM/YYYY -->
-                                        <h4><?php echo $fechaFormateada ?></h4>
-                                        <div class="npcolor">
-                                            <p class="card-text"><?php echo $fila['CLASIFICACION'] ?></p>
+            ?> 
+                        <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>">
+                            <div class="card-sep">
+                                <div class="card border-dark mb-3 card-size">
+                                    <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" class="card-img-top" alt="Imagen de película">
+                                    <div class="card-body nbcolor d-flex flex-column justify-content-between">
+                                        <div>
+                                            <h5 class="card-title"><?php echo $fila['NOMBRE'] ?></h5>
+                                            <!-- Mostrar la fecha en formato DD/MM/YYYY -->
+                                            <h4><?php echo $fechaFormateada ?></h4>
+                                            <div class="npcolor">
+                                                <p class="card-text"><?php echo $fila['CLASIFICACION'] ?></p>
+                                            </div>
                                         </div>
+                                        <h5 class="card-title"><?php echo $fila['DURACION'] ?> min.</h5>
                                     </div>
-                                    <h5 class="card-title"><?php echo $fila['DURACION'] ?> min.</h5>
                                 </div>
-                            </div>
-                        </div>
+                            </div>                       
+                        </button>
 
             <?php
                     }
@@ -124,11 +126,13 @@
                     echo "<p>No se encontraron películas.</p>";
                 }
             }
-
+            ?>
+            <?php
             // Llamada a la función para mostrar los datos
             datos($conexion);
             ?>
         </div>
+        </form>
     </div>
 
 </body>

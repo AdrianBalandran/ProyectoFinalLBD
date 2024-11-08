@@ -225,6 +225,23 @@ h2{
     width: 20px;
     height: 40px;
 }
+.estrellas img.media2{
+    width: 8px;
+    height: 40px;
+}
+.estrellas img.media4{
+    width: 16px;
+    height: 40px;
+}
+.estrellas img.media6{
+    width: 24px;
+    height: 40px;
+}
+.estrellas img.media8{
+    width: 32px;
+    height: 40px;
+}
+
 
 .estno{
     text-align: center;
@@ -330,4 +347,8 @@ button.agregar p:hover{
 }
 .agregarvis, .block{
     display: none;
+}
+
+.margen{
+    margin-bottom: 20px;
 }

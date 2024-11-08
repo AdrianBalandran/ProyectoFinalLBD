@@ -15,23 +15,46 @@ function datos($conexion, $id){
                     <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
                 </div>
                 <div class="estrellas"> <?php
-                    $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id'";
+                        $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id';";
                         $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){
+                            if($fila1['CALI'] != NULL){
                             for ($i = 1; $i <= (int)$fila1['CALI']; $i++) { ?>
                                 <img src="../imagenes/recursos/start.png" alt="Estrellas">
                             <?php }
-                            // $num = (float)4.7 - (int)4.7;
+                            $num1 = $fila1['CALI'];
                             $num = (float)$fila1['CALI'] - (int)$fila1['CALI']; 
-                            if($num >= 0.3 && $num <= 0.8){ ?>
+                            $num = (float)$num;
+                            if($num >= 0.1 && $num <= 0.2){ ?>
+                                <img src="../imagenes/recursos/start2.png" alt="Estrellas" class="media2">
+                            <?php }else if($num >= 0.3 && $num <= 0.4){
+                                ?>
+                                <img src="../imagenes/recursos/start4.png" alt="Estrellas" class="media4">
+                                <?php
+                            }else if($num == 0.5){
+                                ?>
                                 <img src="../imagenes/recursos/startmedia.png" alt="Estrellas" class="media">
-                            <?php }
+                                <?php
+                            }else if($num >= 0.6 && $num <= 0.7){
+                                ?>
+                                <img src="../imagenes/recursos/start6.png" alt="Estrellas" class="media6">
+                                <?php
+                            }else if($num >= 0.8 && $num <= 0.9){
+                                ?>
+                                <img src="../imagenes/recursos/start8.png" alt="Estrellas" class="media8">
+                                <?php
+                            }
+                            } ?>
+                            <?php
                         }?> 
                         </div>
                 <div class="estno">
+                    <p class="nocali margen"><?php echo $num1 ?></p>
                     <?php
+                    
+
                     $sql1 = "SELECT COUNT(*) NOM FROM VISUALIZACION WHERE ID_FILME = '$id' GROUP BY ID_FILME;";
-                        $resultado1 = $conexion -> query($sql1);
+                    $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){
                             if($fila1['NOM'] == 1){?>                            
                             <p class="nocali"><?php echo $fila1['NOM'] ?> Calificación</p>
@@ -41,7 +64,9 @@ function datos($conexion, $id){
                         <?php }
                             ?>
                         <?php 
-                        }?>
+                        }
+                    // }
+                        ?>
                 </div>
                 <?php 
                     if(isset($_SESSION['usuario'])){
@@ -97,16 +122,17 @@ function datos($conexion, $id){
                         </div>
                     </div>              
                 </div>
-                <diV class="actordirector">
+                <div class="actordirector"> <?php
+                        $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'A';";
+                        $resultado1 = $conexion -> query($sql1);  ?>
                     <div class="actores divcont">
                         <div class="divtit">
                             <div class="backg">
                                 <p>Actores:</p>
                             </div>
                         </div>
-                        <div class="lista">
+                    <div class="lista">
                         <?php 
-                        // $sql1 = "SELECT *FROM REPARTO";
                         $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'A';";
                         $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){?>
@@ -114,14 +140,12 @@ function datos($conexion, $id){
                                 <p><?php echo $fila1['NOM_ART'] ?></p>
                             </div>
                         <?php 
-                        }?>
+                        } ?>
                         </div>
                     </div>
                     <?php 
                         $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'D';";
-                        $resultado1 = $conexion -> query($sql1);
-                        $row = mysqli_fetch_array($resultado1,MYSQLI_ASSOC);
-                        if(count($row)!=0) {?>
+                        $resultado1 = $conexion -> query($sql1);?>
                     <div class="actores divcont">
                         <div class="divtit">
                             <div class="backg">
@@ -137,11 +161,10 @@ function datos($conexion, $id){
                                 <p><?php echo $fila1['NOM_ART'] ?></p>
                             </div>
                         <?php 
-                        }?>
+                        } ?>
                         </div>
                     </div>
-                    <?php }?>
-                        <div class="generos divcont">
+                    <div class="generos divcont">
                         <div class="divtit">
                             <div class="backg">
                                 <p>Géneros:</p>
@@ -156,13 +179,12 @@ function datos($conexion, $id){
                             <div class="backg">
                                 <p><?php echo $fila1['NOMBRE'] ?></p>
                             </div>
-                        <?php 
+                        <?php
                         }?>
                         </div>
                     </div>
-                </diV>
+                </div>
             </div>
-    
         </div>
 <?php }
 }
@@ -177,6 +199,11 @@ $conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
 if($conexion->connect_errno) {
     die('Error en la conexion');
+}else{
+    if(isset($_POST['submit'])){
+        $id = $_POST["submit"];
+    }
+    // $id = '10101';
 }
 
 ?>
@@ -190,7 +217,7 @@ if($conexion->connect_errno) {
 
     <!-- Favicon -->
 
-    <title>GoodWatch | Información></title>
+    <title>GoodWatch | Información</title>
     <link rel="stylesheet" href="../css/info.css">
 
     <!-- Letra -->
@@ -200,7 +227,7 @@ if($conexion->connect_errno) {
 
 <body>
     <section class="info" id="info">
-        <?php datos($conexion, '00100') ?>
+        <?php datos($conexion, $id) ?>
     </section>
     <section class="agregarvis" id="agregarvis">
     <hr>
@@ -273,7 +300,7 @@ if($conexion->connect_errno) {
                 </div>
             </div>
             <input class="block" id="favorito" name="favorito" type="text" value="N">
-            <input class="block" id="filme" name="filme" type="text" value="00100">
+            <input class="block" id="filme" name="filme" type="text" value="<?php echo $id; ?>">
         </form>
     </section>
 </body>
