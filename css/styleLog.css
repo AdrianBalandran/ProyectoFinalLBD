@@ -13,6 +13,10 @@ main{
   color: #FFFFFF;
 }
 
+.MainRegistro, .MainLogin, main{
+  background-color:rgb(189, 189, 189);
+}
+
 .div_Registro .form-control, .div_Registro .input-group-text {
   border: 1px solid #FFF;
 }
@@ -25,7 +29,7 @@ main{
     background-color: #1B1B1B;
     border: 1px solid #1B1B1B;
     width: 500px;
-    height: 670px;
+    height: 720px;
     text-align: center;
     align-items: center;
 }
@@ -72,6 +76,13 @@ main{
 .div_Registro .input-group-text i {
   color: #FFF;
 }
+
+.div_Registro .input-group-text i:hover {
+  color: #FFF;
+  color: #5AE2A8 !important;
+  transition: color 0.3s ease;
+}
+
 
 fa-solid, .fas {
   font-weight: 900;
