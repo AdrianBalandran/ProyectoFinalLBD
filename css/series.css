@@ -114,3 +114,13 @@ body {
         grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
     }
 }
+.colocacion button{
+    background-color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-align: start;
+}
+form.form{
+    width: 100%;
+}

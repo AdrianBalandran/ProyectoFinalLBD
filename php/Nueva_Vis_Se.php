@@ -21,6 +21,8 @@
             $calificacion = $_POST["calificacion"];
             $favorito = $_POST["favorito"];
             $filme = $_POST["filme"];
+            $temporada = $_POST["temporada"];
+
 
             $sql = "SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario';";
             $resultado = $conexion -> query($sql);
@@ -40,16 +42,16 @@
 
 
             // nextval(Visualizacion_Id)
-            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL);";
+            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, '$filme', '$temporada');";
             $resultado = $conexion->query($sql);
 
             echo $sql;
             if ($conexion->affected_rows >= 1){ 
               echo "registro insertado" ;
-            header(header: "Location: ../index.php");
+            header(header: "Location: series.php");
             }
-            header(header: "Location: ../index.php");
+            header(header: "Location: series.php");
         }   
-        header(header: "Location: ../index.php");
+        header(header: "Location: series.php");
       }
  ?>

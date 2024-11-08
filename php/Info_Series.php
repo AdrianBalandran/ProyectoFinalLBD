@@ -4,15 +4,15 @@ session_start();
 date_default_timezone_set('America/Mexico_City');
 
 $nombre = "";
-function datos($conexion, $id){
-    $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
+function datos($conexion, $id, $temporada){
+    $sql = "SELECT FI.NOMBRE, DESCRIPCION, SE.FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS, SE.IMAGENTEM, SE.NUMERO_EPISODIOS NE FROM FILME FI, IDIOMA ID, PAIS PA, SERIE SE WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = SE.ID_FILME AND SE.TEMPORADA = '$temporada' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
     $resultado = $conexion -> query($sql);
     while( $fila = $resultado -> fetch_assoc() ){
         ?>
         <div class="info_filme">
             <div class="primer">
                 <div class="imagen">
-                    <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
+                    <img src="../imagenes/<?php echo $fila['IMAGENTEM'] ?>" alt="FILME">
                 </div>
                 <div class="estrellas"> <?php
                         $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id';";
@@ -25,6 +25,7 @@ function datos($conexion, $id){
                             $num1 = $fila1['CALI'];
                             $num = (float)$fila1['CALI'] - (int)$fila1['CALI']; 
                             $num = (float)$num;
+                            $num = strval(value: $num);
                             if($num >= 0.1 && $num <= 0.2){ ?>
                                 <img src="../imagenes/recursos/start2.png" alt="Estrellas" class="media2">
                             <?php }else if($num >= 0.3 && $num <= 0.4){
@@ -120,7 +121,24 @@ function datos($conexion, $id){
                         <div class="backg colorwhite">
                             <p><?php echo $fila['PAIS'] ?></p>
                         </div>
+                    </div>  
+                    <div class="idioma divcont">
+                        <div class="backg">
+                            <p>Temporada:</p>
+                        </div>
+                        <div class="backg colorwhite">
+                            <p><?php echo $temporada ?></p>
+                        </div>
+                    </div>
+                    <div class="pais divcont">
+                        <div class="backg">
+                            <p>Episodios:</p>
+                        </div>
+                        <div class="backg colorwhite">
+                            <p><?php echo $fila['NE'] ?></p>
+                        </div>
                     </div>              
+            
                 </div>
                 <div class="actordirector"> <?php
                         $sql1 = "SELECT RE.NOM_ART FROM REPARTO RE, FILME_REPARTO FIRE, FILME FI WHERE FI.ID_FILME = '$id' AND FI.ID_FILME = FIRE.ID_FILME AND RE.ID_REPARTO = FIRE.ID_REPARTO AND FIRE.TIPO_REPARTO = 'A';";
@@ -201,9 +219,25 @@ if($conexion->connect_errno) {
     die('Error en la conexion');
 }else{
     if(isset($_POST['submit'])){
-        $id = $_POST["submit"];
+        $stri = $_POST["submit"];
+        $j = 0;
+        $h = 0;
+        $id = "";
+        $temporada = ""; 
+        $flag = false; 
+        for($i=0;$i<strlen($stri);$i++){
+            if($stri[$i] == '+'){
+                $flag = true; 
+            }
+            if(!$flag){
+                $id[$j] = $stri[$i];
+                $j++;
+            }else if($stri[$i] != '+' && $flag){
+                $temporada[$h] = $stri[$i];
+                $h++;
+            }
+        }
     }
-    // $id = '10101';
 }
 
 ?>
@@ -227,12 +261,12 @@ if($conexion->connect_errno) {
 
 <body>
     <section class="info" id="info">
-        <?php datos($conexion, $id) ?>
+        <?php datos($conexion, $id, $temporada) ?>
     </section>
     <section class="agregarvis" id="agregarvis">
     <hr>
-        <h2>Nueva Película</h2>
-        <form action="Nueva_Visua.php" method="POST" id="formulario" class="formVisua">
+        <h2>Nueva Serie</h2>
+        <form action="Nueva_Vis_Se.php" method="POST" id="formulario" class="formVisua">
             <div class="formbtn divcont">
                 <div class="backg">
                     <label for="fecha" class="label"><p>Fecha:</p></label>
@@ -301,11 +335,13 @@ if($conexion->connect_errno) {
             </div>
             <input class="block" id="favorito" name="favorito" type="text" value="N">
             <input class="block" id="filme" name="filme" type="text" value="<?php echo $id; ?>">
+            <input class="block" id="temp" name="temporada" type="text" value="<?php echo $temporada; ?>">
         </form>
     </section>
 </body>
 <script src="../js/info.js"></script>
 
+<?php include "footer.php";?>
 
 </html>
 

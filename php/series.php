@@ -75,6 +75,7 @@
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 
     <div class="peliculas-sec">
+        <form action="Info_Series.php" method="POST" id="formulario" class="form">
         <!-- Colocación de las tarjetas -->
         <div class="colocacion">
 
@@ -90,18 +91,20 @@
             if ($conexion->connect_errno) {
                 die('Error en la conexion');
             }
+            session_start();
 
             function datos($conexion)
             {
-                $sql = "SELECT FI.NOMBRE NOMBRE, S.IMAGENTEM IMAGEN, FI.CLASIFICACION CLASIFICACION, S.FECHA_ESTRENO FECHA_ESTRENO, S.NUMERO_EPISODIOS EPISODIOS, S.TEMPORADA TEMPORADA FROM FILME FI, SERIE S WHERE FI.ID_FILME = S.ID_FILME;";
+                $sql = "SELECT FI.NOMBRE NOMBRE, S.IMAGENTEM IMAGEN, FI.CLASIFICACION CLASIFICACION, S.FECHA_ESTRENO FECHA_ESTRENO, S.NUMERO_EPISODIOS EPISODIOS, S.TEMPORADA TEMPORADA, FI.ID_FILME FROM FILME FI, SERIE S WHERE FI.ID_FILME = S.ID_FILME;";
                 $resultado = $conexion->query($sql);
                 if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
                         // Convertir la fecha al formato DD/MM/YYYY
                         $fechaEstreno = new DateTime($fila['FECHA_ESTRENO']);
                         $fechaFormateada = $fechaEstreno->format('d/m/Y');
+                        
             ?>
-
+                    <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>+<?php echo $fila['TEMPORADA']; ?>">
                         <div class="card-sep">
                             <div class="card border-dark mb-3 card-size">
                                 <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" class="card-img-top" alt="Imagen de película">
@@ -122,6 +125,7 @@
                                 </div>
                             </div>
                         </div>
+                    </button>
 
             <?php
                     }
@@ -136,6 +140,7 @@
 
 
         </div>
+        </form>
     </div>
 
 </body>
