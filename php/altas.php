@@ -57,6 +57,7 @@
                         $paisP = $_POST['paisP'];
                         $tipoP = 'P';
                         $duracionP = $_POST['duracionP'];
+                        $generoP = $_POST['generoP'];
                         if(isset($_FILES["file"]) && !(empty($_FILES["file"]["tmp_name"]))){
                             $targetDir = "../imagenes/";  // Directorio donde se guardarán las imágenes
                             $targetFile = $targetDir . basename($_FILES["file"]["name"]);
@@ -76,23 +77,14 @@
                     }
                     $consF = "INSERT INTO FILME VALUES ('$idP', '$nombreP', '$descriP','$targetFile','$fechaP','$clasifP','$idiomaP','$paisP','$tipoP');";
                     $consP = "INSERT INTO PELICULA VALUES ('$idP','$duracionP');";
-                    
-                    if ($conexion->query($consF) === TRUE) {
-                        echo "Nuevo registro creado en FILME.";
-                    } else {
-                        echo "Error: " . $consF . "<br>" . $conexion->error;
-                    }
-                    
-                    if ($conexion->query($consP) === TRUE) {
-                        echo "Nuevo registro creado en PELICULA.";
-                    } else {
-                        echo "Error: " . $consP . "<br>" . $conexion->error;
-                    }
+                    $consGF = "INSERT INTO GENERO_FILME VALUES ('$generoP','$idP');";
+                    $final = $conexion -> query($consF);
+                    $final2 = $conexion -> query($consP);
+                    $final3 = $conexion -> query($consGF);
                     
                     unset($_POST['idP']);
                 }else{ //reparto o serie
 
-                    
                 }
                     
             ?>
@@ -139,22 +131,23 @@
             <div id="form-pelicula" class="form-pelicula formulario">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-pelicula">
                     <div class="row">
-                        <div class="col-2 mb-3">
+                        <div class="col-3 mb-3">
                             <label for="idP" class="form-label">ID</label>
                             <input type="text" id="idP" name="idP" class="form-control" value="<?php echo $nextID;?>" readonly>
                         </div>
                         
-                        <div class="col-5 mb-3">
+                        <div class="col-9 mb-3">
                             <label for="nombreP" class="form-label">Nombre</label>
                             <input type="text" id="nombreP" name="nombreP" class="form-control" required>
                         </div>
-                        <div class="col-5 mb-3">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-3">
                             <label for="fechaP" class="form-label">Fecha de estreno</label>
                             <input type="date" id="fechaP" name="fechaP" class="form-control" required>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="clasifP" class="form-label">Clasificación</label>
                             <select class="form-select calsifP" name="clasifP" required>
                                 <option selected>Seleccionar...</option>
@@ -166,7 +159,7 @@
                                 <option value="D">D</option>
                             </select>
                         </div>
-                        <div class="col-3 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="idiomaP" class="form-label">Idioma</label>
                             <select class="form-select idiomaP" name="idiomaP" required>
                                 <option selected>Seleccionar..</option>
@@ -187,7 +180,10 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-3 mb-3">
+                        
+                    </div>
+                    <div class="row">
+                    <div class="col-4 mb-3">
                             <label for="paisP" class="form-label">País</label>
                             <select class="form-select paisP" name="paisP" required>
                                 <option selected>Seleccionar</option>
@@ -208,10 +204,32 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-3 mb-3">
+                        <div class="col-4 mb-3">
                             <label for="duracionP" class="form-label">Duración</label>
-                            <input type="text" id="duracionP" name="duracionP" class="form-control">
+                            <input type="number" id="duracionP" name="duracionP" class="form-control">
                         </div>
+                        <div class="col-4 mb-3">
+                            <label for="generoP" class="form-label">Genero</label>
+                            <select class="form-select paisP" name="generoP" required>
+                                <option selected>Seleccionar</option>
+                                <?php
+
+                                $sql3 = 'select * from genero'; //Consulta a genero
+                                $resultado3 = $conexion -> query($sql3);
+
+                                if ($resultado3 -> num_rows){ //Si consulta exitosa
+                                    while ($fila = $resultado3->fetch_assoc()) {
+                                        //Agregamos cada opción con el valor del ID del idiom
+                                        echo '<option value="' . $fila['ID_GENERO'] . '">'. $fila['NOMBRE'] . '</option>';
+                                    }
+                                } else {
+                                    echo '<option>No hay generos disponibles</option>'; // En caso de no haber resultados
+                                }
+
+                                ?>
+                            </select>
+                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-8">
@@ -219,13 +237,12 @@
                                 <label for="file">Imagen:</label>
                                 <div class="input-group mb-3">
                                     <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="mostrarImagen(event)" required>
-                                    <label class="input-group-text" for="file">Upload</label>
                                 </div>
                             </div>
                             
                             <div class="mb-3">
                                 <label for="descrip" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descrip" rows="5" name="descripP" required></textarea>
+                                <textarea class="form-control" id="descrip" rows="4" name="descripP" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center justify-content-center">
