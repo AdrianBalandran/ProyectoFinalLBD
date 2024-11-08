@@ -15,7 +15,6 @@ imgfav.onclick = function(){
 const desplegar = document.getElementById("desplegar");
 const agregarvis = document.getElementById("agregarvis");
 const el = document.getElementById('agregarvis')
-el.scrollIntoView({block: 'start', behavior: 'smooth'});
 
 desplegar.onclick = function(){
     agregarvis.style.display = 'block';

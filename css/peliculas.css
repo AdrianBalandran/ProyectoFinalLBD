@@ -110,3 +110,14 @@ body {
         grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
     }
 }
+
+button{
+    background-color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-align: start;
+}
+form{
+    width: 100%;
+}
