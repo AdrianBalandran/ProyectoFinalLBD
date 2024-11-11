@@ -1,7 +1,3 @@
-
-<?php
-    session_start();
-?>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,12 +16,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </>
-<header>
-    <?php
-        // include ("../php/encabezado.php");
-    ?>
-</header>
 <body>
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
     <main class="MainLogin">
         
         <section class="div_Registro div_Login">
@@ -101,4 +97,5 @@ session_start();
         </script>
         <?php
     }
+
 ?>

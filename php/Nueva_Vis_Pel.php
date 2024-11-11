@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     $serv = 'localhost';
     $cuenta = 'root';
     $contra = '';
@@ -10,7 +12,6 @@
        die('Ocurrió un error en la conexión con la BD');
    }else{
         if(isset($_POST['agregar'])){
-            session_start();
 
             $usuario = $_SESSION['usuario'];
 
@@ -39,15 +40,19 @@
             }
 
 
+
             // nextval(Visualizacion_Id)
             $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, NULL, NULL);";
             $resultado = $conexion->query($sql);
 
-            echo $sql;
+            
             if ($conexion->affected_rows >= 1){ 
               echo "registro insertado" ;
-            header(header: "Location: peliculas.php");
-            }
+              $_SESSION['InsertadaP'] = true;
+
+              header(header: "Location: peliculas.php");
+            }  
+                        
             header(header: "Location: peliculas.php");
         }   
         header(header: "Location: peliculas.php");

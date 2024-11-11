@@ -13,6 +13,7 @@ function datos($conexion, $id){
             <div class="primer">
                 <div class="imagen">
                     <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="FILME">
+                    <?php $_SESSION['imagen'] = $fila['IMAGEN'];?>
                 </div>
                 <div class="estrellas"> <?php
                         $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id';";

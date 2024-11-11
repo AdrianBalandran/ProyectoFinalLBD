@@ -48,6 +48,7 @@
             echo $sql;
             if ($conexion->affected_rows >= 1){ 
               echo "registro insertado" ;
+              $_SESSION['InsertadaS'] = true;
             header(header: "Location: series.php");
             }
             header(header: "Location: series.php");

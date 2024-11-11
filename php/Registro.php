@@ -20,12 +20,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
-<header>
-    <?php
-        // include ("../php/encabezado.php");
-    ?>
-</header>
 <body>
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
     <main class="MainRegistro">
         
         <section class="div_Registro">
@@ -36,7 +36,7 @@
                         <label for="alias" class="form-label">Alias:</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" name="user" class="form-control" id="user" maxlength="20" required>
+                            <input type="text" name="user" class="form-control" id="user" maxlength="10" required>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
 
 </body>
 <?php 
-    include ("../php/footer.php");
+    include ("footer.php");
 ?>
 </html>
 

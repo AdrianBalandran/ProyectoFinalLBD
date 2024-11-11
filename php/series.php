@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,58 +25,21 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
-</head>
 
-    <!-- Encabezado -->
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid d-flex justify-content-between align-items-center">
-                <div class="d-flex justify-content-start w-100">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="../index.php">INICIO</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="../php/series.php">SERIES</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../php/peliculas.php">PELÍCULAS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../php/altas.php">ADMINISTRADOR</a>
-                        </li>
-                    </ul>
-                </div>
-                <a class="navbar-brand mx-auto" href="#"><img src="../imagenes/LogoFinal.png" alt="No Disponible" width="150px" height="auto"></a>
-                <div class="d-flex justify-content-end">
-                    <form class="d-flex position-relative" role="search">
-                        <div class="input-container">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input class="form-control buscar" type="search" placeholder="BUSCAR..." aria-label="Search">
-                        </div>
-                    </form>
-                    <?php
-                    if (!isset($_SESSION['usuario'])) { ?>
-                        <a href="php/login.php" class="navbar-nav" data-bs-toggle="tooltip" data-bs-title="Iniciar Sesión">
-                            <span class="nav-link">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
-                        </a>
-                    <?php } elseif (isset($_SESSION['usuario'])) { ?>
-                        <a href="php/logout.php" class="navbar-nav" data-bs-toggle="tooltip" data-bs-title="Cerrar Sesión">
-                            <span class="nav-link">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                            </span>
-                        </a>
-                    <?php } ?>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
+
+</head>
 
 <body>
 
-    <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
 
     <div class="peliculas-sec">
         <form action="Info_Series.php" method="POST" id="formulario" class="form">
@@ -144,5 +111,24 @@
     </div>
 
 </body>
-
+<?php 
+    include ("footer.php");
+?>
 </html>
+
+<?php
+
+if(isset($_SESSION['InsertadaS'])){ 
+    unset($_SESSION['InsertadaS'])?>
+        <script>
+            Swal.fire({
+            title: "¡Felicidades!",
+            text: "Has acabado una temporada más",
+            imageUrl: "../imagenes/<?php echo $_SESSION['imagen'] ?>",
+            imageWidth: 200,
+            imageAlt: "Serie"
+            });      
+        </script>
+        <?php
+    }
+?>
