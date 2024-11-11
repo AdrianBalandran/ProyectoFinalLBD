@@ -32,7 +32,7 @@
                         <?php 
                         if($_SESSION['usuario'] == "Admin"){?>
                             <li class="nav-item">
-                                <a class="nav-link" href="../ProyectoFinalLBD/php/altas.php">ADMINISTRADOR</a>
+                                <a class="nav-link" href="../ProyectoFinalLBD/php/altasP.php">ADMINISTRADOR</a>
                             </li>
                         <?php } ?>    
                     </ul>
