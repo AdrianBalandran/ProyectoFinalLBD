@@ -124,4 +124,3 @@ if(isset($_SESSION['InsertadaP'])){
         <?php
     }
 ?>
-

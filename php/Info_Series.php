@@ -251,8 +251,18 @@ if($conexion->connect_errno) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 
-    <title>GoodWatch | Información</title>
+    <?php 
+        $sql = "SELECT FI.NOMBRE FROM FILME FI WHERE FI.ID_FILME = '$id';";
+        $resultado = $conexion -> query($sql);
+        while( $fila = $resultado -> fetch_assoc() ){?>
+            <title>GoodWatch | <?php echo $fila['NOMBRE'] ?></title>
+        <?php
+        }
+    
+    ?>
+    
     <link rel="stylesheet" href="../css/info.css">
 
     <!-- Letra -->

@@ -8,6 +8,8 @@ function datos($conexion, $id){
     $sql = "SELECT FI.NOMBRE, DESCRIPCION, IMAGEN, FECHA_ESTRENO, CLASIFICACION, ID.NOMBRE IDIOMA, PA.NOMBRE PAIS FROM FILME FI, IDIOMA ID, PAIS PA WHERE ID_FILME = '$id' AND FI.ID_IDIOMA = ID.ID_IDIOMA AND FI.ID_PAIS = PA.ID_PAIS;";
     $resultado = $conexion -> query($sql);
     while( $fila = $resultado -> fetch_assoc() ){
+        $nombre = $fila['NOMBRE'];
+        $num1 = 0;
         ?>
         <div class="info_filme">
             <div class="primer">
@@ -18,6 +20,7 @@ function datos($conexion, $id){
                 <div class="estrellas"> <?php
                         $sql1 = "SELECT ROUND(AVG(CALIFICACION), 1) CALI FROM VISUALIZACION WHERE ID_FILME = '$id';";
                         $resultado1 = $conexion -> query($sql1);
+                        if ($resultado1->num_rows > 0) {
                         while( $fila1 = $resultado1 -> fetch_assoc() ){
                             if($fila1['CALI'] != NULL){
                             for ($i = 1; $i <= (int)$fila1['CALI']; $i++) { ?>
@@ -48,16 +51,18 @@ function datos($conexion, $id){
                             }
                             } ?>
                             <?php
+                        }
+                    }else{
                         }?> 
                         </div>
                 <div class="estno">
-                    <p class="nocali margen"><?php echo $num1 ?></p>
                     <?php
-                    
-
                     $sql1 = "SELECT COUNT(*) NOM FROM VISUALIZACION WHERE ID_FILME = '$id' GROUP BY ID_FILME;";
                     $resultado1 = $conexion -> query($sql1);
-                        while( $fila1 = $resultado1 -> fetch_assoc() ){
+                    if ($resultado1->num_rows > 0) {
+                        while( $fila1 = $resultado1 -> fetch_assoc() ){?>
+                            <p class="nocali margen"><?php echo $num1 ?></p>
+                        <?php
                             if($fila1['NOM'] == 1){?>                            
                             <p class="nocali"><?php echo $fila1['NOM'] ?> Calificación</p>
                         <?php } else{
@@ -67,7 +72,11 @@ function datos($conexion, $id){
                             ?>
                         <?php 
                         }
-                    // }
+                    }else{
+                        ?>                            
+                        <p class="nocali">0 Calificaciones</p>
+                        <?php 
+                    }
                         ?>
                 </div>
                 <?php 
@@ -218,8 +227,17 @@ if($conexion->connect_errno) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 
-    <title>GoodWatch | Información</title>
+    <?php 
+        $sql = "SELECT FI.NOMBRE FROM FILME FI WHERE FI.ID_FILME = '$id';";
+        $resultado = $conexion -> query($sql);
+        while( $fila = $resultado -> fetch_assoc() ){?>
+            <title>GoodWatch | <?php echo $fila['NOMBRE'] ?></title>
+        <?php
+        }
+    
+    ?>
     <link rel="stylesheet" href="../css/info.css">
 
     <!-- Letra -->
