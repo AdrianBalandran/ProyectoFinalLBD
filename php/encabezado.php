@@ -27,13 +27,13 @@
                             <a class="nav-link" href="series.php">SERIES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="peliculas.php">PELÍCULAS</a>
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/peliculas.php">PELÍCULAS</a>
                         </li>
                         <?php 
                         if($_SESSION['usuario'] == "Admin"){?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../ProyectoFinalLBD/php/altas.php">ADMINISTRADOR</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/altasP.php">ADMINISTRADOR</a>
+                        </li>
                         <?php } ?>    
                     </ul>
                 </div>
