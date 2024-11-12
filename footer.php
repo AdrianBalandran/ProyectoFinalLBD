@@ -37,8 +37,8 @@ if($conexion->connect_errno) {
     <div class="linea"></div>
     <div class="links">
         <div class="Primera">
-            <p> <a href="">Películas</a></p>
-            <p><a href="">Series</a></p>
+            <p> <a href="php/peliculas.php">Películas</a></p>
+            <p><a href="php/series.php">Series</a></p>
         </div>
         <div class="Segunda">
             <p><a href="">Mis filmes</a></p>

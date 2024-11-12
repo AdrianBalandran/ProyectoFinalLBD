@@ -1,5 +1,8 @@
 *{
     /* font-family: "Itim", cursive; */
+}
+body.infobody{
+    /* font-family: "Itim", cursive; */
     font-family: "Instrument Serif", serif;
     letter-spacing: 1px;
 
@@ -7,6 +10,7 @@
     margin: 0px;
     padding: 0px;
     color: #FFFFFF;
+    background-color: #000000;
 }
 textarea:focus  {
 	outline: 2px solid #5AE2A8;
@@ -16,9 +20,6 @@ input:focus, select:focus{
     outline: none;
 }
 
-body{
-    background-color: #000000;
-}
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
 -webkit-appearance: none;

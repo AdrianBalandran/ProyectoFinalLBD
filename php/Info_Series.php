@@ -273,8 +273,14 @@ if($conexion->connect_errno) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Itim&display=swap" rel="stylesheet">
-
-<body>
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
+    
+<body class="infobody">
+    
     <section class="info" id="info">
         <?php datos($conexion, $id, $temporada) ?>
     </section>
