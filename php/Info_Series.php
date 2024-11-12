@@ -51,13 +51,13 @@ function datos($conexion, $id, $temporada){
                         }?> 
                         </div>
                 <div class="estno">
-                    <p class="nocali margen"><?php echo $num1 ?></p>
-                    <?php
-                    
-
+                <?php
                     $sql1 = "SELECT COUNT(*) NOM FROM VISUALIZACION WHERE ID_FILME = '$id' GROUP BY ID_FILME;";
                     $resultado1 = $conexion -> query($sql1);
-                        while( $fila1 = $resultado1 -> fetch_assoc() ){
+                    if ($resultado1->num_rows > 0) {
+                        while( $fila1 = $resultado1 -> fetch_assoc() ){?>
+                            <p class="nocali margen"><?php echo $num1 ?></p>
+                        <?php
                             if($fila1['NOM'] == 1){?>                            
                             <p class="nocali"><?php echo $fila1['NOM'] ?> Calificación</p>
                         <?php } else{
@@ -67,7 +67,11 @@ function datos($conexion, $id, $temporada){
                             ?>
                         <?php 
                         }
-                    // }
+                    }else{
+                        ?>                            
+                        <p class="nocali">0 Calificaciones</p>
+                        <?php 
+                    }
                         ?>
                 </div>
                 <?php 
