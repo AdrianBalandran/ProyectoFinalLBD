@@ -1,3 +1,21 @@
+<?php 
+    $servername = 'localhost';
+    $cuenta = 'root';
+    $password = '';
+    $bd = 'goodWatch';
+
+    // Conexión a la base de datos 
+    $conexion = new mysqli($servername, $cuenta, $password, $bd);
+
+    if ($conexion->connect_errno) {
+        die('Error en la conexion');
+    }
+
+    if(isset($_POST['busca'])){
+        $busca = $_POST["busca"];
+    }
+    $flagfil = true
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,35 +41,28 @@
     <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 </head>
 <body>
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 
+
     <div class="peliculas-sec">
+    <p class="resultado">La búsqueda es: <span class="color"><?php echo $busca ?> </span></p>
+
         <!-- Colocación de las tarjetas -->
         <div class="colocacion">
 
             <?php
-            $servername = 'localhost';
-            $cuenta = 'root';
-            $password = '';
-            $bd = 'goodWatch';
-
-            // Conexión a la base de datos 
-            $conexion = new mysqli($servername, $cuenta, $password, $bd);
-
-            if ($conexion->connect_errno) {
-                die('Error en la conexion');
-            }
-
-            if(isset($_POST['busca'])){
-                $busca = $_POST["busca"];
-            }
 
             function datos($conexion, $busca)
             {
                 // $sql = "SELECT FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO, P.DURACION DURACION, FI.ID_FILME FROM FILME FI, PELICULA P WHERE FI.ID_FILME = P.ID_FILME;";
                 // $sql = "SELECT FI.ID_FILME, FI.TIPO_FILME TIPO, FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO FROM FILME FI WHERE LOWER(FI.NOMBRE) = LOWER('$busca');";
 
-                $sql = "SELECT FI.ID_FILME, FI.TIPO_FILME TIPO, FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO FROM FILME FI WHERE LOWER(FI.NOMBRE) LIKE CONCAT('%',SUBSTR(LOWER('$busca'), 1, 2),'%');";
+                $sql = "SELECT FI.ID_FILME, FI.TIPO_FILME TIPO, FI.NOMBRE NOMBRE, FI.IMAGEN IMAGEN, FI.CLASIFICACION CLASIFICACION, FI.FECHA_ESTRENO FECHA_ESTRENO FROM FILME FI WHERE LOWER(FI.NOMBRE) LIKE CONCAT('%',SUBSTR(LOWER('$busca'), 1, 2),'%') OR LOWER(FI.NOMBRE) LIKE CONCAT('%',LOWER('$busca'),'%') OR  LOWER(FI.NOMBRE) LIKE CONCAT('%',SUBSTR(LOWER('$busca'), 1, 1),'%');";
                 $resultado = $conexion->query($sql);
                 if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
@@ -123,8 +134,9 @@
                             }
                         }
                     }
-                } else {
-                    echo "<p>No se encontraron películas.</p>";
+                } else { 
+                    $flagfil = false;
+                    $GLOBALS["flagfil"] = false; 
                 }
             }
             ?>
@@ -133,6 +145,29 @@
             datos($conexion, $busca);
             ?>
         </div>
+        <?php 
+        if($flagfil == false){ ?>
+            <!-- <p class="resultado">No se han encontrado filmes</p> -->
+            <div class="loader">
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            <div class="circle">
+                <div class="dot"></div>
+                <div class="outline"></div>
+            </div>
+            </div>
+        <?php }
+        ?>
     </div>
 
 </body>

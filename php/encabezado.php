@@ -39,7 +39,7 @@
                 </div>
                 <a class="navbar-brand mx-auto" href="#"><img src="../imagenes/LogoFinal.png" alt="No Disponible" width="150px" height="auto"></a> 
                 <div class="d-flex justify-content-end">
-                    <form class="d-flex position-relative" role="search" action="../ProyectoFinalLBD/php/Buscador.php" method="POST">
+                    <form class="d-flex position-relative" role="search" action="Buscador.php" method="POST">
                         <div class="input-container">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             <input class="form-control buscar" type="search" placeholder="BUSCAR..." aria-label="Search" name="busca">
