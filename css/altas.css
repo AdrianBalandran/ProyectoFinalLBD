@@ -25,7 +25,7 @@
 .imagen img{
     height: 230px;
 }
-#imagen, #imagen2, #imagen3{
+#imagenP, #imagenS, #imagenT{
     display: block;
     max-height: 235px;
     width: auto;
