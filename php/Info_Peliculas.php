@@ -91,7 +91,7 @@ function datos($conexion, $id){
             </div>
             <div class="segundo">
                 <div class="peliculaDatos">
-                    <h2><?php echo $fila['NOMBRE'] ?></h2>
+                    <h2 class="titulo"><?php echo $fila['NOMBRE'] ?></h2>
                     <div class="desc divcont">
                         <div class="backg">
                             <p>Descripción:</p>
@@ -148,7 +148,7 @@ function datos($conexion, $id){
                         $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){?>
                             <div class="backg colorwhite">
-                                <p><?php echo $fila1['NOM_ART'] ?></p>
+                                <p class="textstart"><?php echo $fila1['NOM_ART'] ?></p>
                             </div>
                         <?php 
                         } ?>
@@ -169,7 +169,7 @@ function datos($conexion, $id){
                         $resultado1 = $conexion -> query($sql1);                        
                         while( $fila1 = $resultado1 -> fetch_assoc() ){?>
                             <div class="backg">
-                                <p><?php echo $fila1['NOM_ART'] ?></p>
+                                <p class="textstart"><?php echo $fila1['NOM_ART'] ?></p>
                             </div>
                         <?php 
                         } ?>
@@ -188,7 +188,7 @@ function datos($conexion, $id){
                         $resultado1 = $conexion -> query($sql1);
                         while( $fila1 = $resultado1 -> fetch_assoc() ){?>
                             <div class="backg">
-                                <p><?php echo $fila1['NOMBRE'] ?></p>
+                                <p class="textstart"><?php echo $fila1['NOMBRE'] ?></p>
                             </div>
                         <?php
                         }?>
@@ -254,7 +254,7 @@ if($conexion->connect_errno) {
         <?php datos($conexion, $id) ?>
     </section>
     <section class="agregarvis" id="agregarvis">
-    <hr>
+    <hr class="linea">
         <h2>Nueva Película</h2>
         <form action="Nueva_Vis_Pel.php" method="POST" id="formulario" class="formVisua">
             <div class="formbtn divcont">

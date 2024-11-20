@@ -1,17 +1,21 @@
 *{
-    /* font-family: "Itim", cursive; */
+    /* font-family: "Instrument Serif", serif; */
 }
-body.infobody{
     /* font-family: "Itim", cursive; */
+    /* font-family: "Inter", sans-serif; */
+
+    /* font-family: "Instrument Serif", serif; */
+
+body.infobody{
     font-family: "Instrument Serif", serif;
     letter-spacing: 1px;
-
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
     color: #FFFFFF;
     background-color: #000000;
 }
+
 textarea:focus  {
 	outline: 2px solid #5AE2A8;
 	outline-offset: -2px;
@@ -44,7 +48,7 @@ input[type=number] { -moz-appearance:textfield; }
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
     "one two two";
-    font-family: "Itim", cursive;
+    /* font-family: "Itim", cursive; */
 }
 .info_filme .primer{
     grid-area: one;
@@ -83,8 +87,11 @@ input[type=number] { -moz-appearance:textfield; }
 h2{
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     font-size: 2em;
+}
+h2.titulo{
+    margin-bottom: 50px;
 }
 .agregarvis h2{
     margin-bottom: 40px;
@@ -140,13 +147,14 @@ h2{
     padding: 10.75px 0;
     color: #5AE2A8;
     font-weight: bold;
+    margin-bottom: 0px;
 }
 
 .colorwhite p{
     color: #FFFFFF;
 }
 
-.actordirector{
+.info_filme .segundo .actordirector{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -173,7 +181,7 @@ h2{
     width: 80%;
     padding-left: 20px;
 }
-.actordirector .actores .lista .backg p{
+p.textstart{
     text-align: start;
 }
 .actordirector .generos .lista{
@@ -248,10 +256,12 @@ h2{
     text-align: center;
     font-size: 20px;
 }
-hr{
+hr.linea{
     width: 70%;
     background-color: #DDDBDA;
     margin: 80px auto;
+    display: flex;
+    justify-content: center;
 }
 .agregarvis{
     margin: 80px;
@@ -313,6 +323,8 @@ button.agregar{
     width: 175px;
     height: 100%;
     border: none;
+    display: flex;
+    justify-content: center;
 }
 button.agregar p{
     color: #fff;
@@ -325,6 +337,8 @@ button.agregar p:hover{
 }
 .boton{
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .conta{
     width: 30%;
@@ -352,4 +366,118 @@ button.agregar p:hover{
 
 .margen{
     margin-bottom: 20px;
+}
+.formbtn .backg .label{
+    padding-left: 10px;
+}
+
+@media (max-width: 1200px) {
+    .backg{
+        font-size: 16px;
+    }
+    
+    .backginfo{
+        font-size: 16px;
+        padding: 10.75px 28px 10.75px 0px;
+    }
+    .estno{
+        font-size: 16px; 
+    }
+    .info_filme .segundo .peliculaDatos > div > div:last-child {
+        margin-left: 5px;
+    }
+    .info_filme .segundo .peliculaDatos div.estreno, .info_filme .segundo .peliculaDatos div.idioma, .info_filme .segundo .peliculaDatos div.clasif, .info_filme .segundo .peliculaDatos div.pais {
+        width: 48%;
+    }
+}
+@media (max-width: 1270px) {
+    .backginfo{
+        height: 400px;
+    }
+}
+@media (max-width: 999px) {
+    .info_filme .imagen img {
+        width: 300px;
+        height: auto;
+    }
+    .backginfo{
+        font-size: 16px;
+        padding: 10.75px 28px 10.75px 0px;
+        height: 400px;
+    }
+}
+/* @media (max-width: 890px) {
+    .info_filme .segundo {
+        margin-left: 40px;
+        margin-right: 20px;
+    }    
+} */
+
+@media (max-width: 890px) {
+    .info_filme{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row: 1fr 1fr;
+        row-gap: 50px;
+        grid-template-areas:
+        "one"
+        "two";
+    }
+    .backg{
+        font-size: 18px;
+    }
+    
+    .backginfo{
+        font-size: 18px;
+        height: 450px;
+    }
+    .estno{
+        font-size: 18px; 
+    }
+        .info_filme .segundo {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    button.agregar{
+        font-size: 18px;
+    }
+    
+}
+
+@media (max-width: 700px) {
+    .backg{
+        font-size: 16px;
+    }
+    
+    .backginfo{
+        font-size: 16px;
+    }
+    .estno{
+        font-size: 16px; 
+    }
+    button.agregar{
+        font-size: 16px;
+    }
+    .formVisua .divcont, .conta{
+        width: 100%;
+    }
+
+    .formVisua .conta .divcont{
+        width: 100%;
+    }
+    .formVisua .textarea{
+        width: 100%;
+    }
+
+    form.formVisua {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        flex-wrap: wrap;
+        row-gap: 50px;
+        column-gap: 20px;
+    }
+    .favorito {
+        margin-top: 20px;
+    }
 }
