@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +55,6 @@
             if ($conexion->connect_errno) {
                 die('Error en la conexion');
             }
-            session_start();
 
             function datos($conexion)
             {
