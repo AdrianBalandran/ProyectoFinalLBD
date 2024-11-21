@@ -59,7 +59,6 @@
 </html>
 
 <?php 
-session_start();
 
 // Ha ingresado el usuario a su cuenta
     if(isset($_SESSION['in'])){

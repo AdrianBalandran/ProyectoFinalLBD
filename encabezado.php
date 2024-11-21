@@ -30,11 +30,12 @@
                             <a class="nav-link" href="../ProyectoFinalLBD/php/peliculas.php">PELÍCULAS</a>
                         </li>
                         <?php 
+                        if(isset($_SESSION['usuario'])){
                         if($_SESSION['usuario'] == "Admin"){?>
                             <li class="nav-item">
                                 <a class="nav-link" href="../ProyectoFinalLBD/php/altasP.php">ADMINISTRADOR</a>
                             </li>
-                        <?php } ?>    
+                        <?php } } ?>    
                     </ul>
                 </div>
                 <a class="navbar-brand mx-auto" href="#"><img src="../ProyectoFinalLBD/imagenes/LogoFinal.png"  alt="No Disponible" width="150px" height="auto"></a> 
