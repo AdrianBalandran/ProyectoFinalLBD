@@ -5,9 +5,13 @@ body .contenido {
     
 }
 
+.color{
+    color: #5AE2A8;
+}
+
 .comunidad{
     /* background-color: aqua; */
-    width: 70%;
+    width: 80%;
 }
 
 .mas{
@@ -17,31 +21,34 @@ body .contenido {
 
 .update{
     margin: 40px auto;
-    width: 700px;
+    width: 800px;
     height: auto;
     border: 1px solid white;
     border-radius: 20px;
     padding: 20px;
     background-color: #1B1B1B;
-
 }
 
 .update .usuario{
-    height: 50px;
+    height: 60px;
     width: auto;
-    margin-right: 50px;
+    margin-right: 40px;
 }
 
 .update .head{
     display: flex;
 }
 
-.update .head div{
+.update .head div:nth-child(2){
     display: inline;
 }
 
 .update .head div h5{
-    margin-right: 50px;
+    margin-right: 20px;
+}
+
+.update .head div h5{
+    font-size: 25px;
 }
 
 .update .comentario{
@@ -51,7 +58,7 @@ body .contenido {
 }
 
 .update .peliculaInfo{
-    width: 600px;
+    width: 700px;
     border: 1px solid white;
     margin: 0px auto;
     display: flex;
@@ -71,11 +78,23 @@ body .contenido {
     padding-left: 30px;
     padding-top: 20px;
 }
+
+.update .peliculaInfo .imgPeli{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .update .peliculaInfo .nomIcono h2{
     color: #5AE2A8;
 }
 
-.update .peliculaInfo .nomIcono img, .update .fav_com img{
+.update .peliculaInfo .nomIcono img{
+    height: 35px;
+    width: auto;
+}
+
+.update .fav_com img{
     height: 28px;
     width: auto;
 }
@@ -105,36 +124,30 @@ body .contenido {
     margin-right: 6px;
 }
 
-.estrellas{
+.update .head .estrellas{
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
+    align-items: start;
     gap: 15px;
-    margin-bottom: 30px;
+    max-width: 35%;
 }
+
+.update .head .nombreVisu{
+    width: 45%;
+}
+
+.idioma{
+    margin-left: 20px;
+}
+
+.update .head .imgusuario{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
 
 .estrellas img{
     width: 40px;
-    height: 40px;
-}
-.estrellas img.media{
-    width: 20px;
-    height: 40px;
-}
-.estrellas img.media2{
-    width: 8px;
-    height: 40px;
-}
-.estrellas img.media4{
-    width: 16px;
-    height: 40px;
-}
-.estrellas img.media6{
-    width: 24px;
-    height: 40px;
-}
-.estrellas img.media8{
-    width: 32px;
     height: 40px;
 }
