@@ -1,0 +1,140 @@
+body .contenido {
+    display: flex;
+    background-color: black;
+    color: #FFFF;
+    
+}
+
+.comunidad{
+    /* background-color: aqua; */
+    width: 70%;
+}
+
+.mas{
+    background-color: rgb(51, 123, 54);
+    width: 30%;
+}
+
+.update{
+    margin: 40px auto;
+    width: 700px;
+    height: auto;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #1B1B1B;
+
+}
+
+.update .usuario{
+    height: 50px;
+    width: auto;
+    margin-right: 50px;
+}
+
+.update .head{
+    display: flex;
+}
+
+.update .head div{
+    display: inline;
+}
+
+.update .head div h5{
+    margin-right: 50px;
+}
+
+.update .comentario{
+    margin: 0 auto;
+    width: 600px;
+    margin-bottom: 30px;
+}
+
+.update .peliculaInfo{
+    width: 600px;
+    border: 1px solid white;
+    margin: 0px auto;
+    display: flex;
+    padding: 10px;
+    background-color: #494949;
+    border-radius: 20px;
+
+}
+
+.update .peliculaInfo img{
+    height: 300px;
+    width: auto;
+}
+
+.update .peliculaInfo .description{
+    width: 60%;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+.update .peliculaInfo .nomIcono h2{
+    color: #5AE2A8;
+}
+
+.update .peliculaInfo .nomIcono img, .update .fav_com img{
+    height: 28px;
+    width: auto;
+}
+
+.update .peliculaInfo .nomIcono{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.update .fav_com {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+
+.update .fav_com .megustas{
+    margin-right: 20px;
+}
+
+.megustas, .comentarios{
+    display: flex;
+}
+
+.update .fav_com img{
+    margin-right: 6px;
+}
+
+.estrellas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.estrellas img{
+    width: 40px;
+    height: 40px;
+}
+.estrellas img.media{
+    width: 20px;
+    height: 40px;
+}
+.estrellas img.media2{
+    width: 8px;
+    height: 40px;
+}
+.estrellas img.media4{
+    width: 16px;
+    height: 40px;
+}
+.estrellas img.media6{
+    width: 24px;
+    height: 40px;
+}
+.estrellas img.media8{
+    width: 32px;
+    height: 40px;
+}
