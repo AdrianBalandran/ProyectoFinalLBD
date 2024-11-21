@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de películas</h2>
             <?php
                 
-                $servername = "localhost:33065";
+                $servername = "localhost:3306";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -209,8 +209,8 @@
                                 <textarea class="form-control" id="descrip" rows="4" name="descripP" required></textarea>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-center justify-content-center">
-                            <img id="imagen" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" style="max-width: 100%; height: auto;" />
+                        <div class="col-md-4 d-flex align-items-center justify-content-center imagen">
+                            <img id="imagenP" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" style="max-width: 100%; height: auto;" />
                         </div>
                     </div>
                     <div class="botonP">

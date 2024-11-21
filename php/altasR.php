@@ -22,7 +22,7 @@
             document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
-            <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de series</h2>
+            <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de reparto</h2>
             <?php
                 
                 $servername = "localhost:3306";
