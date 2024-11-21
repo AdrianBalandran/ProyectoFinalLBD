@@ -63,7 +63,8 @@
             AND PLA.ID_PLAT = VI.ID_PLATAFORMA
             AND IDI.ID_IDIOMA = VI.ID_IDIOMA
             AND FILME.ID_FILME = VI.ID_FILME
-            AND IDIOMA.ID_IDIOMA = VI.ID_IDIOMA;";
+            AND IDIOMA.ID_IDIOMA = VI.ID_IDIOMA
+            ORDER BY VI.FECHA_VISUALIZACION DESC;";
 
         $resultado = $conexion -> query($sql);
 
@@ -109,16 +110,18 @@
                         $DUR = $fila1['DUR'] . " min";
                      }
                     }else {
-                        $ID = $fila['ID'];
+                        $ID = $fila['FILME'];
                         $TEMP = $fila['TEMP'];
+                        $IDSE = $fila['ID'];
                          $sql = "SELECT SERIE.NUMERO_EPISODIOS EP, SERIE.IMAGENTEM IMG, SERIE.FECHA_ESTRENO TEMPFECHA
-                         FROM SERIE WHERE SERIE.ID_FILME = $ID, SERIE.TEMPORADA = $TEMP;";
+                         FROM SERIE WHERE SERIE.ID_FILME = $ID AND SERIE.TEMPORADA = $TEMP;";
                         $resultado1 = $conexion -> query($sql);
              
                          while( $fila1 = $resultado1 -> fetch_assoc() ){
                             $IMG = $fila1['IMG'];
                             $DUR = $fila1['EP'] . " episodios";
                             $TEMPFECHA = $fila1['TEMPFECHA'];
+                            
                      }
                     }?>
                     <div class="imgPeli">
