@@ -3,6 +3,30 @@
     margin-top: 15px;
 }
 
+.contenido .formulario-temporada{
+    margin-top: 15px;
+    max-width: 80%;
+    align-items: center;
+    padding-top:30px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* .contenido .form-reparto{
+    margin-top: 15px;
+    max-width: 70%;
+    align-items: center;
+    padding-top:30px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+} */
+
+.botonR{
+    margin-top: 10px;
+}
+
 .container{
     display: grid;
     justify-content: center;
@@ -25,13 +49,16 @@
 .imagen img{
     height: 230px;
 }
-#imagen, #imagen2, #imagen3{
+#imagenP, #imagenS, #imagenT{
     display: block;
     max-height: 235px;
     width: auto;
 }
 .imagen{
     text-align: end;
+}
+#imagenT{
+    height: 200px;
 }
 .file{
     margin-top: 5px;

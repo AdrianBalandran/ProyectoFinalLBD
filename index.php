@@ -172,7 +172,6 @@ include ("footer.php");
 </html>
 
 <?php 
-    session_start();
 
     if(isset($_SESSION['logout'])){
         ?>

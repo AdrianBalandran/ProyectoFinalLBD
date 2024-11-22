@@ -22,10 +22,10 @@
             document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
-            <h2 style="margin: 0 auto;">Alta de series</h2>
+            <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de series</h2>
             <?php
                 
-                $servername = "localhost:33065";
+                $servername = "localhost:3306";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -46,28 +46,28 @@
                         $lastID = $row['lastID'];
                         $nextID = $lastID + 1;
                     } else{
-                        $nextID = '300';
+                        $nextID = '1';
                     }
 
-                    //Ingresar a la base (pelicula)
-                    if(isset($_POST['idP'])){
-                        $idP = $_POST['idP'];
-                        $nombreP = $_POST['nombreP'];
-                        $descriP = $_POST['descripP'];
-                        $fechaP = $_POST['fechaP'];
-                        $clasifP = $_POST['clasifP'];
-                        $idiomaP = $_POST['idiomaP'];
-                        $paisP = $_POST['paisP'];
-                        $tipoP = 'P';
-                        $duracionP = $_POST['duracionP'];
-                        $generoP = $_POST['generoP'];
-                        if(isset($_FILES["file"]) && !(empty($_FILES["file"]["tmp_name"]))){
+                    //Ingresar a la base (filme)
+                    if(isset($_POST['idS'])){
+                        $idS = $_POST['idS'];
+                        $nombreS = $_POST['nombreS'];
+                        $descripS = $_POST['descripS'];
+                        $fechaS = $_POST['fechaS'];
+                        $clasifS = $_POST['clasifS'];
+                        $idiomaS = $_POST['idiomaS'];
+                        $paisS = $_POST['paisS'];
+                        $tipoS = 'S';
+                        $generoS = $_POST['generoS'];
+
+                        if(isset($_FILES["fileS"]) && !(empty($_FILES["fileS"]["tmp_name"]))){
                             $targetDir = "../imagenes/";  // Directorio donde se guardarán las imágenes
-                            $targetFile = $targetDir . basename($_FILES["file"]["name"]);
+                            $targetFile = $targetDir . basename($_FILES["fileS"]["name"]);
                     
-                            $check = getimagesize($_FILES["file"]["tmp_name"]);
+                            $check = getimagesize($_FILES["fileS"]["tmp_name"]);
                             if ($check !== false) {
-                                if (!move_uploaded_file($_FILES["file"]["tmp_name"], $targetFile)) {
+                                if (!move_uploaded_file($_FILES["fileS"]["tmp_name"], $targetFile)) {
                                     echo "Hubo un problema al subir el archivo.";
                                 }
                             } else { ?>
@@ -75,53 +75,19 @@
                                     <strong>El archivo </strong> no es una imagen válida.
                                 </div>
                             <?php
-                            }
+                        }
+
+                        $consF = "INSERT INTO FILME VALUES ('$idS', '$nombreS', '$descripS','$targetFile','$fechaS','$clasifS','$idiomaS','$paisS','$tipoS');";
+                        $consGF = "INSERT INTO GENERO_FILME VALUES ('$generoS','$idS');";
+                        $final = $conexion -> query($consF);
+                        $final3 = $conexion -> query($consGF);
+                        unset($_POST['idS']);
+
                     }
-                    $consF = "INSERT INTO FILME VALUES ('$idP', '$nombreP', '$descriP','$targetFile','$fechaP','$clasifP','$idiomaP','$paisP','$tipoP');";
-                    $consP = "INSERT INTO PELICULA VALUES ('$idP','$duracionP');";
-                    $consGF = "INSERT INTO GENERO_FILME VALUES ('$generoP','$idP');";
-                    $final = $conexion -> query($consF);
-                    $final2 = $conexion -> query($consP);
-                    $final3 = $conexion -> query($consGF);
-
-                    unset($_POST['idP']);
-                }else{ //reparto o serie
-
+                    
                 }
                     
             ?>
-
-            <!-- Cambio de oprciones -->
-            <div class="select">
-                <div class="Filtro">
-                    <div class="radio-inputs">
-                        <label class="radio">
-                            <input type="radio" name="radio" value="nserie" checked>
-                            <span class="name">Nueva serie</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="radio" value="ntemporada">
-                            <span class="name">Nueva temporada</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <script>
-                //Cambiar vistas
-                $('input[name="radio"]').change(function(){
-                    var valorCambiado = $(this).val();
-
-                    //Ocultar todos
-                    $('#form-serie, #form-temporada').hide();
-                    
-                    //Mostrar seleccionado
-                    if (valorCambiado === 'ntemporada') {
-                        $('#form-temporada').show();
-                    } else if (valorCambiado === 'nserie') {
-                        $('#form-serie').show();
-                    }
-                });
-            </script>
 
             <!-- Formulario de series-->
             <div id="form-serie" class="form-serie formulario">
@@ -139,12 +105,12 @@
                     </div>
                     <div class="row">
                         <div class="col-4 mb-3">
-                            <label for="fechaP" class="form-label">Fecha de estreno</label>
-                            <input type="date" id="fechaP" name="fechaP" class="form-control" required>
+                            <label for="fechaS" class="form-label">Fecha de estreno</label>
+                            <input type="date" id="fechaS" name="fechaS" class="form-control" required>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="clasifP" class="form-label">Clasificación</label>
-                            <select class="form-select calsifP" name="clasifP" required>
+                            <label for="clasifS" class="form-label">Clasificación</label>
+                            <select class="form-select" name="clasifS" required>
                                 <option selected>Seleccionar...</option>
                                 <option value="AA">AA</option>
                                 <option value="A">A</option>
@@ -155,8 +121,8 @@
                             </select>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="idiomaP" class="form-label">Idioma</label>
-                            <select class="form-select idiomaP" name="idiomaP" required>
+                            <label for="idiomaS" class="form-label">Idioma</label>
+                            <select class="form-select" name="idiomaS" required>
                                 <option selected>Seleccionar..</option>
                                 <?php
 
@@ -178,9 +144,9 @@
                         
                     </div>
                     <div class="row">
-                    <div class="col-4 mb-3">
-                            <label for="paisP" class="form-label">País</label>
-                            <select class="form-select paisP" name="paisP" required>
+                        <div class="col-6 mb-3">
+                            <label for="paisS" class="form-label">País</label>
+                            <select class="form-select" name="paisS" required>
                                 <option selected>Seleccionar</option>
                                 <?php
 
@@ -199,13 +165,9 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="col-4 mb-3">
-                            <label for="duracionP" class="form-label">Duración</label>
-                            <input type="number" id="duracionP" name="duracionP" class="form-control">
-                        </div>
-                        <div class="col-4 mb-3">
-                            <label for="generoP" class="form-label">Genero</label>
-                            <select class="form-select paisP" name="generoP" required>
+                        <div class="col-6 mb-3">
+                            <label for="generoS" class="form-label">Genero</label>
+                            <select class="form-select" name="generoS" required>
                                 <option selected>Seleccionar</option>
                                 <?php
 
@@ -231,73 +193,24 @@
                             <div class="mb-3">
                                 <label for="file">Imagen:</label>
                                 <div class="input-group mb-3">
-                                    <input type="file" class="form-control" id="file2" name="file2" accept="image/*" onchange="mostrarImagen(event,2)" required>
+                                    <input type="file" class="form-control" id="fileS" name="fileS" accept="image/*" onchange="mostrarImagen(event,2)" required>
                                 </div>
                             </div>
                             
                             <div class="mb-3">
-                                <label for="descrip" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descrip" rows="4" name="descripP" required></textarea>
+                                <label for="descripS" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="descripS" rows="4" name="descripS" required></textarea>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex align-items-center justify-content-center">
-                            <img id="imagen2" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" style="max-width: 100%; height: auto;" />
+                        <div class="col-md-4 d-flex align-items-center justify-content-center imagen">
+                            <img id="imagenS" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" style="max-width: 100%; height: auto;" />
                         </div>
                     </div>
-                    <div class="botonP">
-                        <!-- <button class="btn btn-success" type="submit" name="submit-pelicula" id="submit">Agregar</button> -->
-                        <button class="btn btn-success">Agregar</button>
+                    <div class="botonS">
+                        <button class="btn btn-success" type="submit" name="submit-serie" id="submit">Agregar</button>
+                        <a class="btn btn-primary" href="../php/altasT.php" >Dar de alta una temporada</a>
                     </div>
-                </form>
-            </div>
-            <!-- Formulario temporadas -->
-            <div id="form-temporada" class="formulario" style="display: none;">
-                <form action="" method="POST" enctype="multipart/form-data" id="formulario-temporada">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <label for="idP" class="form-label">ID</label>
-                                    <input type="text" id="idP" name="idP" class="form-control" value="<?php echo $nextID;?>" readonly>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="nombreP" class="form-label">Nombre</label>
-                                    <input type="text" id="nombreP" name="nombreP" class="form-control" required>
-                                </div>
-                            </div>     
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <label for="temporadaS" class="form-label">Temporada</label>
-                                    <input type="text" id="temporadaS" name="temporadaS" class="form-control" required>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label for="numeroEpisodios" class="form-label">Número de episodios</label>
-                                    <input type="text" id="numeroEpisodios" name="numeroEpisodios" class="form-control" required>
-                                </div>
-                            </div>     
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <label for="fechaS" class="form-label">Fecha de estreno</label>
-                                    <input type="date" id="fechaS" name="fechaS" class="form-control" required>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="form-label" for="file">Imagen:</label>
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" id="file3" name="file3" accept="image/*" onchange="mostrarImagen(event,3)" required>
-                                    </div>
-                                </div>
-                            </div>        
-                        </div>
-
-                        <div class="col-3 d-flex align-items-center justify-content-end imagen">
-                            <img id="imagen3" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" class="img-fluid" /> <!-- img-fluid ajusta la imagen -->
-                        </div>
-                    </div>
-
-                    <div class="botonP">
-                        <!-- <button class="btn btn-success" type="submit" name="submit-pelicula" id="submit">Agregar</button> -->
-                         <button class="btn btn-success">Agregar</button>
-                    </div>    
+                    
                 </form>
             </div>
             <?php
