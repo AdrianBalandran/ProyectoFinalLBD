@@ -106,7 +106,6 @@ fa-solid, .fas {
 
 .div_Login{
   height: 400px;
-
 }
 
 .div_Login .registro{
@@ -119,3 +118,9 @@ fa-solid, .fas {
     color: #5AE2A8;
 }
 
+@media (max-width: 600px) {
+  .div_Registro{
+    width: 350px;
+  }
+
+}
