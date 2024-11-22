@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto;padding-bottom: 30px;">Alta de temporadas</h2>
             <?php
                 
-                $servername = "localhost:3306";
+                $servername = "localhost:33065";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -80,18 +80,20 @@
             ?>
 
             <!-- Formulario temporadas -->
-            <div id="form-temporada" class="formulario" style="padding-top:30px">
+            <div id="form-temporada" class="formulario-temporada">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-temporada">
                     <div class="row">
                         <div class="col-9">
                             <div class="row">
-                                <div class="col-6 mb-3">
+                                <div class="col-12 mb-3">
                                     <label for="idT" class="form-label">Id de la serie</label>
                                     <input type="text" id="idT" name="idT" class="form-control" rquired>
                                 </div>
-                                <div class="col-6 mb-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
                                     <label for="nombreT" class="form-label">Nombre</label>
-                                    <input type="text" id="nombreT" name="nombreT" class="form-control" readonly>
+                                    <input type="text" id="nombreT" name="nombreT" class="form-control">
                                 </div>
                             </div>
                             <script>
@@ -137,13 +139,15 @@
                                     <label for="numeroEpiT" class="form-label">Número de episodios</label>
                                     <input type="number" id="numeroEpiT" name="numeroEpiT" class="form-control" required>
                                 </div>
-                            </div>     
+                            </div>    
                             <div class="row">
-                                <div class="col-6 mb-3">
+                                <div class="col-12 mb-3">
                                     <label for="fechaT" class="form-label">Fecha de estreno</label>
                                     <input type="date" id="fechaT" name="fechaT" class="form-control" required>
                                 </div>
-                                <div class="col-6 mb-3">
+                            </div>
+                            <div class="row">
+                                <div class="col-12 mb-3">
                                     <label class="form-label" for="file">Imagen:</label>
                                     <div class="input-group mb-3">
                                         <input type="file" class="form-control" id="fileT" name="fileT" accept="image/*" onchange="mostrarImagen(event,3)" required>

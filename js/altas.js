@@ -120,6 +120,74 @@ $(document).ready(function() {
             }
         });
     });
+    $("#formulario-reparto").on("submit", function(event) {
+        console.log("Formulario reparto enviado");
+        event.preventDefault();
+
+        var formData = new FormData(this);
+        console.log(formData);
+
+        $.ajax({
+            url: "altasR.php",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function(response) {
+                console.log("Solicitud AJAX exitosa");
+                console.log(response);
+                Swal.fire({
+                    title: 'Exito',
+                    text: 'Reparto agregado',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        document.getElementById("formulario-reparto").reset();
+                        location.reload();
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+    $("#formulario-repartoFilme").on("submit", function(event) {
+        console.log("Formulario repartoFilme enviado");
+        event.preventDefault();
+
+        var formData = new FormData(this);
+        console.log(formData);
+
+        $.ajax({
+            url: "altasR.php",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function(response) {
+                console.log("Solicitud AJAX exitosa");
+                console.log(response);
+                Swal.fire({
+                    title: 'Exito',
+                    text: 'Reparto vinculado',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        document.getElementById("formulario-repartoFilme").reset();
+                        location.reload();
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
 });
 
 
