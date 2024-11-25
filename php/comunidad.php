@@ -43,6 +43,16 @@
 
         </section>
         <section class="mas">
+            <div class="introduccion">
+                <img src="../imagenes/<?php echo imagen(); ?>" alt="drama">
+            </div>
+
+            <h3>Recomendaciones</h3>
+
+            <div class="recom">
+                <?php recomS($conexion); ?>
+                <?php recomP($conexion); ?>
+            </div>
 
         </section>
     </section>
@@ -54,6 +64,45 @@
 
 <?php 
 
+    function imagen(){
+        $imagenes = array("loveAlarm1.jpg", "TOE.jpg", "OBS.jpg", "Startup.jpg");
+        shuffle($imagenes);
+        return $imagenes[0];
+    }
+
+    function recomS($conexion){
+        $sql = "SELECT s.*, count(s.TEMPORADA) from serie s GROUP BY s.ID_FILME HAVING count(s.TEMPORADA) = 1;";
+        $resultado = $conexion -> query($sql);
+        $index = 0;
+        while( $fila = $resultado -> fetch_assoc() ){
+            $index ++;
+            if($index <= 2){ 
+                ?>
+                <div class="recoPeli">
+                    <img src="../imagenes/<?php echo $fila['IMAGENTEM']; ?>" alt="serie">
+                </div>
+                <p><a href="series.php">See more...</a></p>
+            <?php 
+            }
+        }
+    }
+
+    function recomP($conexion){
+        $sql = "SELECT * FROM FILME WHERE TIPO_FILME = 'P' ORDER BY FECHA_ESTRENO DESC;;";
+        $resultado = $conexion -> query($sql);
+        $index = 0;
+        while( $fila = $resultado -> fetch_assoc() ){
+            $index ++;
+            if($index <= 2){ 
+                ?>
+                <div class="recoPeli">
+                    <img src="../imagenes/<?php echo $fila['IMAGEN']; ?>" alt="pelicula">
+                </div>
+                <p><a href="peliculas.php">See more...</a></p>
+            <?php 
+            }
+        }
+    }
 
     function datos($conexion){
         $sql = "SELECT USU.NOMBRE NOMBRE, VI.ID_FILME FILME, VI.CALIFICACION CAL, VI.FECHA_VISUALIZACION VISU, VI.OPINION OPINION, PLA.NOMBRE NOMPLA, IDI.NOMBRE NOMIDI, FILME.NOMBRE NOMFILM, FILME.FECHA_ESTRENO ESTRENO, FILME.DESCRIPCION DES,
