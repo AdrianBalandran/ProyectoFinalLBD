@@ -81,25 +81,89 @@ if(!isset($_SESSION['usuario'])){
 
             <button class="tarjeta">
                 <div class="imagen">
-                    <!-- <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel"> -->
+                    <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel">
+                </div>
+                <div class="estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                </div>
+                <div class="tipo">
+                    <p>P</p>
+                </div>
+                <div class="nombre">
+                    <p>Orgullo y Prejuicio</p>
+                </div>
+                <div class="favorito">
+                    <img src="../imagenes/recursos/red.png" alt="">
                 </div>
             </button>
 
             <button class="tarjeta">
                 <div class="imagen">
-                    <!-- <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel"> -->
+                    <img src="../imagenes/mujercitas.jpg" alt="" class="pel">
+                </div>
+                <div class="estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                </div>
+                <div class="tipo">
+                    <p>P</p>
+                </div>
+                <div class="nombre">
+                    <p>Mujercitas</p>
+                </div>
+                <div class="favorito">
+                    <img src="../imagenes/recursos/red.png" alt="">
                 </div>
             </button>
 
             <button class="tarjeta">
                 <div class="imagen">
-                    <!-- <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel"> -->
+                    <img src="../imagenes/enola.jpg" alt="" class="pel">
+                </div>
+                <div class="estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                </div>
+                <div class="tipo">
+                    <p>P</p>
+                </div>
+                <div class="nombre">
+                    <p>Enola Homes</p>
+                </div>
+                <div class="favorito">
+                    <!-- <img src="../imagenes/recursos/red.png" alt=""> -->
                 </div>
             </button>
 
             <button class="tarjeta">
                 <div class="imagen">
-                    <!-- <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel"> -->
+                    <img src="../imagenes/persuasion.jpg" alt="" class="pel">
+                </div>
+                <div class="estrellas">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                    <img src="../imagenes/recursos/start.png" alt="">
+                </div>
+                <div class="tipo">
+                    <p>P</p>
+                </div>
+                <div class="nombre">
+                    <p>Persuasión</p>
+                </div>
+                <div class="favorito">
+                    <!-- <img src="../imagenes/recursos/red.png" alt=""> -->
                 </div>
             </button>
         </section>
