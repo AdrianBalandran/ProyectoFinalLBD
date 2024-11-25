@@ -19,6 +19,8 @@ body .contenido {
     margin-right: 30px;
     background-color: #494949;
     width: 30%;
+    height:fit-content;
+    padding-bottom: 30px;
 }
 
 .mas .introduccion img{
