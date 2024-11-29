@@ -7,7 +7,7 @@
 
     <!-- Favicon -->
 
-    <title>Info</title>
+    <title>Iniciar Sesión | GoodWatch</title>
 
     <link rel="stylesheet" href="../css/styleLog.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -22,36 +22,36 @@
             include ("encabezado.php");
         ?>
     </header>
-    <main class="MainLogin">
-        
-        <section class="div_Registro div_Login">
-            <h2>Inicia Sesión</h2>
-            <div class="linea"></div>
-            <form class="form" action="login_entrar.php" method="post">
-                    <div class="col-md-6">
-                        <label for="alias" class="form-label">Alias:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" name="user" class="form-control" id="user"  required>
+    <div class="background">
+        <main class="MainLogin">
+            <section class="div_Registro div_Login">
+                <h2>Inicia Sesión</h2>
+                <div class="linea"></div>
+                <form class="form" action="login_entrar.php" method="post">
+                        <div class="col-md-6">
+                            <label for="alias" class="form-label">Alias:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" name="user" class="form-control" id="user"  required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <label for="pass" class="form-label">Contraseña:</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-                            <input type="password" name="pass" class="form-control" id="pass" required>
+                        <div class="col-md-6">
+                            <label for="pass" class="form-label">Contraseña:</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                <input type="password" name="pass" class="form-control" id="pass" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="button">
-                        <button type="submit" name="submit" class="btn btn-primary">Entrar</button>
-                    </div>
-            </form>
-            <h4 class="registro">¿No tienes cuenta? <a href="registro.php">Regístrate</a></h4>
-        </section>
-    </main>
-
+                        <div class="button">
+                            <button type="submit" name="submit" class="btn btn-primary">Entrar</button>
+                        </div>
+                </form>
+                <h4 class="registro">¿No tienes cuenta? <a href="registro.php">Regístrate</a></h4>
+            </section>
+        </main>
+    </div>
 </body>
 <?php 
     include ("../php/footer.php");

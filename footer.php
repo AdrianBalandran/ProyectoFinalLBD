@@ -52,9 +52,9 @@ if($conexion->connect_errno) {
             <span><i class="fa-brands fa-instagram"></i></span>
             <span><i class="fa-brands fa-x-twitter"></i></span>
         </div>
-        <di class="derechos"v>
+        <div class="derechos">
             <p>© 2024 GoodWatch. Todos los derechos reservados.</p>
-        </di>
+        </div>
     </section>
 </footer>
 

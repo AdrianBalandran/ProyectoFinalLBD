@@ -14,7 +14,8 @@ main{
 }
 
 .MainRegistro, .MainLogin, main{
-  background-color:rgb(189, 189, 189);
+  /*background-color:rgb(189, 189, 189);*/
+  z-index: 10000;
 }
 
 .div_Registro .form-control, .div_Registro .input-group-text {
@@ -116,6 +117,31 @@ fa-solid, .fas {
 
 .div_Login .registro a{
     color: #5AE2A8;
+}
+
+.background {
+  background-image: url('../imagenes/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 83vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1b1b1bc0;
 }
 
 @media (max-width: 600px) {
