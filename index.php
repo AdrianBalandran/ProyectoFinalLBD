@@ -1,17 +1,3 @@
-<?php 
-    // include ("php/info.php");
-
-    // $query = "
-    //     SELECT f.NOMBRE AS NombrePelicula, g.NOMBRE AS Genero
-    //     FROM FILME f
-    //     JOIN GENERO_FILME gf ON f.ID_FILME = gf.ID_FILME
-    //     JOIN GENERO g ON gf.ID_GENERO = g.ID_GENERO
-    //     WHERE f.CALIFICACION BETWEEN '9' AND '10'
-    // ";
-
-    // $result = $conexion->query($query);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../ProyectoFinalLBD/imagenes/faviconi.png"/>
-
 
 </head>
 <body>
@@ -45,23 +29,66 @@
     <section class="tendencias">
         <div class="tendencia">
             <h3>Tendencias en Películas</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="peliculas">
-            <?php 
-                
+            <?php
+            // Conexión a la base de datos
+            $servidor = 'localhost';
+            $cuenta = 'root';
+            $password = '';
+            $bd = 'GOODWATCH';
+
+            $conexion = new mysqli($servidor, $cuenta, $password, $bd);
+
+            // Verificar si la conexión fue exitosa
+            if ($conexion->connect_errno) {
+                die('Error en la conexión');
+            }
+
+            // Consulta para obtener películas con calificación mayor a 9
+            $sql = "
+                SELECT FI.ID_FILME, FI.NOMBRE, FI.IMAGEN, ROUND(AVG(V.CALIFICACION), 1) AS CALIFICACION_PROMEDIO
+                FROM FILME FI
+                LEFT JOIN VISUALIZACION V ON FI.ID_FILME = V.ID_FILME
+                GROUP BY FI.ID_FILME
+                HAVING CALIFICACION_PROMEDIO > 9
+                ORDER BY CALIFICACION_PROMEDIO DESC;
+            ";
+
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+                    // Mostrar las películas con calificación mayor a 9
+                    ?>
+                    <div class="pelicula">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['NOMBRE']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['NOMBRE']; ?></h3>
+                            <p>Calificación: <?php echo $fila['CALIFICACION_PROMEDIO']; ?> ⭐</p>
+                        </div>
+                        <a href="info.php?id=<?php echo $fila['ID_FILME']; ?>" class="ver-mas">Ver más</a>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p>No hay películas con calificación mayor a 9.</p>";
+            }
+
+            $conexion->close();
             ?>
         </div>
 
         <div class="tendencia">
             <h3>Tendencias en Series</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
         <div class="tendencia">
             <h3>Nuevos Lanzamientos</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </section>
 

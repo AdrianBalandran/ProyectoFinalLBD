@@ -1,37 +1,45 @@
-*{
-    /* font-family: "Itim", cursive; */
+* {
     font-optical-sizing: auto;
     font-style: normal;
 }
-header{
+header {
     font-family: "Inter", sans-serif;
 }
-/* HEADER */
 
+/* HEADER */
 .navbar {
     background-color: #1B1B1B !important;
     height: 90px !important;
     padding: 0 25px !important;
+    z-index: 10000;
+    transition: background-color 0.5s ease, height 0.3s ease; /* Transición de fondo y altura */
 }
 
+/* Logo fijo y centrado */
 .navbar-brand {
-    position: absolute;
+    position: fixed; /* Fija el logo */
+    top: 10px; /* Ajusta la distancia desde la parte superior */
     left: 50%;
-    transform: translateX(-50%); 
-    z-index: 1; 
+    transform: translateX(-50%); /* Centra el logo */
+    z-index: 10; /* Asegura que el logo esté sobre otros elementos */
 }
 
+/* Navbar Toggler fijo a la izquierda */
+.navbar-toggler {
+    position: fixed; /* Fija el botón de hamburguesa */
+    top: 15px; /* Ajusta la distancia desde la parte superior */
+    left: 25px; /* Posiciona el botón en la esquina superior izquierda */
+    z-index: 20; /* Asegura que el botón esté sobre el menú */
+}
+
+/* Enlaces de navegación */
 .navbar .nav-link {
     color: #ffffff;
-    margin-right: 15px; 
+    margin-right: 15px;
 }
 
 .navbar .nav-link:hover {
     color: #5AE2A8;
-}
-
-.navbar .nav-link.active {
-    color: #5AE2A8 !important; 
     font-weight: bold;
 }
 
@@ -47,13 +55,25 @@ header{
     transition: color 0.3s ease;
 }
 
+.navbar .fa-right-from-bracket {
+    color: #ffffff !important;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.navbar .fa-right-from-bracket:hover {
+    color: #5AE2A8 !important;
+    transition: color 0.3s ease;
+}
+
 .buscar {
     border: none !important;
     border-bottom: 1px solid #ffffff !important;
     border-radius: 0 !important;
     outline: none !important;
     box-shadow: none !important;
-    transition: border-bottom-color 0.3s  !important; 
+    transition: border-bottom-color 0.3s !important;
     background: transparent !important;
     width: 300px !important;
     color: white !important;
@@ -61,21 +81,53 @@ header{
 }
 
 .buscar:focus {
-    border-bottom-color: #5AE2A8 !important; 
+    border-bottom-color: #5AE2A8 !important;
     background: transparent !important;
 }
 
 .buscar::placeholder {
     color: white !important;
-    opacity: 0.5 !important; 
+    opacity: 0.5 !important;
 }
 
 .navbar .fa-magnifying-glass {
     position: absolute !important;
-    left: 10px !important; 
-    top: 40% !important; 
-    transform: translateY(-50%) !important; 
+    left: 10px !important;
+    top: 40% !important;
+    transform: translateY(-50%) !important;
     color: white !important;
     font-size: 16px;
-    pointer-events: none; 
+    pointer-events: none;
+}
+
+/* Animación al abrir el navbar-collapse */
+.navbar-collapse {
+    transition: background-color 0.5s ease; /* Efecto de transición suave para el fondo */
+}
+
+/* Cambiar fondo cuando el navbar-collapse está abierto */
+.navbar-collapse.show {
+    background-color: #1B1B1B !important; /* El mismo color que el navbar, puede cambiarse */
+    opacity: 1; /* Asegura que el fondo sea completamente visible */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        margin-top: 90px; /* Ajusta según el alto del logo */
+        text-align: center;
+        opacity: 0; /* Inicialmente oculto */
+        padding-bottom: 20px;
+    }
+
+    /* En pantallas pequeñas, el botón del navbar-toggler sigue estando en su posición */
+    .navbar-toggler {
+        top: 30px; /* Mantiene el botón en la parte superior, ajusta si es necesario */
+        left: 25px; /* Lo coloca en la esquina superior izquierda */
+    }
+
+    /* Al abrir el menú, hacemos visible la barra de navegación */
+    .navbar-collapse.show {
+        opacity: 1; /* Aparece con una animación */
+    }
 }
