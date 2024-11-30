@@ -1,0 +1,75 @@
+/*Formularios*/
+.formulario{
+    margin-top: 15px;
+}
+
+.contenido .formulario-temporada{
+    margin-top: 15px;
+    max-width: 80%;
+    align-items: center;
+    padding-top:30px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* .contenido .form-reparto{
+    margin-top: 15px;
+    max-width: 70%;
+    align-items: center;
+    padding-top:30px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+} */
+
+
+.datos{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.datos > div{
+    width: 50%;
+    padding:0px 20px;
+}
+
+.form{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.idReparto{
+    display: block;
+}
+
+
+select .form{ 
+    width: 50%;
+}
+
+.btnmod{
+    margin-left: 20px;
+}
+
+.btnSelect{
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
