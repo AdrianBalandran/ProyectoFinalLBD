@@ -1,3 +1,17 @@
+<?php
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'GOODWATCH';
+
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+
+// Verificar si la conexión fue exitosa
+if ($conexion->connect_errno) {
+    die('Error en la conexión: ' . $conexion->connect_error);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,34 +42,13 @@
 
     <section class="tendencias">
         <div class="tendencia">
-            <h3>Tendencias en Películas</h3>
+            <h3>Películas Mejor Calificadas</h3>
         </div>
 
         <div class="peliculas">
             <?php
-            // Conexión a la base de datos
-            $servidor = 'localhost';
-            $cuenta = 'root';
-            $password = '';
-            $bd = 'GOODWATCH';
-
-            $conexion = new mysqli($servidor, $cuenta, $password, $bd);
-
-            // Verificar si la conexión fue exitosa
-            if ($conexion->connect_errno) {
-                die('Error en la conexión');
-            }
-
-            // Consulta para obtener películas con calificación mayor a 9
-            $sql = "
-                SELECT FI.ID_FILME, FI.NOMBRE, FI.IMAGEN, ROUND(AVG(V.CALIFICACION), 1) AS CALIFICACION_PROMEDIO
-                FROM FILME FI
-                LEFT JOIN VISUALIZACION V ON FI.ID_FILME = V.ID_FILME
-                GROUP BY FI.ID_FILME
-                HAVING CALIFICACION_PROMEDIO > 9
-                ORDER BY CALIFICACION_PROMEDIO DESC;
-            ";
-
+            // Consulta para obtener películas con calificación mayor a 9 desde la vista
+            $sql = "SELECT * FROM peliculas_mayores_9;";
             $resultado = $conexion->query($sql);
 
             // Verificar si hay resultados
@@ -65,11 +58,11 @@
                     ?>
                     <div class="pelicula">
                         <div class="imagen">
-                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['NOMBRE']; ?>">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['pelicula']; ?>">
                         </div>
                         <div class="detalle">
-                            <h3><?php echo $fila['NOMBRE']; ?></h3>
-                            <p>Calificación: <?php echo $fila['CALIFICACION_PROMEDIO']; ?> ⭐</p>
+                            <h3><?php echo $fila['pelicula']; ?></h3> <!-- Nombre de la película -->
+                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
                         </div>
                     </div>
                     <?php
@@ -77,17 +70,70 @@
             } else {
                 echo "<p style='color: #656565;'>No hay películas con calificación mayor a 9.</p>";
             }
-
-            $conexion->close();
             ?>
         </div>
 
         <div class="tendencia">
-            <h3>Tendencias en Series</h3>
+            <h3>Series Mejor Calificadas</h3>
+        </div>
+        <div class="series">
+            <?php
+            // Consulta para obtener series con calificación mayor a 9 desde la vista
+            $sql = "SELECT * FROM series_mayores_9;";
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+                    // Mostrar las series con calificación mayor a 9
+                    ?>
+                    <div class="serie">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['serie']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['serie']; ?></h3> <!-- Nombre de la serie -->
+                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p style='color: #656565;'>No hay series con calificación mayor a 9.</p>";
+            }
+            ?>
         </div>
 
         <div class="tendencia">
             <h3>Nuevos Lanzamientos</h3>
+        </div>
+        <div class="nuevos-lanzamientos">
+            <?php
+            // Consulta para obtener los nuevos lanzamientos
+            $sql = "SELECT tipo, titulo, IMAGEN, FECHA_ESTRENO FROM nuevos_lanzamientos ORDER BY FECHA_ESTRENO DESC";
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                // Mostrar los resultados
+                while ($fila = $resultado->fetch_assoc()) {
+                    ?>
+                    <div class="nuevos-lanzamientos-item">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['titulo']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['titulo']; ?></h3> <!-- Título del lanzamiento -->
+                            <p><strong>Fecha de estreno:</strong> <?php echo date('d M Y', strtotime($fila['FECHA_ESTRENO'])); ?></p>
+                            <p><strong>Tipo:</strong> <?php echo $fila['tipo']; ?></p>
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p style='color: #656565;'>No hay nuevos lanzamientos disponibles.</p>";
+            }
+            ?>
         </div>
     </section>
 
@@ -193,7 +239,7 @@
 </body>
 
 <?php 
-include ("footer.php");
+    include ("footer.php");
 ?>
 </html>
 
@@ -213,4 +259,6 @@ include ("footer.php");
         unset($_SESSION['captcha']);
         unset($_SESSION['intentos']);
     }
+
+    $conexion->close();
 ?>
