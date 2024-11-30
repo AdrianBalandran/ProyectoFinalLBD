@@ -44,6 +44,8 @@ if($conexion->connect_errno) {
     ?>
         
     <link rel="stylesheet" href="../css/misvisual.css">
+    <link rel="stylesheet" href="../css/encabezado.css">
+
 
     <!-- Letra -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
