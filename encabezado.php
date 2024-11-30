@@ -23,7 +23,7 @@
                     <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
                 </button>
 
-                <!-- Logo centrado y estático -->
+                <!-- Logo -->
                 <a class="navbar-brand mx-auto" href="#"><img src="../ProyectoFinalLBD/imagenes/LogoFinal.png" alt="No Disponible" width="150px" height="auto"></a> 
 
                 <!-- Menú colapsable -->
