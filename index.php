@@ -71,12 +71,11 @@
                             <h3><?php echo $fila['NOMBRE']; ?></h3>
                             <p>Calificación: <?php echo $fila['CALIFICACION_PROMEDIO']; ?> ⭐</p>
                         </div>
-                        <a href="info.php?id=<?php echo $fila['ID_FILME']; ?>" class="ver-mas">Ver más</a>
                     </div>
                     <?php
                 }
             } else {
-                echo "<p>No hay películas con calificación mayor a 9.</p>";
+                echo "<p style='color: #656565;'>No hay películas con calificación mayor a 9.</p>";
             }
 
             $conexion->close();

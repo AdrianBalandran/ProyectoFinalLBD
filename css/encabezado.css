@@ -2,6 +2,7 @@
     font-optical-sizing: auto;
     font-style: normal;
 }
+
 header {
     font-family: "Inter", sans-serif;
 }
@@ -12,27 +13,16 @@ header {
     height: 90px !important;
     padding: 0 25px !important;
     z-index: 10000;
-    transition: background-color 0.5s ease, height 0.3s ease; /* Transición de fondo y altura */
+    transition: background-color 0.5s ease, height 0.3s ease;
 }
 
-/* Logo fijo y centrado */
 .navbar-brand {
-    position: fixed; /* Fija el logo */
-    top: 10px; /* Ajusta la distancia desde la parte superior */
+    position: relative;
     left: 50%;
-    transform: translateX(-50%); /* Centra el logo */
-    z-index: 10; /* Asegura que el logo esté sobre otros elementos */
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
-/* Navbar Toggler fijo a la izquierda */
-.navbar-toggler {
-    position: fixed; /* Fija el botón de hamburguesa */
-    top: 15px; /* Ajusta la distancia desde la parte superior */
-    left: 25px; /* Posiciona el botón en la esquina superior izquierda */
-    z-index: 20; /* Asegura que el botón esté sobre el menú */
-}
-
-/* Enlaces de navegación */
 .navbar .nav-link {
     color: #ffffff;
     margin-right: 15px;
@@ -100,34 +90,46 @@ header {
     pointer-events: none;
 }
 
-/* Animación al abrir el navbar-collapse */
 .navbar-collapse {
-    transition: background-color 0.5s ease; /* Efecto de transición suave para el fondo */
+    transition: background-color 0.5s ease;
 }
 
-/* Cambiar fondo cuando el navbar-collapse está abierto */
 .navbar-collapse.show {
-    background-color: #1B1B1B !important; /* El mismo color que el navbar, puede cambiarse */
-    opacity: 1; /* Asegura que el fondo sea completamente visible */
+    background-color: #1B1B1B !important;
+    opacity: 1;
 }
 
 /* Media query para pantallas pequeñas */
 @media (max-width: 991px) {
     .navbar-collapse {
-        margin-top: 90px; /* Ajusta según el alto del logo */
         text-align: center;
-        opacity: 0; /* Inicialmente oculto */
+        opacity: 0; 
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        top: 30px;
+        left: 25px;
+        border-color: #ffffff !important;
+    }
+
+    .navbar-collapse.show {
+        opacity: 1;
+    }
+
+    .navbar-brand {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%); 
+        z-index: 10;
+    }    
+
+    #navbarNav {
+        margin-top: 90px;
         padding-bottom: 20px;
     }
 
-    /* En pantallas pequeñas, el botón del navbar-toggler sigue estando en su posición */
-    .navbar-toggler {
-        top: 30px; /* Mantiene el botón en la parte superior, ajusta si es necesario */
-        left: 25px; /* Lo coloca en la esquina superior izquierda */
-    }
-
-    /* Al abrir el menú, hacemos visible la barra de navegación */
-    .navbar-collapse.show {
-        opacity: 1; /* Aparece con una animación */
-    }
+    
 }

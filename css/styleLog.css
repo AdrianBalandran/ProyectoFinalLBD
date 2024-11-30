@@ -3,19 +3,29 @@
   margin: 0px;
 }
 
+html, body {
+  position: relative;
+  z-index: 1;
+}
+
 main{
   margin-top: 80px;
   margin-bottom: 80px;
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  font-family: "Itim", cursive;
+  font-family: "Inter", sans-serif;
   color: #FFFFFF;
 }
 
 .MainRegistro, .MainLogin, main{
   /*background-color:rgb(189, 189, 189);*/
   z-index: 10000;
+}
+
+.background, .form, .div_Registro {
+  position: relative;
+  z-index: 1;
 }
 
 .div_Registro .form-control, .div_Registro .input-group-text {
@@ -85,7 +95,7 @@ main{
 }
 
 
-fa-solid, .fas {
+.fa-solid, .fas {
   font-weight: 900;
 }
 
@@ -142,6 +152,10 @@ fa-solid, .fas {
   right: 0;
   bottom: 0;
   background: #1b1b1bc0;
+}
+
+.swal2-container-custom {
+  z-index: 1050 !important;
 }
 
 @media (max-width: 600px) {
