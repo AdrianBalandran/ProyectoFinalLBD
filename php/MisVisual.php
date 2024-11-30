@@ -4,10 +4,11 @@ date_default_timezone_set('America/Mexico_City');
 
 $nombre = "";
 function datos($conexion){
-    $sql = "SELECT ";
+    $usuario = $_SESSION['usuario']; 
+    $sql = "SELECT * FROM PELICULAVISTA WHERE ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = $usuario)";
     $resultado = $conexion -> query($sql);
     while( $fila = $resultado -> fetch_assoc() ){
-        $nombre = $fila['NOMBRE'];
+        
         ?>
 <?php }
 }
@@ -41,7 +42,7 @@ if(!isset($_SESSION['usuario'])){
     <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
 
         
-    <title>GoodWatch | Mis vistos</title>
+    <title>GoodWatch | Mis filmes</title>
         
     <link rel="stylesheet" href="../css/misvisual.css">
 
@@ -55,117 +56,77 @@ if(!isset($_SESSION['usuario'])){
         ?>
     </header>
 <body class="containertarjetas">
-    <form action="">
+    <form action="Info_Vis.php" method="POST" id="formulario">
         <section class="datos" id="datos">
-            <button class="tarjeta">
-                <div class="imagen">
-                    <img src="../imagenes/emma.jpg" alt="" class="pel">
-                </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                </div>
-                <div class="tipo">
-                    <p>P</p>
-                </div>
-                <div class="nombre">
-                    <p>Emma</p>
-                </div>
-                <div class="favorito">
-                    <img src="../imagenes/recursos/red.png" alt="">
-                </div>
-            </button>
-
-            <button class="tarjeta">
-                <div class="imagen">
-                    <img src="../imagenes/orgullo_y_prejuicio.jpg" alt="" class="pel">
-                </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                </div>
-                <div class="tipo">
-                    <p>P</p>
-                </div>
-                <div class="nombre">
-                    <p>Orgullo y Prejuicio</p>
-                </div>
-                <div class="favorito">
-                    <img src="../imagenes/recursos/red.png" alt="">
-                </div>
-            </button>
-
-            <button class="tarjeta">
-                <div class="imagen">
-                    <img src="../imagenes/mujercitas.jpg" alt="" class="pel">
-                </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                </div>
-                <div class="tipo">
-                    <p>P</p>
-                </div>
-                <div class="nombre">
-                    <p>Mujercitas</p>
-                </div>
-                <div class="favorito">
-                    <img src="../imagenes/recursos/red.png" alt="">
-                </div>
-            </button>
-
-            <button class="tarjeta">
-                <div class="imagen">
-                    <img src="../imagenes/enola.jpg" alt="" class="pel">
-                </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                </div>
-                <div class="tipo">
-                    <p>P</p>
-                </div>
-                <div class="nombre">
-                    <p>Enola Homes</p>
-                </div>
-                <div class="favorito">
-                    <!-- <img src="../imagenes/recursos/red.png" alt=""> -->
-                </div>
-            </button>
-
-            <button class="tarjeta">
-                <div class="imagen">
-                    <img src="../imagenes/persuasion.jpg" alt="" class="pel">
-                </div>
-                <div class="estrellas">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                    <img src="../imagenes/recursos/start.png" alt="">
-                </div>
-                <div class="tipo">
-                    <p>P</p>
-                </div>
-                <div class="nombre">
-                    <p>Persuasión</p>
-                </div>
-                <div class="favorito">
-                    <!-- <img src="../imagenes/recursos/red.png" alt=""> -->
-                </div>
-            </button>
+            <?php 
+                $usuario = $_SESSION['usuario']; 
+                $sql = "SELECT * FROM FILMEVISTA WHERE ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') ORDER BY FECHA ASC;";
+                $resultado = $conexion -> query($sql);
+                while( $fila = $resultado -> fetch_assoc() ){ 
+                    $filme = $fila['ID_FILME']; 
+                    $serie = $fila['TEMPORADA']; 
+                    $visu = $fila['ID_VISUALIZACION']; 
+                    ?>
+                    <button class="tarjeta" name="submit" type="submit" value="<?php echo $visu;?>">
+                        <div class="imagen"> <?php
+                            if($fila['TIPO_FILME'] == 'S'){ 
+                                    $imagen = "SELECT IMAGENTEM FROM SERIE WHERE ID_FILME = '$filme' AND TEMPORADA = '$serie';";
+                                    $resultado1 = $conexion -> query($imagen);
+                                    while( $fila1 = $resultado1 -> fetch_assoc() ){ 
+                                        ?>
+                                        <img src="../imagenes/<?php echo $fila1['IMAGENTEM'] ?>" alt="" class="pel">
+                                    <?php }
+                                }else {
+                                ?>
+                                    <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="" class="pel">
+                                <?php
+                                }
+                            ?>
+                        </div>
+                        <div class="estrellas"> <?php 
+                            for ($i = 1; $i <= (int)$fila['CALIFICACION']; $i++) { ?>
+                                <img src="../imagenes/recursos/start.png" alt="Estrellas">
+                            <?php }
+                            $num = (float)$fila['CALIFICACION'] - (int)$fila['CALIFICACION']; 
+                            $num = (float)$num;
+                            $num = strval($num); 
+                            if($num >= 0.1 && $num <= 0.2){ ?>
+                                <img src="../imagenes/recursos/start2.png" alt="Estrellas" class="star">
+                            <?php }else if($num >= 0.3 && $num <= 0.4){
+                                ?>
+                                <img src="../imagenes/recursos/start4.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num == 0.5){
+                                ?>
+                                <img src="../imagenes/recursos/startmedia.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num >= 0.6 && $num <= 0.7){
+                                ?>
+                                <img src="../imagenes/recursos/start6.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num >= 0.8 && $num <= 0.9){
+                                ?>
+                                <img src="../imagenes/recursos/start8.png" alt="Estrellas" class="star">
+                                <?php
+                            }?>
+                        </div>
+                        <div class="tipo">
+                            <p><?php echo $fila['TIPO_FILME'];?></p>
+                        </div>
+                        <div class="nombre">
+                            <p><?php echo $fila['NOMBRE']; if($fila['TEMPORADA'] != NULL) echo " T.",$fila['TEMPORADA'];?></p>
+                        </div>
+                        <?php 
+                        if($fila['FAVORITO'] == 'S'){ ?>
+                            <div class="favorito">
+                                <img src="../imagenes/recursos/red.png" alt="">
+                            </div>
+                        <?php }
+                        ?>
+                        
+                    </button>
+                <?php }
+            ?>
         </section>
     </form>
 

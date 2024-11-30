@@ -30,6 +30,11 @@
                             <a class="nav-link" href="peliculas.php">PELÍCULAS</a>
                         </li>
                         <?php 
+                        if(isset($_SESSION['usuario'])){?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="MisVisual.php">MIS FILMES</a>
+                            </li>
+                        <?php }
                         if(isset($_SESSION['usuario'])){
                         if($_SESSION['usuario'] == "Admin"){?>
                             <li class="nav-item">
