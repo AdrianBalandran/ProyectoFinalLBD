@@ -3,18 +3,29 @@
   margin: 0px;
 }
 
+html, body {
+  position: relative;
+  z-index: 1;
+}
+
 main{
   margin-top: 80px;
   margin-bottom: 80px;
   max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  font-family: "Itim", cursive;
+  font-family: "Inter", sans-serif;
   color: #FFFFFF;
 }
 
 .MainRegistro, .MainLogin, main{
-  background-color:rgb(189, 189, 189);
+  /*background-color:rgb(189, 189, 189);*/
+  z-index: 10000;
+}
+
+.background, .form, .div_Registro {
+  position: relative;
+  z-index: 1;
 }
 
 .div_Registro .form-control, .div_Registro .input-group-text {
@@ -84,7 +95,7 @@ main{
 }
 
 
-fa-solid, .fas {
+.fa-solid, .fas {
   font-weight: 900;
 }
 
@@ -116,6 +127,35 @@ fa-solid, .fas {
 
 .div_Login .registro a{
     color: #5AE2A8;
+}
+
+.background {
+  background-image: url('../imagenes/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 83vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1b1b1bc0;
+}
+
+.swal2-container-custom {
+  z-index: 1050 !important;
 }
 
 @media (max-width: 600px) {

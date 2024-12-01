@@ -1,15 +1,15 @@
-<?php 
-    // include ("php/info.php");
+<?php
+$servidor = 'localhost';
+$cuenta = 'root';
+$password = '';
+$bd = 'GOODWATCH';
 
-    // $query = "
-    //     SELECT f.NOMBRE AS NombrePelicula, g.NOMBRE AS Genero
-    //     FROM FILME f
-    //     JOIN GENERO_FILME gf ON f.ID_FILME = gf.ID_FILME
-    //     JOIN GENERO g ON gf.ID_GENERO = g.ID_GENERO
-    //     WHERE f.CALIFICACION BETWEEN '9' AND '10'
-    // ";
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
-    // $result = $conexion->query($query);
+// Verificar si la conexión fue exitosa
+if ($conexion->connect_errno) {
+    die('Error en la conexión: ' . $conexion->connect_error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +25,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../ProyectoFinalLBD/imagenes/faviconi.png"/>
-
 
 </head>
 <body>
@@ -44,24 +42,98 @@
 
     <section class="tendencias">
         <div class="tendencia">
-            <h3>Tendencias en Películas</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
+            <h3>Películas Mejor Calificadas</h3>
         </div>
 
         <div class="peliculas">
-            <?php 
-                
+            <?php
+            // Consulta para obtener películas con calificación mayor a 9 desde la vista
+            $sql = "SELECT * FROM peliculas_mayores_9;";
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+                    // Mostrar las películas con calificación mayor a 9
+                    ?>
+                    <div class="pelicula">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['pelicula']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['pelicula']; ?></h3> <!-- Nombre de la película -->
+                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p style='color: #656565;'>No hay películas con calificación mayor a 9.</p>";
+            }
             ?>
         </div>
 
         <div class="tendencia">
-            <h3>Tendencias en Series</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
+            <h3>Series Mejor Calificadas</h3>
+        </div>
+        <div class="series">
+            <?php
+            // Consulta para obtener series con calificación mayor a 9 desde la vista
+            $sql = "SELECT * FROM series_mayores_9;";
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                while ($fila = $resultado->fetch_assoc()) {
+                    // Mostrar las series con calificación mayor a 9
+                    ?>
+                    <div class="serie">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['serie']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['serie']; ?></h3> <!-- Nombre de la serie -->
+                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p style='color: #656565;'>No hay series con calificación mayor a 9.</p>";
+            }
+            ?>
         </div>
 
         <div class="tendencia">
             <h3>Nuevos Lanzamientos</h3>
-            <a href="#" class="ver-todo">Ver Todo<i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="nuevos-lanzamientos">
+            <?php
+            // Consulta para obtener los nuevos lanzamientos
+            $sql = "SELECT tipo, titulo, IMAGEN, FECHA_ESTRENO FROM nuevos_lanzamientos ORDER BY FECHA_ESTRENO DESC";
+            $resultado = $conexion->query($sql);
+
+            // Verificar si hay resultados
+            if ($resultado->num_rows > 0) {
+                // Mostrar los resultados
+                while ($fila = $resultado->fetch_assoc()) {
+                    ?>
+                    <div class="nuevos-lanzamientos-item">
+                        <div class="imagen">
+                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['titulo']; ?>">
+                        </div>
+                        <div class="detalle">
+                            <h3><?php echo $fila['titulo']; ?></h3> <!-- Título del lanzamiento -->
+                            <p><strong>Fecha de estreno:</strong> <?php echo date('d M Y', strtotime($fila['FECHA_ESTRENO'])); ?></p>
+                            <p><strong>Tipo:</strong> <?php echo $fila['tipo']; ?></p>
+                        </div>
+                    </div>
+                    <?php
+                }
+            } else {
+                echo "<p style='color: #656565;'>No hay nuevos lanzamientos disponibles.</p>";
+            }
+            ?>
         </div>
     </section>
 
@@ -167,7 +239,7 @@
 </body>
 
 <?php 
-include ("footer.php");
+    include ("footer.php");
 ?>
 </html>
 
@@ -187,4 +259,6 @@ include ("footer.php");
         unset($_SESSION['captcha']);
         unset($_SESSION['intentos']);
     }
+
+    $conexion->close();
 ?>

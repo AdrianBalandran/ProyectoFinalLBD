@@ -47,17 +47,6 @@
     margin-bottom: 15px; 
 }
 
-.ver-todo {
-    color: white; 
-    text-decoration: none; 
-    transition: background-color 0.3s; 
-}
-
-.ver-todo:hover {
-    color: #5AE2A8;
-    transition: color 0.3s ease;
-}
-
 .fa-arrow-right {
     margin-left: 10px;
 }

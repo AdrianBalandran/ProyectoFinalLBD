@@ -43,7 +43,7 @@
         <div class="colocacion">
 
             <?php
-            $servername = 'localhost:3306';
+            $servername = 'localhost';
             $cuenta = 'root';
             $password = '';
             $bd = 'goodWatch';

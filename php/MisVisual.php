@@ -1,0 +1,141 @@
+<?php 
+session_start();
+date_default_timezone_set('America/Mexico_City');
+
+$nombre = "";
+function datos($conexion){
+    $usuario = $_SESSION['usuario']; 
+    $sql = "SELECT * FROM PELICULAVISTA WHERE ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = $usuario)";
+    $resultado = $conexion -> query($sql);
+    while( $fila = $resultado -> fetch_assoc() ){
+        
+        ?>
+<?php }
+}
+
+$servidor='localhost';
+$cuenta='root';
+$password='';
+$bd='GOODWATCH';
+
+//conexion a la base de datos
+$conexion = new mysqli($servidor, $cuenta, $password, $bd);
+
+if($conexion->connect_errno) {
+    die('Error en la conexion');
+}
+if(!isset($_SESSION['usuario'])){
+    echo "no hay persona registrada.";
+    header(header: "Location: ../index.php");
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
+
+        
+    <title>GoodWatch | Mis filmes</title>
+        
+    <link rel="stylesheet" href="../css/misvisual.css">
+    <link rel="stylesheet" href="../css/encabezado.css">
+
+
+    <!-- Letra -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Itim&display=swap" rel="stylesheet">
+    <header>
+        <?php
+            include ("encabezado.php");
+        ?>
+    </header>
+<body class="containertarjetas">
+    <form action="Info_Vis.php" method="POST" id="formulario">
+        <section class="datos" id="datos">
+            <?php 
+                $usuario = $_SESSION['usuario']; 
+                $sql = "SELECT * FROM FILMEVISTA WHERE ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') ORDER BY FECHA ASC;";
+                $resultado = $conexion -> query($sql);
+                while( $fila = $resultado -> fetch_assoc() ){ 
+                    $filme = $fila['ID_FILME']; 
+                    $serie = $fila['TEMPORADA']; 
+                    $visu = $fila['ID_VISUALIZACION']; 
+                    ?>
+                    <button class="tarjeta" name="submit" type="submit" value="<?php echo $visu;?>">
+                        <div class="imagen"> <?php
+                            if($fila['TIPO_FILME'] == 'S'){ 
+                                    $imagen = "SELECT IMAGENTEM FROM SERIE WHERE ID_FILME = '$filme' AND TEMPORADA = '$serie';";
+                                    $resultado1 = $conexion -> query($imagen);
+                                    while( $fila1 = $resultado1 -> fetch_assoc() ){ 
+                                        ?>
+                                        <img src="../imagenes/<?php echo $fila1['IMAGENTEM'] ?>" alt="" class="pel">
+                                    <?php }
+                                }else {
+                                ?>
+                                    <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" alt="" class="pel">
+                                <?php
+                                }
+                            ?>
+                        </div>
+                        <div class="estrellas"> <?php 
+                            for ($i = 1; $i <= (int)$fila['CALIFICACION']; $i++) { ?>
+                                <img src="../imagenes/recursos/start.png" alt="Estrellas">
+                            <?php }
+                            $num = (float)$fila['CALIFICACION'] - (int)$fila['CALIFICACION']; 
+                            $num = (float)$num;
+                            $num = strval($num); 
+                            if($num >= 0.1 && $num <= 0.2){ ?>
+                                <img src="../imagenes/recursos/start2.png" alt="Estrellas" class="star">
+                            <?php }else if($num >= 0.3 && $num <= 0.4){
+                                ?>
+                                <img src="../imagenes/recursos/start4.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num == 0.5){
+                                ?>
+                                <img src="../imagenes/recursos/startmedia.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num >= 0.6 && $num <= 0.7){
+                                ?>
+                                <img src="../imagenes/recursos/start6.png" alt="Estrellas" class="star">
+                                <?php
+                            }else if($num >= 0.8 && $num <= 0.9){
+                                ?>
+                                <img src="../imagenes/recursos/start8.png" alt="Estrellas" class="star">
+                                <?php
+                            }?>
+                        </div>
+                        <div class="tipo">
+                            <p><?php echo $fila['TIPO_FILME'];?></p>
+                        </div>
+                        <div class="nombre">
+                            <p><?php echo $fila['NOMBRE']; if($fila['TEMPORADA'] != NULL) echo " T.",$fila['TEMPORADA'];?></p>
+                        </div>
+                        <?php 
+                        if($fila['FAVORITO'] == 'S'){ ?>
+                            <div class="favorito">
+                                <img src="../imagenes/recursos/red.png" alt="">
+                            </div>
+                        <?php }
+                        ?>
+                        
+                    </button>
+                <?php }
+            ?>
+        </section>
+    </form>
+
+</body>
+<?php 
+    include "footer.php";
+?>
+
+</html>
+
