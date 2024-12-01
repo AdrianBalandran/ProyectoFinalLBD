@@ -38,6 +38,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../php/peliculas.php">PELÍCULAS</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../php/comunidad.php">COMUNIDAD</a>
+                        </li>
                         <?php 
                         if(isset($_SESSION['usuario'])){?>
                             <li class="nav-item">

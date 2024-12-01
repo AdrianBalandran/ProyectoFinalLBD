@@ -41,8 +41,8 @@ if($conexion->connect_errno) {
             <p><a href="php/series.php">Series</a></p>
         </div>
         <div class="Segunda">
-            <p><a href="">Mis filmes</a></p>
-            <p><a href="">Comunidad</a></p>
+            <p><a href="php/MisVisual.php">Mis filmes</a></p>
+            <p><a href="php/comunidad.php">Comunidad</a></p>
         </div>
 
     </div>

@@ -13,17 +13,6 @@
     margin: 0 auto;
 }
 
-/* .contenido .form-reparto{
-    margin-top: 15px;
-    max-width: 70%;
-    align-items: center;
-    padding-top:30px;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-} */
-
-
 .datos{
     display: flex;
     flex-wrap: wrap;

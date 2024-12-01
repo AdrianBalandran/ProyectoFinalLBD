@@ -2,7 +2,7 @@
     //session_start();
     date_default_timezone_set('America/Mexico_City');
 
-    $servidor="localhost:33065";
+    $servidor="localhost";
     $cuenta='root';
     $password='';
     $bd='GOODWATCH';
@@ -42,6 +42,7 @@
         <?php datos($conexion); ?>
 
         </section>
+        
         <section class="mas">
             <div class="introduccion">
                 <img src="../imagenes/<?php echo imagen(); ?>" alt="drama">
@@ -57,6 +58,7 @@
         </section>
     </section>
 </body>
+
 <?php include "footer.php";?>
 
 </html>
@@ -106,7 +108,6 @@
 
     function datos($conexion){
         $sql = "SELECT * FROM COMUNIDAD;";
-
         $resultado = $conexion -> query($sql);
 
         while( $fila = $resultado -> fetch_assoc() ){ ?>
