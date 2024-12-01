@@ -58,7 +58,8 @@
 
                         $_SESSION['insertadoR'] = true;
                         
-                        unset($_POST['submit-repartoFilme']);
+                        unset($_POST['submitModificado']);
+                        
                     }
 
                 } 
