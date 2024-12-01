@@ -69,7 +69,7 @@
             
             ?>
 
-            <!-- Formulario de reparto-->
+            <!-- Formulario de los id de filmes-->
             <div id="form-reparto" class="form-reparto formulario">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
                     <div class="idReparto">
@@ -85,7 +85,7 @@
             </div>
 
             <?php 
-            
+            // Si se selecciono un filme 
             if(isset($_POST['submitFilme'])){ 
                 $ID = $_POST['id_filme']; 
                 $_SESSION['ID'] = $ID;
@@ -117,29 +117,27 @@
                     }
                 }  
             ?>
-
+                    <!-- Formulario del filme -->
                     <div id="form-reparto-Datos" class="form-reparto formulario">
                         <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
 
                             <div class="datos">
-                            <!-- <div class="col-3 mb-3">
-                                <label for="idFilme" class="form-label">ID</label>
-                                <input type="text" id="idFilme" name="idFilme" class="form" value="<?php echo $filaId ?>" required  disabled >
-                            </div> -->
+                            <!-- Id -->
                             <div class="col-3 mb-3">
                                 <label for="id" class="form-label">ID</label>
                                 <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  disabled >
                             </div>
-                            
+                             <!-- Nombre -->
                             <div class="col-3 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" required>
                             </div>
-
+                             <!-- Fecha de Estreno -->
                             <div class="col-3 mb-3">
                                 <label for="fechaEst" class="form-label">Fecha de Estreno</label>
                                 <input type="date" id="fechaEst" name="fechaEst" class="form" value="<?php echo $filaEst ?>" required>
                             </div>   
+                             <!-- Clasificación -->
                             <div class="col-4 mb-3">
                                 <?php $clas = array("AA", "A", "B", "B15", "C", "D"); ?>
                                 <label for="clasifF" class="form-label">Clasificación</label>
@@ -154,7 +152,7 @@
                                     } ?>
                                 </select>
                             </div>
-    
+                             <!-- Idioma -->
                                 <div class="col-4 mb-3">
                                     <label for="idiomaF" class="form-label">Idioma</label>
                                     <select class="form" name="idiomaF" required>
@@ -178,7 +176,8 @@
                                         }
                                         ?>
                                     </select>
-                                </div>      
+                                </div>  
+                                 <!-- País -->
                                 <div class="col-4 mb-3">
                                     <label for="paisF" class="form-label">País</label>
                                     <select class="form" name="paisF" required>
@@ -203,6 +202,7 @@
                                         ?>
                                     </select>
                                 </div>     
+                                 <!-- Descripción -->
                                 <div class="col-3 mb-3">
                                     <label for="descripcion" class="form-label">Descripción</label>
                                     <!-- <input type="text" id="descipcion" name="descipcion" class="form" value="<?php echo $filaDes ?>" required> -->
@@ -217,6 +217,7 @@
                     
                         </form>    
                     </div>
+ 
 
            
 </body>

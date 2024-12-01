@@ -64,6 +64,21 @@
                         unset($_POST['submitModificado']);
                     }
 
+                    //Modificar temporada de la serie (filme)
+                    if(isset($_POST['submitFilmeTemporada'])){
+                        $idFT = $_SESSION['ID'];
+                        $temp = $_POST['temp'];
+                        $Episodios = $_POST['noE'];
+                        $fechaET = $_POST['fechaET'];
+
+                        $consF = "UPDATE SERIE SET NUMERO_EPISODIOS='$Episodios', FECHA_ESTRENO='$fechaET' WHERE ID_FILME='$idFT' AND TEMPORADA='$temp';";
+                        $final = $conexion -> query($consF);
+
+                        $_SESSION['insertadoF'] = true;
+                        
+                        unset($_POST['submitFilmeTemporada']);
+                    }
+
                 } 
             
             ?>
@@ -218,6 +233,46 @@
                         </form>    
                     </div>
 
+                    <h2 style="margin: 0 auto; padding-bottom: 30px; margin-top: 30px;">Temporadas</h2>
+
+
+
+            <!-- Formulario de TEMPORADAS-->
+             <?php 
+            $sql1 = $sql = 'SELECT * FROM SERIE WHERE ID_FILME='. $ID.';'; //Consulta a reparto
+            $resultado1 = $conexion -> query($sql1);
+
+            if ($resultado1 -> num_rows){ //Si consulta exitosa
+                while ($fila = $resultado1->fetch_assoc()){?>
+                    <div id="form-reparto" class="form-reparto formulario ">
+                    <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
+                        <div class="datos">
+                    
+                        <input type="text" id="idFT" name="idFT" class="form hidden" value="<?php echo $fila['ID_FILME'] ?>" readonly="readonly"  disabled >
+                        <div class="idReparto">
+                            <label for="temp">Temporada</label>
+                            <input type="text" id="temp" name="temp" class="form" value="<?php echo $fila['TEMPORADA'] ?>" readonly="readonly" required >
+                        </div>
+                        <div class="idReparto">
+                            <label for="noE">Número de Episodios</label>
+                            <input type="number" id="noE" name="noE" class="form" value="<?php echo $fila['NUMERO_EPISODIOS'] ?>" required  >
+                        </div>
+                        <div class="idReparto">
+                            <label for="fechaET">Fecha de Estreno</label>
+                            <input type="date" id="fechaET" name="fechaET" class="form" value="<?php echo $fila['FECHA_ESTRENO'] ?>" required  >
+                        </div>
+                        <div>
+                            <div class="botonRF">
+                                <button class="btn btn-success btnSelect" type="submit" name="submitFilmeTemporada" id="submit">Modificar</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>    
+                    </div>   
+                    <?php  
+                }
+            }  
+            ?>
            
 </body>
 

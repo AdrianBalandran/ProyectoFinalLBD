@@ -43,7 +43,7 @@
                     die('Error en la conexión');
                 } else {
 
-                    //Ingresar a la base (filme)
+                    //Ingresar a la base (reparto)
                     if(isset($_POST['submitModificado'])){
                         $idR = $_POST['id'];
                         $nombreR = $_POST['nombre'];
@@ -66,7 +66,7 @@
             
             ?>
 
-            <!-- Formulario de reparto-->
+            <!-- Formulario de reparto (escoger el id)-->
             <div id="form-reparto" class="form-reparto formulario">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
                     <div class="idReparto">
@@ -82,18 +82,19 @@
             </div>
 
             <?php 
-            
+            // Formulario del id para desplegar el id seleccionado
             if(isset($_POST['submitRepartoFilme'])){ 
                 $ID = $_POST['id_reparto']; 
                 $_SESSION['ID'] = $ID;
                 unset($_POST['submitRepartoFilme']);
             }  else{
+                // La primera vez será este id
                 $ID = '30009';
                 $_SESSION['ID'] = $ID;
             }
             $sql1 = $sql = 'SELECT * FROM REPARTO WHERE ID_REPARTO='. $ID.';'; //Consulta a reparto
                 $resultado1 = $conexion -> query($sql1);
-
+                // Declarar valores para ingresarlos en los inputs
                 if ($resultado1 -> num_rows){ //Si consulta exitosa
                     while ($fila = $resultado1->fetch_assoc()){
                         $filaId = $fila['ID_REPARTO'];
@@ -107,37 +108,42 @@
                 }    
             ?>
 
+                     <!-- Formulario de los datos de reparto-->
                     <div id="form-reparto-Datos" class="form-reparto formulario">
                         <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
 
                             <div class="datos">
+                            <!-- Id del reparto -->
                             <div class="col-3 mb-3">
                                 <label for="id" class="form-label">ID</label>
                                 <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  disabled >
                             </div>
-                            
+                            <!-- Nombre -->
                             <div class="col-3 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" required>
                             </div>
+                            <!-- Primer Apellido -->
                             <div class="col-3 mb-3">
                                 <label for="primape" class="form-label">Primer Apellido</label>
                                 <input type="text" id="primape" name="primape" class="form" value="<?php echo $filaPrim ?>" required>
                             </div>  
-                                            
+                            <!-- Segundo Apellido -->             
                             <div class="col-3 mb-3">
                                 <label for="segape" class="form-label">Segundo Apellido</label>
                                 <input type="text" id="segape" name="segape" class="form" value="<?php echo $filaSeg ?>">
-                            </div>  
-
+                            </div>      
+                            <!-- Nombre artístico -->
                             <div class="col-3 mb-3">
                                 <label for="nomArt" class="form-label">Nombre Artístico</label>
                                 <input type="text" id="nomArt" name="nomArt" class="form" value="<?php echo $filaArt ?>" required>
                             </div>  
+                            <!-- Fecha de nacimiento -->
                             <div class="col-3 mb-3">
                                 <label for="fechaNac" class="form-label">Fecha de Nacimiento</label>
                                 <input type="date" id="fechaNac" name="fechaNac" class="form" value="<?php echo $filaNac ?>" required>
-                            </div>   
+                            </div> 
+                            <!-- País -->  
                             <div class="col-4 mb-3">
                                     <label for="paisR" class="form-label">País</label>
                                     <select class="form" name="paisR" required>
@@ -164,6 +170,7 @@
                                 </div>      
 
                             </div>
+                            <!-- Botón submit -->
                             <div class="botonRF">
                                 <button class="btn btn-success btnmod" type="submit" name="submitModificado" id="submit">Modificar</button>
                             </div>
@@ -175,6 +182,7 @@
 </body>
 
 <?php 
+// Seleccionar los id de todos los repartos
  function Select($conexion){
     $sql = 'Select * FROM Reparto;';//hacemos cadena con la sentencia mysql que consulta todo el contenido de la tabla
     $resultado = $conexion -> query($sql);?>
@@ -201,6 +209,7 @@
 
     <?php 
 
+// Si se ingreso se despliega un sweetalert
 if(isset($_SESSION['insertadoR'])){ 
     unset($_SESSION['insertadoR'])?>
         <script>
