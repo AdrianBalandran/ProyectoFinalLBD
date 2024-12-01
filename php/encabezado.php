@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../php/comunidad.php">COMUNIDAD</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../php/vertodo.php">TODO</a>
+                        </li>
                         <?php 
                         if(isset($_SESSION['usuario'])){?>
                             <li class="nav-item">
