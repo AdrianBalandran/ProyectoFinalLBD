@@ -1,0 +1,18 @@
+.contpeliseries{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding-top: 30px;
+}
+
+.contpeliseries h3{
+    color: #5ae2a8;
+}
+
+.contpeliseries p{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 60px;
+    margin-left: 10px;
+}
