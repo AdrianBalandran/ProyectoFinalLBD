@@ -74,14 +74,15 @@ function datos($conexion, $id, $temporada){
                         ?>
                 </div>
                 <?php 
-                    if(isset($_SESSION['usuario'])){
+                    if(isset($_SESSION['usuario']) ){
+                        if($_SESSION['usuario'] != "Admin"){?>
                 ?>
                 <div class="formbtn boton visu">
                     <div class="backg">
                         <button class="agregar" type="button" id="desplegar"><p>Añadir</p></button>
                     </div>
                 </div>
-                <?php } ?>
+                <?php } } ?>
             </div>
             <div class="segundo">
                 <div class="peliculaDatos">

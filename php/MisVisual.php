@@ -29,9 +29,18 @@ if($conexion->connect_errno) {
 if(!isset($_SESSION['usuario'])){
     echo "no hay persona registrada.";
     header(header: "Location: ../index.php");
+}else if(isset($_SESSION['usuario'])){
+    if($_SESSION['usuario'] == "Admin"){
+        header(header: "Location: ../index.php");
+    }
 }
 
 $i = 0; 
+$peli = "0"; 
+$seri = "0"; 
+$total = "0"; 
+$HORAS = "0";
+
 $sql = "SELECT F.TIPO_FILME TIPO, COUNT(F.TIPO_FILME) TOTAL FROM FILME F, VISUALIZACION V WHERE V.ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') AND V.ID_FILME = F.ID_FILME GROUP BY F.TIPO_FILME WITH ROLLUP; ";
 $resultado = $conexion -> query($sql);
 while( $fila = $resultado -> fetch_assoc() ){ 
@@ -78,7 +87,7 @@ while( $fila = $resultado -> fetch_assoc() ){
             <div class="datossub">
                 <div class="informacion">
                     <div class="tag">
-                        <p>Horas de películas:</p>
+                        <p>Minutos de películas:</p>
                     </div>
                     <div class="inf">
                         <?php 
