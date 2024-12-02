@@ -15,6 +15,7 @@ body.containertarjetas{
     padding: 50px;
     padding-top: 100px;
     background-color: #FFFFFF;
+    /* background-color: aquamarine; */
 }
 
 .tarjeta{
@@ -137,4 +138,58 @@ body.containertarjetas{
     width: 60%;
 }
 
+.datos .datossub{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 10px;
 
+    /* background-color: hotpink; */
+}
+.datos .informacion{
+    width: 300px;
+    height: 60px;
+    background-color: black;
+    border-radius: 40px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.datos .informacion .tag{
+    width: 65%;
+    height: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.datos .informacion .tag p{
+    color: #5AE2AB;
+    text-align: center;
+    font-family: "Instrument Serif", serif;
+    letter-spacing: 1px;
+    font-size: 19px;
+    margin: auto auto;
+}
+.datos .informacion .inf{
+    width: 35%;
+    height: 100%;
+    /* background-color: purple; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.datos .informacion .inf p{
+    color: white;
+    text-align: center;
+    font-family: "Instrument Serif", serif;
+    letter-spacing: 1px;
+    font-size: 19px;
+    margin: auto auto;
+}

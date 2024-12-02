@@ -33,6 +33,9 @@
                             <a class="nav-link" aria-current="page" href="../index.php">INICIO</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="../php/vertodo.php">TODO</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="../php/series.php">SERIES</a>
                         </li>
                         <li class="nav-item">
@@ -41,15 +44,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../php/comunidad.php">COMUNIDAD</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../php/vertodo.php">TODO</a>
-                        </li>
                         <?php 
-                        if(isset($_SESSION['usuario'])){?>
+                        if(isset($_SESSION['usuario'])){
+                            if($_SESSION['usuario'] != "Admin"){?>
                             <li class="nav-item">
                                 <a class="nav-link" href="MisVisual.php">MIS FILMES</a>
                             </li>
-                        <?php }
+                        <?php } }
                         if(isset($_SESSION['usuario'])){
                             if($_SESSION['usuario'] == "Admin"){?>
                                 <li class="nav-item">

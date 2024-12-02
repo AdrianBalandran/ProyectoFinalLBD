@@ -1,6 +1,8 @@
 <?php 
 session_start();
 date_default_timezone_set('America/Mexico_City');
+$usuario = $_SESSION['usuario']; 
+
 
 $nombre = "";
 function datos($conexion){
@@ -27,8 +29,30 @@ if($conexion->connect_errno) {
 if(!isset($_SESSION['usuario'])){
     echo "no hay persona registrada.";
     header(header: "Location: ../index.php");
+}else if(isset($_SESSION['usuario'])){
+    if($_SESSION['usuario'] == "Admin"){
+        header(header: "Location: ../index.php");
+    }
 }
 
+$i = 0; 
+$peli = "0"; 
+$seri = "0"; 
+$total = "0"; 
+$HORAS = "0";
+
+$sql = "SELECT F.TIPO_FILME TIPO, COUNT(F.TIPO_FILME) TOTAL FROM FILME F, VISUALIZACION V WHERE V.ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') AND V.ID_FILME = F.ID_FILME GROUP BY F.TIPO_FILME WITH ROLLUP; ";
+$resultado = $conexion -> query($sql);
+while( $fila = $resultado -> fetch_assoc() ){ 
+    if($i == 0){
+        $peli = $fila['TOTAL']; 
+    }else if($i == 1){
+        $seri = $fila['TOTAL']; 
+    }else if($i == 2){
+        $total = $fila['TOTAL']; 
+    }
+    $i ++;
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,8 +83,48 @@ if(!isset($_SESSION['usuario'])){
 <body class="containertarjetas">
     <form action="Info_Vis.php" method="POST" id="formulario">
         <section class="datos" id="datos">
+            <div class="datossub">
+                <div class="informacion">
+                    <div class="tag">
+                        <p>Minutos de películas:</p>
+                    </div>
+                    <div class="inf">
+                        <?php 
+                        $sql = "SELECT HORAS_VISTAS('$usuario') HORAS";
+                        $resultado = $conexion -> query($sql);
+                        while( $fila = $resultado -> fetch_assoc() ){ 
+                            $HORAS = $fila['HORAS'];
+                        }
+                        ?>
+                        <p><?php echo $HORAS;?> min</p>
+                    </div>
+                </div>
+                <div class="informacion">
+                    <div class="tag">
+                        <p>Películas vistas:</p>
+                    </div>
+                    <div class="inf">
+                        <p><?php echo $peli;?></p>
+                    </div>
+                </div>
+                <div class="informacion">
+                    <div class="tag">
+                        <p>Series vistas:</p>
+                    </div>
+                    <div class="inf">
+                        <p><?php echo $seri;?></p>
+                    </div>
+                </div>
+                <div class="informacion">
+                    <div class="tag">
+                        <p>Filmes vistos:</p>
+                    </div>
+                    <div class="inf">
+                        <p><?php echo $total;?></p>
+                    </div>
+                </div>
+            </div>
             <?php 
-                $usuario = $_SESSION['usuario']; 
                 $sql = "SELECT * FROM FILMEVISTA WHERE ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') ORDER BY FECHA ASC;";
                 $resultado = $conexion -> query($sql);
                 while( $fila = $resultado -> fetch_assoc() ){ 
