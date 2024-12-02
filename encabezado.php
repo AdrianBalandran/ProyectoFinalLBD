@@ -33,7 +33,7 @@
                             <a class="nav-link" aria-current="page" href="index.php">INICIO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../php/vertodo.php">TODO</a>
+                            <a class="nav-link" href="../ProyectoFinalLBD/php/vertodo.php">TODO</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="../ProyectoFinalLBD/php/series.php">SERIES</a>
