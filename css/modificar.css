@@ -68,3 +68,11 @@ select .form{
 .tituloS{
     margin: 20px;
 }
+
+@media (max-width: 800px) {
+    .datos > div{
+        width: 100%;
+        padding:0px 20px;
+    }
+
+  }
