@@ -7,7 +7,6 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" href="../css/peliculas.css">
-    <link rel="stylesheet" href="../css/encabezado.css">
     <link rel="stylesheet" href="../css/vertodo.css">
 
     <!-- Bootstrap -->

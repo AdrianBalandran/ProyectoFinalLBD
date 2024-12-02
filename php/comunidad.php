@@ -23,7 +23,8 @@
     <title>GoodWatch | Comunidad</title>
 
     <link rel="stylesheet" href="../css/comunidad.css">
-    <link rel="stylesheet" href="../css/encabezado.css">
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
+
 
     <!-- Letra -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,10 +108,24 @@
     }
 
     function datos($conexion){
+        if(isset($_SESSION['usuario'])){
+            $usuarioName = $_SESSION["usuario"];
+            $sql1 = "SELECT NOMBRE FROM USUARIO WHERE ALIAS='$usuarioName';";
+            $resultado = $conexion -> query($sql1);
+            while( $fila1 = $resultado -> fetch_assoc() ){ 
+                $usuario = $fila1['NOMBRE'];
+            }
+        }
+
+        $updates = 0;
+
         $sql = "SELECT * FROM COMUNIDAD;";
         $resultado = $conexion -> query($sql);
 
-        while( $fila = $resultado -> fetch_assoc() ){ ?>
+        while( $fila = $resultado -> fetch_assoc() ){ 
+            if($usuario != $fila['NOMBRE']){
+                $updates += 1;
+            ?>
 
             <div class="update">
 
@@ -259,6 +274,17 @@
                 </div>
             </div>
     <?php }
+        }
+        if($updates == 0){ ?>
+            <div class="update">
+                <h2 class="tituloh2">No hay updates en este momento</h2>
+            </div>
+        <?php
+        }else{ ?>
+            <div class="update">
+            <h2 class="tituloh2">Total: <?php echo $updates; ?></h2>
+        </div>
+        <?php }
     }   
     
     
@@ -269,7 +295,7 @@
                 break;
             case "Prime Video": $ruta = "primeVideo.png";
                 break;
-            case "Max": $ruta = "max.png";
+            case "Max": $ruta = "max.jpg";
                 break;
             case "Apple Tv": $ruta = "appleTv.png";
                 break;

@@ -45,7 +45,6 @@ if(!isset($_SESSION['usuario'])){
     <title>GoodWatch | Mis filmes</title>
         
     <link rel="stylesheet" href="../css/misvisual.css">
-    <link rel="stylesheet" href="../css/encabezado.css">
 
 
     <!-- Letra -->

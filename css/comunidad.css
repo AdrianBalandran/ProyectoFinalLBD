@@ -65,6 +65,10 @@ body .contenido {
     background-color: #1B1B1B;
 }
 
+.update .tituloh2{
+    text-align: center;
+}
+
 .update .usuario{
     height: 60px;
     width: auto;

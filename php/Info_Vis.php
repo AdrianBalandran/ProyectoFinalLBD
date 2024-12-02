@@ -241,7 +241,6 @@ if($conexion->connect_errno) {
     ?>
         
     <link rel="stylesheet" href="../css/misvisual.css">
-    <link rel="stylesheet" href="../css/encabezado.css">
     <link rel="stylesheet" href="../css/info.css">
 
 
