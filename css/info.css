@@ -481,3 +481,17 @@ button.agregar p:hover{
         margin-top: 20px;
     }
 }
+
+.info_visphp .primer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body.info_visphp {
+    font-family: "Instrument Serif", serif;
+}
+
+body.info_visphp .backginfo{
+    justify-content: start;
+    color: white;
+}

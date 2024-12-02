@@ -70,7 +70,7 @@ if(!isset($_SESSION['usuario'])){
                     $visu = $fila['ID_VISUALIZACION']; 
                     ?>
                     <button class="tarjeta" name="submit" type="submit" value="<?php echo $visu;?>">
-                        <div class="imagen"> <?php
+                        <div class="imagenF"> <?php
                             if($fila['TIPO_FILME'] == 'S'){ 
                                     $imagen = "SELECT IMAGENTEM FROM SERIE WHERE ID_FILME = '$filme' AND TEMPORADA = '$serie';";
                                     $resultado1 = $conexion -> query($imagen);
@@ -85,7 +85,7 @@ if(!isset($_SESSION['usuario'])){
                                 }
                             ?>
                         </div>
-                        <div class="estrellas"> <?php 
+                        <div class="estrellasF"> <?php 
                             for ($i = 1; $i <= (int)$fila['CALIFICACION']; $i++) { ?>
                                 <img src="../imagenes/recursos/start.png" alt="Estrellas">
                             <?php }
