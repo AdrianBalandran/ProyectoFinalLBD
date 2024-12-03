@@ -1,5 +1,19 @@
 /* HEADER */
 
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #1B1B1B;        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #5AE2A8;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #000000;  /* creates padding around scroll thumb */
+  }
+
 .header {
     background-image: url('../imagenes/background.jpg');
     background-size: cover; 
@@ -43,8 +57,8 @@
 .tendencia {
     display: flex;
     justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 15px; 
+    align-items: center;
+    margin-bottom: 0px;
 }
 
 .fa-arrow-right {
@@ -199,4 +213,17 @@ section.categorias {
     align-items: left;
     height: 100%;
     text-align: left;
+}
+
+.fondo{
+    padding: 30px 0px;
+    background-color: transparent !important;
+}
+
+.colocacion-div {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    max-width: 100%;
+    width: 100%;
 }

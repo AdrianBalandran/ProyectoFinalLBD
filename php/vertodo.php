@@ -72,17 +72,16 @@
 
     <!-- Contenido que muestra películas y series -->
     <div class="peliculas-sec">
-        <form action="Info_Peliculas.php" method="POST" id="formulario" class="form">
             <div class="colocacion">
                 <?php
                 function datos($conexion)
                 {
                     $sql = "
-                    SELECT FI.NOMBRE, FI.IMAGEN, FI.CLASIFICACION, FI.FECHA_ESTRENO, P.DURACION AS DURACION_O_EPISODIOS, NULL AS TEMPORADA
+                    SELECT FI.ID_FILME, FI.NOMBRE, FI.IMAGEN, FI.CLASIFICACION, FI.FECHA_ESTRENO, P.DURACION AS DURACION_O_EPISODIOS, NULL AS TEMPORADA
                     FROM FILME FI
                     JOIN PELICULA P ON FI.ID_FILME = P.ID_FILME
                     UNION
-                    SELECT FI.NOMBRE, S.IMAGENTEM AS IMAGEN, FI.CLASIFICACION, S.FECHA_ESTRENO, S.NUMERO_EPISODIOS AS DURACION_O_EPISODIOS, S.TEMPORADA
+                    SELECT FI.ID_FILME, FI.NOMBRE, S.IMAGENTEM AS IMAGEN, FI.CLASIFICACION, S.FECHA_ESTRENO, S.NUMERO_EPISODIOS AS DURACION_O_EPISODIOS, S.TEMPORADA
                     FROM FILME FI
                     JOIN SERIE S ON FI.ID_FILME = S.ID_FILME
                     ORDER BY FECHA_ESTRENO ASC;"; // Cambiar a DESC para orden descendente
@@ -94,8 +93,15 @@
                             $fechaEstreno = new DateTime($fila['FECHA_ESTRENO']);
                             $fechaFormateada = $fechaEstreno->format('d/m/Y');
                             $extraInfo = $fila['TEMPORADA'] ? "TEMPORADA {$fila['TEMPORADA']}" : "{$fila['DURACION_O_EPISODIOS']} min.";
+                            if($fila['TEMPORADA']){ ?> 
+                                <form action="Info_Series.php" method="POST" id="formulario" class="form1">
+                                <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>+<?php echo $fila['TEMPORADA']; ?>">
+                            <?php }else{ ?>
+                                <form action="Info_Peliculas.php" method="POST" id="formulario" class="form1">
+                                <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>">
+                                <?php }
+                                echo $fila['ID_FILME'];
                 ?>
-                            <button name="submit" type="submit" value="<?php echo $fila['NOMBRE']; ?>">
                                 <div class="card-sep">
                                     <div class="card border-dark mb-3 card-size">
                                         <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" class="card-img-top" alt="Imagen">
@@ -112,6 +118,8 @@
                                     </div>
                                 </div>
                             </button>
+                        </form>
+
                 <?php
                         }
                     } else {
@@ -123,7 +131,6 @@
                 datos($conexion);
                 ?>
             </div>
-        </form>
     </div>
 
     <!-- Pie de página -->

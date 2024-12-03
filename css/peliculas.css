@@ -1,4 +1,19 @@
 /* General */
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: #1B1B1B;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #5AE2A8;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid #000000;  /* creates padding around scroll thumb */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -22,7 +37,7 @@ body {
     grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual ancho */
     gap: 45px; /* Espacio entre las tarjetas */
     max-width: 1200px; /* Ajusta el ancho máximo según necesites */
-    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Tarjeta */
@@ -32,7 +47,8 @@ body {
 }
 
 .card-sep:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(90, 226, 168, 0.6); /* Sombra elegante */
 }
 
 .nbcolor {
@@ -106,7 +122,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .colocacion {
         grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
     }
@@ -124,7 +140,7 @@ body {
 }
 form.form{
     background-color: #000000;
-    padding: 60px;
+
     display: flex;
     justify-content: center;
     height: 100%;
