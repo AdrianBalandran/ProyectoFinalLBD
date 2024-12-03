@@ -1,5 +1,5 @@
 <?php
-session_start();
+include ("encabezado.php");
 
 date_default_timezone_set('America/Mexico_City');
 
@@ -57,11 +57,7 @@ if($conexion->connect_errno) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Itim&display=swap" rel="stylesheet">
-    <header>
-        <?php
-            include ("encabezado.php");
-        ?>
-    </header>
+    
 </head>
 <body class="info_visphp">
     <section class="info" id="info">
