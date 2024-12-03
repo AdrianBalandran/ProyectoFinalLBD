@@ -19,6 +19,7 @@ if ($conexion->connect_errno) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoodWatch | Inicio</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/peliculas.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,69 +46,98 @@ if ($conexion->connect_errno) {
             <h3>Películas Mejor Calificadas</h3>
         </div>
 
-        <div class="peliculas">
-            <?php
-            // Consulta para obtener películas con calificación mayor a 9 desde la vista
-            $sql = "SELECT * FROM peliculas_mayores_9;";
-            $resultado = $conexion->query($sql);
+        <div class="peliculas-se">
+            <div class="fondo">
+                <div class="colocacion-div">
+                <?php
+                // Consulta para obtener películas con calificación mayor a 4.5 desde la vista
+                $sql = "SELECT * FROM peliculas_mayores_9;";
+                $resultado = $conexion->query($sql);
 
-            // Verificar si hay resultados
-            if ($resultado->num_rows > 0) {
-                while ($fila = $resultado->fetch_assoc()) {
-                    // Mostrar las películas con calificación mayor a 9
-                    ?>
-                    <div class="pelicula">
-                        <div class="imagen">
-                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['pelicula']; ?>">
+                // Verificar si hay resultados
+                if ($resultado->num_rows > 0) {
+                    while ($fila = $resultado->fetch_assoc()) {
+                        // Mostrar las películas con calificación mayor a 4.5
+                        ?>
+                        <div class="card-se">
+                            <div class="card-sep">
+                                <div class="card border-dark mb-3 card-size">
+                                    <!-- Imagen de la película -->
+                                    <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" class="card-img-top" alt="<?php echo $fila['pelicula']; ?>">
+
+                                    <div class="card-body nbcolor d-flex flex-column justify-content-between">
+                                        <div>
+                                            <!-- Nombre de la película -->
+                                            <h5 class="card-title"><?php echo $fila['pelicula']; ?></h5>
+
+                                            <!-- Calificación Promedio -->
+                                            <p class="small card-text" style="color: #ffffff;"><b>Calificación Promedio:</b> <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="detalle">
-                            <h3><?php echo $fila['pelicula']; ?></h3> <!-- Nombre de la película -->
-                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
-                        </div>
-                    </div>
-                    <?php
+                        <?php
+                    }
+                } else {
+                    echo "<p style='color: #656565;'>No hay películas para mostrar.</p>";
                 }
-            } else {
-                echo "<p style='color: #656565;'>No hay películas con calificación mayor a 9.</p>";
-            }
-            ?>
+                ?>
+                </div>
+            </div>
         </div>
 
         <div class="tendencia">
             <h3>Series Mejor Calificadas</h3>
         </div>
-        <div class="series">
-            <?php
-            // Consulta para obtener series con calificación mayor a 9 desde la vista
-            $sql = "SELECT * FROM series_mayores_9;";
-            $resultado = $conexion->query($sql);
+        <div class="peliculas-se">
+        <div class="fondo">
+            <div class="colocacion-div">
+                <?php
+                // Consulta para obtener series con calificación mayor a 4.5 desde la vista
+                $sql = "SELECT * FROM series_mayores_9;";
+                $resultado = $conexion->query($sql);
 
-            // Verificar si hay resultados
-            if ($resultado->num_rows > 0) {
-                while ($fila = $resultado->fetch_assoc()) {
-                    // Mostrar las series con calificación mayor a 9
-                    ?>
-                    <div class="serie">
-                        <div class="imagen">
-                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['serie']; ?>">
+                // Verificar si hay resultados
+                if ($resultado->num_rows > 0) {
+                    while ($fila = $resultado->fetch_assoc()) {
+                        // Mostrar las series con calificación mayor a 4.5
+                        ?>
+                        <div class="card-se">
+                            <div class="card-sep">
+                                <div class="card border-dark mb-3 card-size">
+                                    <!-- Imagen de la serie -->
+                                    <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" class="card-img-top" alt="<?php echo $fila['serie']; ?>">
+
+                                    <div class="card-body nbcolor d-flex flex-column justify-content-between">
+                                        <div>
+                                            <!-- Nombre de la serie -->
+                                            <h5 class="card-title"><?php echo $fila['serie']; ?></h5>
+
+                                            <!-- Calificación Promedio -->
+                                            <p class="small card-text" style="color: #ffffff;"><b>Calificación Promedio:</b> <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="detalle">
-                            <h3><?php echo $fila['serie']; ?></h3> <!-- Nombre de la serie -->
-                            <p>Calificación Promedio: <?php echo number_format($fila['CALIFICACION_PROMEDIO'], 1); ?> ⭐</p> <!-- Promedio de calificación -->
-                        </div>
-                    </div>
-                    <?php
+                        <?php
+                    }
+                } else {
+                    echo "<p style='color: #656565;'>No hay series para mostrar.</p>";
                 }
-            } else {
-                echo "<p style='color: #656565;'>No hay series con calificación mayor a 9.</p>";
-            }
-            ?>
+                ?>
+            </div>
         </div>
+    </div>
+
 
         <div class="tendencia">
             <h3>Nuevos Lanzamientos</h3>
         </div>
-        <div class="nuevos-lanzamientos">
+        <div class="pelicula-se">
+    <div class="fondo">
+        <div class="colocacion-div">
             <?php
             // Consulta para obtener los nuevos lanzamientos
             $sql = "SELECT tipo, titulo, IMAGEN, FECHA_ESTRENO FROM nuevos_lanzamientos ORDER BY FECHA_ESTRENO DESC";
@@ -118,14 +148,25 @@ if ($conexion->connect_errno) {
                 // Mostrar los resultados
                 while ($fila = $resultado->fetch_assoc()) {
                     ?>
-                    <div class="nuevos-lanzamientos-item">
-                        <div class="imagen">
-                            <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" alt="<?php echo $fila['titulo']; ?>">
-                        </div>
-                        <div class="detalle">
-                            <h3><?php echo $fila['titulo']; ?></h3> <!-- Título del lanzamiento -->
-                            <p><strong>Fecha de estreno:</strong> <?php echo date('d M Y', strtotime($fila['FECHA_ESTRENO'])); ?></p>
-                            <p><strong>Tipo:</strong> <?php echo $fila['tipo']; ?></p>
+                    <div class="card-se">
+                        <div class="card-sep">
+                            <div class="card border-dark mb-3 card-size">
+                                <!-- Imagen del nuevo lanzamiento -->
+                                <img src="imagenes/<?php echo $fila['IMAGEN']; ?>" class="card-img-top" alt="<?php echo $fila['titulo']; ?>">
+
+                                <div class="card-body nbcolor d-flex flex-column justify-content-between">
+                                    <div>
+                                        <!-- Título del lanzamiento -->
+                                        <h5 class="card-title"><?php echo $fila['titulo']; ?></h5>
+
+                                        <!-- Fecha de estreno -->
+                                        <p class="card-text" style="color: #ffffff; margin-bottom: 0px;"><b>Estreno:</b> <?php echo date('d M Y', strtotime($fila['FECHA_ESTRENO'])); ?></p>
+
+                                        <!-- Tipo de lanzamiento -->
+                                        <p class="small card-text" style="color: #ffffff;"><b>Tipo:</b> <?php echo $fila['tipo']; ?></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <?php
@@ -135,6 +176,9 @@ if ($conexion->connect_errno) {
             }
             ?>
         </div>
+    </div>
+</div>
+
     </section>
 
     <section class="proximamente">

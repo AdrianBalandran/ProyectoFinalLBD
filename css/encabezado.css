@@ -1,3 +1,4 @@
+/* Ajustes globales */
 * {
     font-optical-sizing: auto;
     font-style: normal;
@@ -16,13 +17,16 @@ header {
     transition: background-color 0.5s ease, height 0.3s ease;
 }
 
+/* Centrando el logo para todas las pantallas */
 .navbar-brand {
-    position: relative;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 10;
 }
 
+/* Estilo de los enlaces del menú */
 .navbar .nav-link {
     color: #ffffff;
     margin-right: 15px;
@@ -33,6 +37,7 @@ header {
     font-weight: bold;
 }
 
+/* Estilo del ícono de usuario */
 .navbar .fa-user {
     color: #ffffff !important;
     font-size: 25px;
@@ -45,6 +50,7 @@ header {
     transition: color 0.3s ease;
 }
 
+/* Estilo del ícono de cierre de sesión */
 .navbar .fa-right-from-bracket {
     color: #ffffff !important;
     font-size: 25px;
@@ -57,6 +63,7 @@ header {
     transition: color 0.3s ease;
 }
 
+/* Barra de búsqueda */
 .buscar {
     border: none !important;
     border-bottom: 1px solid #ffffff !important;
@@ -80,6 +87,7 @@ header {
     opacity: 0.5 !important;
 }
 
+/* Ícono de la lupa */
 .navbar .fa-magnifying-glass {
     position: absolute !important;
     left: 10px !important;
@@ -90,6 +98,7 @@ header {
     pointer-events: none;
 }
 
+/* Efecto colapsable */
 .navbar-collapse {
     transition: background-color 0.5s ease;
 }
@@ -97,39 +106,100 @@ header {
 .navbar-collapse.show {
     background-color: #1B1B1B !important;
     opacity: 1;
+    bottom: 200px;
 }
 
-/* Media query para pantallas pequeñas */
-@media (max-width: 991px) {
-    .navbar-collapse {
-        text-align: center;
-        opacity: 0; 
-        border-radius: 0px 0px 10px 10px;
+.navbar-toggler {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    z-index: 11;
+    color: white !important;
+    border: none;
+    background-color: transparent !important;
+}
+
+
+.navbar-toggler:focus {
+    outline: none; /* Sin contorno al hacer clic */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1510px) {
+    /* Estilo del logo para pantallas pequeñas */
+    .navbar-brand {
+        top: 12px;
+        transform: translateX(-50%);
     }
 
-    .navbar-toggler {
-        position: absolute;
-        top: 30px;
-        left: 25px;
-        border-color: #ffffff !important;
+    /* Reorganizar el menú colapsable */
+    .navbar-collapse {
+        display: flex !important;
+        flex-direction: column !important;
+        text-align: center;
+        opacity: 0;
+        background-color: #1B1B1B;
+        border-radius: 0px 0px 10px 10px;
+        padding: 10px 0;
+        width: 100%;
     }
 
     .navbar-collapse.show {
         opacity: 1;
     }
 
-    .navbar-brand {
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%); 
-        z-index: 10;
-    }    
+    /* Aumentar espacio para el menú */
+    #navbarNav {
+        margin-top: 190px;
+        padding-bottom: 20px;
+    }
 
+    /* Ajustar el botón de menú */
+    .navbar-toggler {
+        display: block !important;
+        z-index: 11;
+        border-color: #ffffff !important;
+        margin-top: 5px;
+    }
+
+    /* Estilo de los elementos de la lista dentro del navbar */
+    .navbar-nav {
+        width: 100%;    /* Asegura que los items ocupen todo el ancho */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Asegurar que cada item del menú ocupe todo el ancho */
+    .navbar-nav .nav-item {
+        width: 100%;        /* Asegura que cada item ocupe el 100% */
+        margin: 10px 0;     /* Espaciado entre los elementos */
+    }
+
+    /* Estilo de los enlaces dentro del menú */
+    .navbar-nav .nav-link {
+        color: #ffffff !important;
+        text-align: center; /* Centra el texto */
+        padding: 0px 15px;
+        width: 100%;        /* Hace que el enlace ocupe todo el ancho */
+        box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #5AE2A8 !important;
+        font-weight: bold;
+    }
+
+    /* Barra de búsqueda */
+    .buscar {
+        width: 100% !important; /* Asegura que ocupe todo el ancho */
+        max-width: 300px;       /* Limita el tamaño máximo */
+    }
+}
+
+@media (max-width: 991px) {
+    /* Aumentar espacio para el menú */
     #navbarNav {
         margin-top: 90px;
         padding-bottom: 20px;
     }
-
-    
 }

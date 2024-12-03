@@ -57,8 +57,8 @@ body::-webkit-scrollbar {
 .tendencia {
     display: flex;
     justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 15px; 
+    align-items: center;
+    margin-bottom: 0px;
 }
 
 .fa-arrow-right {
@@ -213,4 +213,17 @@ section.categorias {
     align-items: left;
     height: 100%;
     text-align: left;
+}
+
+.fondo{
+    padding: 30px 0px;
+    background-color: transparent !important;
+}
+
+.colocacion-div {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    max-width: 100%;
+    width: 100%;
 }

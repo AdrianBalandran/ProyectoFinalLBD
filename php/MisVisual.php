@@ -1,8 +1,7 @@
 <?php 
-session_start();
+include ("encabezado.php");
 date_default_timezone_set('America/Mexico_City');
 $usuario = $_SESSION['usuario']; 
-
 
 $nombre = "";
 function datos($conexion){
@@ -75,11 +74,7 @@ while( $fila = $resultado -> fetch_assoc() ){
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Itim&display=swap" rel="stylesheet">
-    <header>
-        <?php
-            include ("encabezado.php");
-        ?>
-    </header>
+
 <body class="containertarjetas">
     <form action="Info_Vis.php" method="POST" id="formulario">
         <section class="datos" id="datos">

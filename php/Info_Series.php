@@ -76,7 +76,7 @@ function datos($conexion, $id, $temporada){
                 <?php 
                     if(isset($_SESSION['usuario']) ){
                         if($_SESSION['usuario'] != "Admin"){?>
-                ?>
+                
                 <div class="formbtn boton visu">
                     <div class="backg">
                         <button class="agregar" type="button" id="desplegar"><p>Añadir</p></button>
