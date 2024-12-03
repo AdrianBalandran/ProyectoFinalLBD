@@ -25,7 +25,7 @@
     <div class="d-flex flex-nowrap">
         <?php include "../html/panelLateral.html"; ?>
         <script>
-            document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
+            document.getElementById("modificar-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Modificaciones de Películas</h2>
@@ -58,15 +58,12 @@
                         $final = $conexion -> query($consF);
                         
                         $consF = "UPDATE PELICULA SET DURACION='$duracionF' WHERE ID_FILME='$idF' ;";
-                        $final = $conexion -> query($consF);
+                        $final1 = $conexion -> query($consF);
 
                         $_SESSION['insertadoF'] = true;
-                        
-                        unset($_POST['submitModificado']);
                     }
 
                 } 
-            
             ?>
 
             <!-- Formulario de los id de filmes-->
@@ -117,6 +114,7 @@
                     }
                 }  
             ?>
+
                     <!-- Formulario del filme -->
                     <div id="form-reparto-Datos" class="form-reparto formulario">
                         <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
@@ -201,7 +199,11 @@
                                         }
                                         ?>
                                     </select>
-                                </div>     
+                                </div>    
+                                <div class="col-3 mb-3">
+                                    <label for="nombre" class="form-label">Duración</label>
+                                    <input type="number" id="duracion" name="duracion" class="form" value="<?php echo $filaDur ?>" required>
+                                </div> 
                                  <!-- Descripción -->
                                 <div class="col-3 mb-3">
                                     <label for="descripcion" class="form-label">Descripción</label>

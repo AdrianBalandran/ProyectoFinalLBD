@@ -25,7 +25,7 @@
     <div class="d-flex flex-nowrap">
         <?php include "../html/panelLateral.html"; ?>
         <script>
-            document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
+            document.getElementById("modificar-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Modificaciones de Series</h2>
@@ -45,7 +45,7 @@
 
                     //Ingresar a la base (filme)
                     if(isset($_POST['submitModificado'])){
-                        $idF = $_SESSION['ID'];
+                        $idF = $_POST['id'];
                         $nombreF = $_POST['nombre'];
                         $fechaEF = $_POST['fechaEst'];
                         $clasF = $_POST['clasifF'];
@@ -142,7 +142,7 @@
                             </div> -->
                             <div class="col-3 mb-3">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  disabled >
+                                <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  readonly="readonly" >
                             </div>
                             
                             <div class="col-3 mb-3">
@@ -248,7 +248,7 @@
                     <form action="" method="POST" enctype="multipart/form-data" id="formulario-reparto">
                         <div class="datos">
                     
-                        <input type="text" id="idFT" name="idFT" class="form hidden" value="<?php echo $fila['ID_FILME'] ?>" readonly="readonly"  disabled >
+                        <input type="text" id="idFT" name="idFT" class="form hidden" value="<?php echo $fila['ID_FILME'] ?>" readonly="readonly"  >
                         <div class="idReparto">
                             <label for="temp">Temporada</label>
                             <input type="text" id="temp" name="temp" class="form" value="<?php echo $fila['TEMPORADA'] ?>" readonly="readonly" required >

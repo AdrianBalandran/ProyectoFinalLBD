@@ -25,7 +25,7 @@
     <div class="d-flex flex-nowrap">
         <?php include "../html/panelLateral.html"; ?>
         <script>
-            document.getElementById("altas-op").style.backgroundColor= "#5ae2a8";
+            document.getElementById("modificar-op").style.backgroundColor= "#5ae2a8";
         </script>
         <div class="d-flex flex-column contenido">
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Modificaciones de reparto</h2>
@@ -58,8 +58,7 @@
 
                         $_SESSION['insertadoR'] = true;
                         
-                        unset($_POST['submitModificado']);
-                        
+                        unset($_POST['submitModificado']);                        
                     }
 
                 } 
@@ -116,7 +115,7 @@
                             <!-- Id del reparto -->
                             <div class="col-3 mb-3">
                                 <label for="id" class="form-label">ID</label>
-                                <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  disabled >
+                                <input type="text" id="id" name="id" class="form" value="<?php echo $filaId ?>" required  readonly="readonly" >
                             </div>
                             <!-- Nombre -->
                             <div class="col-3 mb-3">

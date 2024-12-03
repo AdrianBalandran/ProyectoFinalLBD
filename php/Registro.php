@@ -59,7 +59,7 @@
                             <label for="tel" class="form-label">Teléfono:</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fa-solid fa-phone" ></i></span>
-                                <input type="tel" name="tel" class="form-control" id="tel" maxlength="10" required>
+                                <input type="tel" name="tel" class="form-control" id="tel" maxlength="10"  minlength="10" pattern="[0-9]{10}" required>
                             </div>
                         </div>
 

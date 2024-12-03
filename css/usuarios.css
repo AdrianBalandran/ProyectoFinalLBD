@@ -1,0 +1,46 @@
+.contenedor .titulo h2{
+    text-align: center;
+}
+
+.contenedor .margin{
+    margin-top: 30px;
+}
+
+.botonRF{
+    margin-top: 20px;
+}
+
+.imagen img{
+    width: 200px;
+    height: auto;
+}
+
+.tabla{
+    margin-bottom: 60px;
+}
+
+.formulario form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cont2{
+    width: 30%;
+}
+
+.cont1 {
+    display: block;
+    width: 70%;
+}
+
+.cont2{
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenP{
+    height: 50px;
+    width: auto;
+}

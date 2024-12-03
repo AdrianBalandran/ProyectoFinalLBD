@@ -125,13 +125,20 @@
         while( $fila = $resultado -> fetch_assoc() ){ 
             if($usuario != $fila['NOMBRE']){
                 $updates += 1;
+
+                $al = $fila["NOMBRE"];
+                $sql1 = "SELECT IMAGEN FROM USUARIO WHERE NOMBRE='$al';";
+                $resultado1 = $conexion -> query($sql1);
+                while( $fila1 = $resultado1 -> fetch_assoc() ){ 
+                    $imagen = $fila1['IMAGEN'];
+                }
             ?>
 
             <div class="update">
 
                 <div class="head">
                     <div class="imgusuario">
-                        <img src="../imagenes/recursos/usuario.png" alt="perfil" class="usuario">
+                        <img src="../imagenes/recursos/<?php echo $imagen; ?>" alt="perfil" class="usuario">
                     </div>
                     <div class="nombreVisu">
                         <h5><span class="color"> <?php echo $fila['NOMBRE'] ?></span> Watched a film</h5>
