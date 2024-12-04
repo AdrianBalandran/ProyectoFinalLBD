@@ -21,8 +21,13 @@
 
 }
 
-.datos > div{
+.datos > div:not(.textareaC){
     width: 50%;
+    padding:0px 20px;
+}
+
+.datos .textareaC{
+    width: 100%;
     padding:0px 20px;
 }
 

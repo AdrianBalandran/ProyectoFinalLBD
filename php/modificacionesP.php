@@ -128,12 +128,12 @@
                              <!-- Nombre -->
                             <div class="col-3 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" required>
+                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" minlength="1" maxlength="50" required>
                             </div>
                              <!-- Fecha de Estreno -->
                             <div class="col-3 mb-3">
                                 <label for="fechaEst" class="form-label">Fecha de Estreno</label>
-                                <input type="date" id="fechaEst" name="fechaEst" class="form" value="<?php echo $filaEst ?>" required>
+                                <input type="date" id="fechaEst" name="fechaEst" class="form" value="<?php echo $filaEst ?>" max="<?php echo date('Y-m-d'); ?>" required>
                             </div>   
                              <!-- Clasificación -->
                             <div class="col-4 mb-3">
@@ -202,13 +202,13 @@
                                 </div>    
                                 <div class="col-3 mb-3">
                                     <label for="nombre" class="form-label">Duración</label>
-                                    <input type="number" id="duracion" name="duracion" class="form" value="<?php echo $filaDur ?>" required>
+                                    <input type="number" id="duracion" name="duracion" class="form" value="<?php echo $filaDur ?>" min="1" required>
                                 </div> 
                                  <!-- Descripción -->
                                 <div class="col-3 mb-3">
                                     <label for="descripcion" class="form-label">Descripción</label>
                                     <!-- <input type="text" id="descipcion" name="descipcion" class="form" value="<?php echo $filaDes ?>" required> -->
-                                    <textarea id="descripcion" name="descripcion" rows="5" cols="33" class="form"><?php echo $filaDes ?>
+                                    <textarea id="descripcion" name="descripcion" rows="5" cols="33" class="form" maxlength="500"><?php echo $filaDes ?>
                                     </textarea>
                                 </div>    
 

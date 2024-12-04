@@ -120,27 +120,28 @@
                             <!-- Nombre -->
                             <div class="col-3 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" required>
+                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" minlength="1" maxlength="30" required>
                             </div>
                             <!-- Primer Apellido -->
                             <div class="col-3 mb-3">
                                 <label for="primape" class="form-label">Primer Apellido</label>
-                                <input type="text" id="primape" name="primape" class="form" value="<?php echo $filaPrim ?>" required>
+                                <input type="text" id="primape" name="primape" class="form" value="<?php echo $filaPrim ?>" minlength="1" maxlength="20" required>
                             </div>  
                             <!-- Segundo Apellido -->             
                             <div class="col-3 mb-3">
                                 <label for="segape" class="form-label">Segundo Apellido</label>
-                                <input type="text" id="segape" name="segape" class="form" value="<?php echo $filaSeg ?>">
+                                <input type="text" id="segape" name="segape" class="form" value="<?php echo $filaSeg ?>"  maxlength="20">
                             </div>      
                             <!-- Nombre artístico -->
                             <div class="col-3 mb-3">
                                 <label for="nomArt" class="form-label">Nombre Artístico</label>
-                                <input type="text" id="nomArt" name="nomArt" class="form" value="<?php echo $filaArt ?>" required>
+                                <input type="text" id="nomArt" name="nomArt" class="form" value="<?php echo $filaArt ?>"  minlength="1" maxlength="30" required>
                             </div>  
                             <!-- Fecha de nacimiento -->
                             <div class="col-3 mb-3">
                                 <label for="fechaNac" class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" id="fechaNac" name="fechaNac" class="form" value="<?php echo $filaNac ?>" required>
+                                <input type="date" id="fechaNac" name="fechaNac" class="form" value="<?php echo $filaNac ?>" max="<?php echo date('Y-m-d'); ?>" required>
+        
                             </div> 
                             <!-- País -->  
                             <div class="col-4 mb-3">
