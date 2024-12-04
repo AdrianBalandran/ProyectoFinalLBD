@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clasificaciones de Filmes</title>
 
- <!-- Estilos -->
- <link rel="stylesheet" href="../css/estilosclasi.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilosclasi.css">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
     <!-- Fuentes de letra -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,89 +27,98 @@
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
-    
 </head>
 
-
-
 <body>
-       <!-- Encabezado -->
-   <header>
-        <?php
-            include ("encabezado.php");
-        ?>
-    </header>
 
-<section class="todocont">
+<div class="d-flex flex-nowrap">
+    <?php include "../html/panelLateral.html"; ?>
+    <script>
+        document.getElementById("estaclasi-op").style.backgroundColor = "#5ae2a8";
+    </script>
+    <div class="d-flex flex-column contenido">
 
+        <section class="todocont">
+            <div class="table-container">
+                <h1 class="header-title">Clasificaciones y Estrenos de Filmes</h1>
+                <table id="filmsTable" class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Clasificación</th>
+                            <th>Año de Estreno</th>
+                            <th>Cantidad de Filmes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Datos de conexión a la base de datos
+                        $servername = 'localhost';
+                        $cuenta = 'root';
+                        $password = '';
+                        $bd = 'goodWatch';
 
-<h1 class="header-title">Clasificaciones y Estrenos de Filmes</h1>
+                        // Conexión a la base de datos
+                        $conexion = new mysqli($servername, $cuenta, $password, $bd);
 
-<div class="table-container">
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Clasificación</th>
-                <th>Año de Estreno</th>
-                <th>Cantidad de Filmes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Datos de conexión a la base de datos
-            $servername = 'localhost';
-            $cuenta = 'root';
-            $password = '';
-            $bd = 'goodWatch';
+                        if ($conexion->connect_errno) {
+                            die('Error en la conexión: ' . $conexion->connect_error);
+                        }
 
-            // Conexión a la base de datos
-            $conexion = new mysqli($servername, $cuenta, $password, $bd);
+                        // Consulta para obtener clasificaciones y estrenos
+                        $consulta = "
+                            SELECT FI.CLASIFICACION, YEAR(FI.FECHA_ESTRENO) AS ANO_ESTRENO, COUNT(*) AS TOTAL_FILMES
+                            FROM FILME FI
+                            GROUP BY FI.CLASIFICACION, YEAR(FI.FECHA_ESTRENO)
+                            ORDER BY FI.CLASIFICACION, ANO_ESTRENO;
+                        ";
 
-            if ($conexion->connect_errno) {
-                die('Error en la conexión: ' . $conexion->connect_error);
-            }
+                        $resultado = $conexion->query($consulta);
 
-            // Consulta para obtener clasificaciones y estrenos
-            $consulta = "
-                SELECT FI.CLASIFICACION, YEAR(FI.FECHA_ESTRENO) AS ANO_ESTRENO, COUNT(*) AS TOTAL_FILMES
-                FROM FILME FI
-                GROUP BY FI.CLASIFICACION, YEAR(FI.FECHA_ESTRENO)
-                ORDER BY FI.CLASIFICACION, ANO_ESTRENO;
-            ";
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $fila['CLASIFICACION'] . "</td>";
+                                echo "<td>" . $fila['ANO_ESTRENO'] . "</td>";
+                                echo "<td>" . $fila['TOTAL_FILMES'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='3'>No se encontraron resultados.</td></tr>";
+                        }
 
-            $resultado = $conexion->query($consulta);
+                        $conexion->close();
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            if ($resultado->num_rows > 0) {
-                while ($fila = $resultado->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $fila['CLASIFICACION'] . "</td>";
-                    echo "<td>" . $fila['ANO_ESTRENO'] . "</td>";
-                    echo "<td>" . $fila['TOTAL_FILMES'] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='3'>No se encontraron resultados.</td></tr>";
-            }
-
-            $conexion->close();
-            ?>
-        </tbody>
-    </table>
+    </div>
 </div>
 
-</section>
+<!-- Script para activar DataTables y la paginación -->
 
-<!-- Pie de página -->
-<footer>
-        <?php
-        include ("footer.php");
-        ?>
-    </footer>
-    
+<script>
+    $(document).ready(function () {
+        $('#filmsTable').DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "lengthChange": false,
+            "language": {
+                "paginate": {
+                    "previous": "Anterior",
+                    "next": "Siguiente"
+                },
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                "zeroRecords": "No se encontraron resultados",
+                "search": "Buscar:"
+            }
+        });
+    });
+</script>
+
 </body>
-
-
-
 </html>

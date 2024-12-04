@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #000000; /* Deja que tome el color del body */
+   
 }
 
 .table-container {
@@ -27,14 +27,17 @@ body::-webkit-scrollbar {
     width: 80%;
 }
 
+
 /* Encabezado centrado y estilizado */
 .header-title {
     text-align: center;
-    margin-bottom: 20px;
+
+    margin-bottom: 15px;
     font-size: 2rem;
-    color: white;
+    color: black;
     font-weight: bold;
 }
+
 
 /* Estilos de la tabla */
 .table-container table {
@@ -42,6 +45,8 @@ body::-webkit-scrollbar {
     margin: 60px;
     width: 100%;
     border-collapse: separate;
+
+    border: 2px solid black; /* Para depuración */
 }
 
 .table-container thead {
