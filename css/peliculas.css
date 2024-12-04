@@ -298,3 +298,11 @@ p.resultado{
       opacity: 0;
     }
   }
+
+  /* Paginacion */
+  .paginacion{
+    display: grid;
+    justify-content: center;
+    background-color: #000000;
+  }
+
