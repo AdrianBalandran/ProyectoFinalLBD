@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto;padding-bottom: 30px;">Alta de temporadas</h2>
             <?php
                 
-                $servername = "localhost:3306";
+                $servername = "localhost";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';

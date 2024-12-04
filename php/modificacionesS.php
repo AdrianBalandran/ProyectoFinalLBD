@@ -147,12 +147,12 @@
                             
                             <div class="col-3 mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" required>
+                                <input type="text" id="nombre" name="nombre" class="form" value="<?php echo $filaNom ?>" minlength="1" maxlength="50" required>
                             </div>
 
                             <div class="col-3 mb-3">
                                 <label for="fechaEst" class="form-label">Fecha de Estreno</label>
-                                <input type="date" id="fechaEst" name="fechaEst" class="form" value="<?php echo $filaEst ?>" required>
+                                <input type="date" id="fechaEst" name="fechaEst" class="form" value="<?php echo $filaEst ?>" max="<?php echo date('Y-m-d'); ?>" required>
                             </div>   
                             <div class="col-4 mb-3">
                                 <?php $clas = array("AA", "A", "B", "B15", "C", "D"); ?>
@@ -218,10 +218,10 @@
                                     </select>
                                 </div> 
                                    
-                                <div class="col-3 mb-3">
+                                <div class="col-3 mb-3 textareaC">
                                     <label for="descripcion" class="form-label">Descripción</label>
                                     <!-- <input type="text" id="descipcion" name="descipcion" class="form" value="<?php echo $filaDes ?>" required> -->
-                                    <textarea id="descripcion" name="descripcion" rows="5" cols="33" class="form"><?php echo $filaDes ?>
+                                    <textarea id="descripcion" name="descripcion" rows="5" cols="33" class="form" maxlength="500"><?php echo $filaDes ?>
                                     </textarea>
                                 </div>    
 
@@ -249,17 +249,17 @@
                         <div class="datos">
                     
                         <input type="text" id="idFT" name="idFT" class="form hidden" value="<?php echo $fila['ID_FILME'] ?>" readonly="readonly"  >
-                        <div class="idReparto">
+                        <div class="col-4 mb-3">
                             <label for="temp">Temporada</label>
                             <input type="text" id="temp" name="temp" class="form" value="<?php echo $fila['TEMPORADA'] ?>" readonly="readonly" required >
                         </div>
-                        <div class="idReparto">
+                        <div class="col-4 mb-3">
                             <label for="noE">Número de Episodios</label>
-                            <input type="number" id="noE" name="noE" class="form" value="<?php echo $fila['NUMERO_EPISODIOS'] ?>" required  >
+                            <input type="number" id="noE" name="noE" class="form" value="<?php echo $fila['NUMERO_EPISODIOS'] ?>" min="2" max="99" required  >
                         </div>
-                        <div class="idReparto">
+                        <div class="col-4 mb-3">
                             <label for="fechaET">Fecha de Estreno</label>
-                            <input type="date" id="fechaET" name="fechaET" class="form" value="<?php echo $fila['FECHA_ESTRENO'] ?>" required  >
+                            <input type="date" id="fechaET" name="fechaET" class="form" value="<?php echo $fila['FECHA_ESTRENO'] ?>" max="<?php echo date('Y-m-d'); ?>" required  >
                         </div>
                         <div>
                             <div class="botonRF">
