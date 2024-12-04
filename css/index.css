@@ -222,8 +222,8 @@ section.categorias {
 
 .colocacion-div {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
     max-width: 100%;
     width: 100%;
 }
