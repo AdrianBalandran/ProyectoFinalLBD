@@ -67,6 +67,7 @@
             } else {
                 echo "<p>No se pudo obtener el conteo de películas y series.</p>";
             }
+            
         ?>
     </div>
 
