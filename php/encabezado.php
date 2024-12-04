@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../php/comunidad.php">COMUNIDAD</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../php/tablaclasificacion.php">CLASIFICACIONES</a>
+                    </li>
                     <?php 
                     if(isset($_SESSION['usuario'])){
                         if($_SESSION['usuario'] != "Admin"){?>

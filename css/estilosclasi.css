@@ -1,0 +1,110 @@
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #1B1B1B;        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #5AE2A8;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #000000;  /* creates padding around scroll thumb */
+  }
+
+/* Aplica márgenes y otras propiedades para la sección de contenido */
+.todocont {
+    min-height: 100vh; /* Asegura que tome toda la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000; /* Deja que tome el color del body */
+}
+
+.table-container {
+    margin: 20px;
+    width: 80%;
+}
+
+/* Encabezado centrado y estilizado */
+.header-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilos de la tabla */
+.table-container table {
+    margin-top: 20px;
+    margin: 60px;
+    width: 100%;
+    border-collapse: separate;
+}
+
+.table-container thead {
+    text-align: center;
+}
+
+/* Efecto hover en la tabla */
+.table {
+    transition: transform 0.3s ease; /* Aplica la transición solo a la propiedad 'transform' */
+}
+
+.table tr:hover {
+    transform: scale(1.02); /* Ajusta la escala a un valor más pequeño, como 1.02 */
+    cursor: pointer; /* Cambia el cursor para indicar interactividad */
+}
+
+/* MEDIA QUERIES */
+
+/* Pantallas de tamaño pequeño, como móviles */
+@media (max-width: 767px) {
+    .header-title {
+        font-size: 1.5rem; /* Reduce el tamaño del título en pantallas pequeñas */
+    }
+
+    .table-container {
+        margin: 10px;
+        width: 95%; /* Aumenta el ancho para ajustarse mejor a pantallas pequeñas */
+    }
+
+    .table-container table {
+        margin: 20px 0; /* Menos margen alrededor de la tabla */
+        font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+    }
+
+    .table-container th, .table-container td {
+        padding: 8px; /* Ajusta el padding para mejorar la visibilidad */
+    }
+}
+
+/* Pantallas medianas, como tablets */
+@media (max-width: 1024px) {
+    .header-title {
+        font-size: 1.8rem; /* Ajusta el tamaño del título para tablets */
+    }
+
+    .table-container {
+        width: 90%; /* Aumenta el ancho para ajustarse a pantallas medianas */
+    }
+
+    .table-container table {
+        margin: 40px 0;
+        font-size: 1rem; /* Ajusta el tamaño de la fuente */
+    }
+}
+
+/* Pantallas grandes, como escritorios */
+@media (min-width: 1025px) {
+    .table-container {
+        width: 80%; /* Mantiene el tamaño adecuado para pantallas grandes */
+    }
+
+    .table-container table {
+        margin: 60px;
+        font-size: 1.2rem; /* Ajusta el tamaño de la fuente */
+    }
+}
