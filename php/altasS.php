@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de series</h2>
             <?php
                 
-                $servername = "localhost:3306";
+                $servername = "localhost:33065";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -100,7 +100,7 @@
                         
                         <div class="col-9 mb-3">
                             <label for="nombreS" class="form-label">Nombre</label>
-                            <input type="text" id="nombreS" name="nombreS" class="form-control" required>
+                            <input type="text" id="nombreS" name="nombreS" class="form-control" minlength="1" maxlength="49" required>
                         </div>
                     </div>
                     <div class="row">
@@ -199,7 +199,7 @@
                             
                             <div class="mb-3">
                                 <label for="descripS" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descripS" rows="4" name="descripS" required></textarea>
+                                <textarea class="form-control" id="descripS" rows="4" name="descripS" minlength="1" maxlength="499" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center justify-content-center imagen">

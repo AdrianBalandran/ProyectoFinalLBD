@@ -85,27 +85,27 @@
                         </div>
                         <div class="col-9 mb-3">
                             <label for="nombreR" class="form-label">Nombre</label>
-                            <input type="text" id="nombreR" name="nombreR" class="form-control" required>
+                            <input type="text" id="nombreR" name="nombreR" class="form-control" minlength="1" maxlength="29" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6 mb-3">
                             <label for="apellidoPR" class="form-label">Apellido paterno</label>
-                            <input type="text" id="apellidoPR" name="apellidoPR" class="form-control" required>
+                            <input type="text" id="apellidoPR" name="apellidoPR" class="form-control" minlength="1" maxlength="20" required>
                         </div>
                         <div class="col-6 mb-3">
                             <label for="apellidoMR" class="form-label">Apellido materno</label>
-                            <input type="text" id="apellidoMR" name="apellidoMR" class="form-control">
+                            <input type="text" id="apellidoMR" name="apellidoMR" class="form-control" minlength="1" maxlength="20">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 mb-3">
                             <label for="nombreAR" class="form-label">Nombre Artístico</label>
-                            <input type="text" id="nombreAR" name="nombreAR" class="form-control" required>
+                            <input type="text" id="nombreAR" name="nombreAR" class="form-control" minlength="1" maxlength="29" required>
                         </div>    
                         <div class="col-4 mb-3">
                             <label for="fechaR" class="form-label">Fecha de nacimiento</label>
-                            <input type="date" id="fechaR" name="fechaR" class="form-control" required>
+                            <input type="date" id="fechaR" name="fechaR" class="form-control" max="<?php echo date('Y-m-d'); ?>" required>
                         </div>
                         <div class="col-4 mb-3">
                             <label for="paisR" class="form-label">País</label>
@@ -140,15 +140,62 @@
             <div id="form-repartoFilme" class="form-repartoFilme formulario">
                 <form action="" method="POST" enctype="multipart/form-data" id="formulario-repartoFilme">
                     <div class="row">
-                        <div class="col-3 mb-3">
+
+                        <!-- <div class="col-3 mb-3">
                             <label for="idR" class="form-label">Id Reparto</label>
                             <input type="text" id="idR" name="idR" class="form-control" required>
+                        </div> -->
+
+                        <div class="col-5 mb-3">
+                            <label for="idT" class="form-label">Reparto</label>
+                            <select class="form-select" name="idR" id="idR" required>
+                                <option selected>Seleccionar</option>
+                                <?php
+                                    // Consulta a la tabla REPARTO para obtener lOS IDS
+                                    $sqlID = 'SELECT ID_REPARTO AS IDREP, NOMBRE AS NOMBREREP FROM REPARTO';
+                                    $resultado3 = $conexion->query($sqlID);
+
+                                    // Verificar si la consulta fue exitosa
+                                    if ($resultado3 && $resultado3->num_rows > 0) {
+                                        while ($fila = $resultado3->fetch_assoc()) {
+                                            echo '<option value="' . htmlspecialchars($fila['IDREP']) . '">'
+                                                . htmlspecialchars($fila['NOMBREREP']) . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option disabled>No hay reparto disponible</option>';
+                                    }
+                                ?>
+                            </select>
                         </div>
-                        <div class="col-3 mb-3">
-                            <label for="idF" class="form-label">Id FIlme</label>
+
+                        <!-- <div class="col-5 mb-3">
+                            <label for="idF" class="form-label">FIlme</label>
                             <input type="text" id="idF" name="idF" class="form-control" required>
+                        </div> -->
+
+                        <div class="col-5 mb-3">
+                            <label for="idF" class="form-label">Filme</label>
+                            <select class="form-select" name="idF" id="idF" required>
+                                <option selected>Seleccionar</option>
+                                <?php
+                                    // Consulta a la tabla FILME para obtener lOS FILMES
+                                    $sqlID = 'SELECT ID_FILME AS IDFILM, NOMBRE AS NOMBREFILM FROM FILME';
+                                    $resultado4 = $conexion->query($sqlID);
+
+                                    // Verificar si la consulta fue exitosa
+                                    if ($resultado4 && $resultado4->num_rows > 0) {
+                                        while ($fila = $resultado4->fetch_assoc()) {
+                                            echo '<option value="' . htmlspecialchars($fila['IDFILM']) . '">'
+                                                . htmlspecialchars($fila['NOMBREFILM']) . '</option>';
+                                        }
+                                    } else {
+                                        echo '<option disabled>No hay filmes disponibles</option>';
+                                    }
+                                ?>
+                            </select>
                         </div>
-                        <div class="col-6 mb-3">
+
+                        <div class="col-2 mb-3">
                             <label for="tipoR" class="form-label">Tipo de reparto</label>
                             <select class="form-select" name="tipoR" required>
                                 <option selected>Seleccionar...</option>

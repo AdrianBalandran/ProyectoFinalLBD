@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto;padding-bottom: 30px;">Alta de temporadas</h2>
             <?php
                 
-                $servername = "localhost";
+                $servername = "localhost:33065";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -86,14 +86,25 @@
                         <div class="col-9">
                             <div class="row">
                                 <div class="col-12 mb-3">
-                                    <label for="idT" class="form-label">Id de la serie</label>
-                                    <input type="text" id="idT" name="idT" class="form-control" rquired>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 mb-3">
-                                    <label for="nombreT" class="form-label">Nombre</label>
-                                    <input type="text" id="nombreT" name="nombreT" class="form-control">
+                                    <label for="idT" class="form-label">Serie</label>
+                                    <select class="form-select" name="idT" id="idT" required>
+                                        <option selected>Seleccionar</option>
+                                        <?php
+                                            // Consulta a la tabla FILME para obtener las series
+                                            $sqlID = 'SELECT ID_FILME AS IDFILM, NOMBRE AS NOMBREFILM FROM FILME WHERE TIPO_FILME = "S"';
+                                            $resultado3 = $conexion->query($sqlID);
+
+                                            // Verificar si la consulta fue exitosa
+                                            if ($resultado3 && $resultado3->num_rows > 0) {
+                                                while ($fila = $resultado3->fetch_assoc()) {
+                                                    echo '<option value="' . htmlspecialchars($fila['IDFILM']) . '">'
+                                                        . htmlspecialchars($fila['NOMBREFILM']) . '</option>';
+                                                }
+                                            } else {
+                                                echo '<option disabled>No hay series disponibles</option>';
+                                            }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <script>
@@ -133,11 +144,11 @@
                             <div class="row">
                                 <div class="col-6 mb-3">
                                     <label for="temporadaT" class="form-label">Temporada</label>
-                                    <input type="text" id="temporadaT" name="temporadaT" class="form-control" required>
+                                    <input type="number" id="temporadaT" name="temporadaT" class="form-control" min="1" max="50" required>
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label for="numeroEpiT" class="form-label">Número de episodios</label>
-                                    <input type="number" id="numeroEpiT" name="numeroEpiT" class="form-control" required>
+                                    <input type="number" id="numeroEpiT" name="numeroEpiT" class="form-control" min="1" max="999" required>
                                 </div>
                             </div>    
                             <div class="row">
@@ -157,7 +168,7 @@
                         </div>
 
                         <div class="col-3 d-flex align-items-center justify-content-end imagen">
-                            <img id="imagenT" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" class="img-fluid" /> <!-- img-fluid ajusta la imagen -->
+                            <img id="imagenT" src="../imagenes/emptyImg.png" alt="Vista previa de la imagen" class="img-fluid" />
                         </div>
                     </div>
 

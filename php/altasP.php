@@ -25,7 +25,7 @@
             <h2 style="margin: 0 auto; padding-bottom: 30px;">Alta de películas</h2>
             <?php
                 
-                $servername = "localhost:3306";
+                $servername = "localhost:33065";
                 $cuenta='root';
                 $password='';
                 $bd='goodWatch';
@@ -102,7 +102,7 @@
                         
                         <div class="col-9 mb-3">
                             <label for="nombreP" class="form-label">Nombre</label>
-                            <input type="text" id="nombreP" name="nombreP" class="form-control" required>
+                            <input type="text" id="nombreP" name="nombreP" class="form-control" minlength="1" maxlength="49" required>
                         </div>
                         
                     </div>
@@ -169,8 +169,8 @@
                             </select>
                         </div>
                         <div class="col-4 mb-3">
-                            <label for="duracionP" class="form-label">Duración</label>
-                            <input type="number" id="duracionP" name="duracionP" class="form-control">
+                            <label for="duracionP" class="form-label">Duración (minutos)</label>
+                            <input type="number" id="duracionP" name="duracionP" class="form-control" min="1" max="480">
                         </div>
                         <div class="col-4 mb-3">
                             <label for="generoP" class="form-label">Genero</label>
@@ -206,7 +206,7 @@
                             
                             <div class="mb-3">
                                 <label for="descrip" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descrip" rows="4" name="descripP" required></textarea>
+                                <textarea class="form-control" id="descrip" rows="4" name="descripP" minlength="1" maxlength="499" required></textarea>
                             </div>
                         </div>
                         <div class="col-md-4 d-flex align-items-center justify-content-center imagen">
