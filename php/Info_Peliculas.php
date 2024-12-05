@@ -81,7 +81,6 @@ function datos($conexion, $id){
                 <?php 
                     if(isset($_SESSION['usuario'])){
                         if($_SESSION['usuario'] != "Admin"){?>
-                
                 <div class="formbtn boton visu">
                     <div class="backg">
                         <button class="agregar" type="button" id="desplegar"><p>Añadir</p></button>
@@ -302,7 +301,7 @@ if($conexion->connect_errno) {
                     <label for="opinion" class="label"><p>Opinión:</p></label>
                 </div>
                 <div class="backg">
-                    <textarea name="opinion" id="opinion" rows="7" cols="50"></textarea>
+                    <textarea name="opinion" id="opinion" rows="7" cols="50" maxlength="500"></textarea>
                 </div>
             </div>
             <div class="conta">
