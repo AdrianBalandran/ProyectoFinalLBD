@@ -42,7 +42,7 @@
 
 
             // nextval(Visualizacion_Id)
-            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, '$filme', '$temporada');";
+            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, '$filme', '$temporada', NULL);";
             $resultado = $conexion->query($sql);
 
             echo $sql;
