@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $serv = 'localhost';
+    $serv = 'localhost:33065';
     $cuenta = 'root';
     $contra = '';
     $BaseD = 'GOODWATCH';
@@ -42,7 +42,7 @@
 
 
             // nextval(Visualizacion_Id)
-            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, NULL, NULL, NULL);";
+            $sql = "INSERT INTO VISUALIZACION VALUES(nextval(Visualizacion_Id),'$filme','$fecha','$calificacion','$opinion', '$idioma', '$plataforma', '$usuario', '$favorito', NULL, NULL, NULL, 0);";
             $resultado = $conexion->query($sql);
 
             
