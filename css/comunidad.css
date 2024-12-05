@@ -205,3 +205,12 @@ body .contenido {
     width: 40px;
     height: 40px;
 }
+
+.modal {
+    z-index: 1050; /* Asegúrate de que el modal esté por encima de otros elementos */
+}
+
+.modal .modal-dialog {
+    margin-top: 100px; /* Mueve el modal hacia abajo */
+    max-height: 80vh;
+}
