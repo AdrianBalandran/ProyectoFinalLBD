@@ -1,0 +1,110 @@
+.container-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: #fff;
+}
+
+.container-flex > div {
+    padding: 10px;
+}
+
+.id-col {
+    width: 60px;
+    text-align: center;
+    padding: 10px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-col {
+    width: 120px;
+    flex: 0 1 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.name-col {
+    flex: 1;
+    text-align: left;
+    padding: 10px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name-col strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.desc-col {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.img-fluid {
+    max-height: 120px;
+    object-fit: cover;
+}
+
+.btn-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.btn-danger {
+    padding: 0 !important;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.btn-danger i {
+    font-size: 22px;
+    margin: 0;
+}
+
+/* Alinear el formulario de búsqueda a la derecha */
+.text-end {
+    text-align: right;
+}
+
+form {
+    display: inline-block;
+}
+
+form .d-flex {
+    justify-content: flex-end;
+}
+
+form input[type="text"] {
+    width: 200px;
+    display: inline-block;
+}
+
+form button {
+    display: inline-block;
+    margin-left: 10px;
+}
+

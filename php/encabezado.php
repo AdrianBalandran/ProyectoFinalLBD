@@ -14,11 +14,9 @@
 <header>
     <nav class="navbar navbar-expand-lg" style="background-color: #1B1B1B;">
         <div class="container-fluid" style="background-color: #1B1B1B;">
-            <!-- Logo -->
             <a class="navbar-brand" href="#">
                 <img src="../imagenes/LogoFinal.png" alt="No Disponible" width="150" height="auto">
             </a>
-            <!-- Botón de menú hamburguesa -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,7 +49,6 @@
                     <?php } ?>
                 </ul>
 
-                <!-- Barra de búsqueda y sesión alineados a la derecha -->
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item d-flex align-items-center">
                         <form class="d-flex position-relative me-3" role="search" action="../php/Buscador.php" method="POST">

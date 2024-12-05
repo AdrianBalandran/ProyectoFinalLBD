@@ -20,7 +20,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- Menú colapsable con fondo oscuro -->
         <div class="collapse navbar-collapse" id="navbarNav" style="background-color: #1B1B1B;">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
                 <li class="nav-item">
@@ -75,7 +74,7 @@
                     <?php } ?>
                 </li>
             </ul>
-        </div> <!-- Cierre del div de navbar-collapse -->
+        </div>
     </div>
 </nav>
 </header>
