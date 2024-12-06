@@ -306,3 +306,12 @@ p.resultado{
     background-color: #000000;
   }
 
+  .pagination .page-link{
+    background: #1B1B1B;
+    color: #5ae2a8;
+}
+
+.pagination>li.active>a {
+    background: #5ae2a8;
+    color: #1B1B1B;
+  }

@@ -51,7 +51,7 @@
                     <tbody>
                         <?php
                         // Datos de conexión a la base de datos
-                        $servername = 'localhost:33065';
+                        $servername = 'localhost';
                         $cuenta = 'root';
                         $password = '';
                         $bd = 'goodWatch';
@@ -99,23 +99,27 @@
 
 <script>
     $(document).ready(function () {
-        $('#filmsTable').DataTable({
-            "paging": true,
-            "pageLength": 10,
-            "lengthChange": false,
-            "language": {
-                "paginate": {
-                    "previous": "Anterior",
-                    "next": "Siguiente"
-                },
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                "infoEmpty": "No hay registros disponibles",
-                "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                "zeroRecords": "No se encontraron resultados",
-                "search": "Buscar:"
-            }
-        });
+    $('#filmsTable').DataTable({
+        "paging": true,
+        "pageLength": 10,
+        "lengthChange": false,
+        "processing": true,
+        "serverSide": false,
+        "ordering": true,
+        "language": {
+            "paginate": {
+                "previous": "Anterior",
+                "next": "Siguiente"
+            },
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+            "infoEmpty": "No hay registros disponibles",
+            "infoFiltered": "(filtrado de _MAX_ registros totales)",
+            "zeroRecords": "No se encontraron resultados",
+            "search": "Buscar:"
+        }
     });
+});
+
 </script>
 
 </body>

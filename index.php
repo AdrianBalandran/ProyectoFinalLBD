@@ -2,7 +2,7 @@
 $servidor = 'localhost';
 $cuenta = 'root';
 $password = '';
-$bd = 'GOODWATCH';
+$bd = 'goodwatch';
 
 $conexion = new mysqli($servidor, $cuenta, $password, $bd);
 
