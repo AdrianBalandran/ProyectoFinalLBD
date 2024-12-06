@@ -9,6 +9,15 @@
 
     //conexion a la base de datos
     $conexion = new mysqli($servidor, $cuenta, $password, $bd);
+
+    if(!isset($_SESSION['usuario'])){
+        echo "no hay persona registrada.";
+        header(header: "Location: ../index.php");
+    }else if(isset($_SESSION['usuario'])){
+        if($_SESSION['usuario'] == "Admin"){
+            header(header: "Location: ../index.php");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
