@@ -34,9 +34,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="../ProyectoFinalLBD/php/peliculas.php">PELÍCULAS</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../ProyectoFinalLBD/php/comunidad.php">COMUNIDAD</a>
-                </li>
+                <?php if (isset($_SESSION['usuario'])) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../ProyectoFinalLBD/php/comunidad.php">COMUNIDAD</a>
+                    </li>
+                <?php } ?>
                 <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != "Admin") { ?>
                     <li class="nav-item">
                         <a class="nav-link" href="../ProyectoFinalLBD/php/MisVisual.php">MIS FILMES</a>
