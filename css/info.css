@@ -346,8 +346,9 @@ button.agregar p{
 }
 button.agregar:hover{
     background-color: #FFFFFF;
+    color: #000000;
 } 
-button.agregar p:hover{
+button.agregar:hover p{
     color: #000000;
 }
 .boton{
