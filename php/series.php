@@ -107,3 +107,20 @@
 </body>
 <?php include("footer.php"); ?>
 </html>
+
+<?php
+if (isset($_SESSION['InsertadaS'])) {
+    unset($_SESSION['InsertadaS']);
+?>
+    <script>
+        Swal.fire({
+            title: "¡Felicidades!",
+            text: "Has acabado una temporada más",
+            imageUrl: "../imagenes/<?php echo $_SESSION['imagen'] ?>",
+            imageWidth: 200,
+            imageAlt: "Serie"
+        });
+    </script>
+<?php
+}
+?>
