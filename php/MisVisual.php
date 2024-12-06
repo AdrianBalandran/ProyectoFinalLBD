@@ -39,6 +39,8 @@ $peli = "0";
 $seri = "0"; 
 $total = "0"; 
 $HORAS = "0";
+$anio = "0"; 
+$anioREAL = "2024"; 
 
 $sql = "SELECT F.TIPO_FILME TIPO, COUNT(F.TIPO_FILME) TOTAL FROM FILME F, VISUALIZACION V WHERE V.ID_USUARIO = (SELECT ID_USUARIO FROM USUARIO WHERE ALIAS = '$usuario') AND V.ID_FILME = F.ID_FILME GROUP BY F.TIPO_FILME WITH ROLLUP; ";
 $resultado = $conexion -> query($sql);
@@ -52,7 +54,24 @@ while( $fila = $resultado -> fetch_assoc() ){
     }
     $i ++;
 }
+$sql = "SELECT HORAS_VISTAS('$usuario') HORAS";
+$resultado = $conexion -> query($sql);
+while( $fila = $resultado -> fetch_assoc() ){ 
+    $HORAS = $fila['HORAS'];
+}
+$sql = "SELECT anio_vistos('$usuario') anios";
+$resultado = $conexion -> query($sql);
+while( $fila = $resultado -> fetch_assoc() ){ 
+    $anio = $fila['anios'];
+}
+
+$sql = "SELECT DATE_FORMAT(SYSDATE(), '%Y') ANIO;";
+$resultado = $conexion -> query($sql);
+while( $fila = $resultado -> fetch_assoc() ){ 
+    $anioREAL = $fila['ANIO'];
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,14 +103,7 @@ while( $fila = $resultado -> fetch_assoc() ){
                         <p>Minutos de películas:</p>
                     </div>
                     <div class="inf">
-                        <?php 
-                        $sql = "SELECT HORAS_VISTAS('$usuario') HORAS";
-                        $resultado = $conexion -> query($sql);
-                        while( $fila = $resultado -> fetch_assoc() ){ 
-                            $HORAS = $fila['HORAS'];
-                        }
-                        ?>
-                        <p><?php echo $HORAS;?> min</p>
+                        <p><?php echo ($HORAS != NULL) ? $HORAS : "0" ?> min</p>
                     </div>
                 </div>
                 <div class="informacion">
@@ -116,6 +128,14 @@ while( $fila = $resultado -> fetch_assoc() ){
                     </div>
                     <div class="inf">
                         <p><?php echo $total;?></p>
+                    </div>
+                </div>
+                <div class="informacion">
+                    <div class="tag">
+                        <p>Filmes <?php echo $anioREAL;?>:</p>
+                    </div>
+                    <div class="inf">
+                        <p><?php echo $anio;?></p>
                     </div>
                 </div>
             </div>
