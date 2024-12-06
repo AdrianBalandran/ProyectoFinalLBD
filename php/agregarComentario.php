@@ -2,7 +2,7 @@
 session_start();
 
 
-    $serv = "localhost:33065";
+    $serv = "localhost";
     $cuenta = 'root';
     $contra = '';
     $BaseD = 'GOODWATCH';

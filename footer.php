@@ -54,6 +54,7 @@ if($conexion->connect_errno) {
         </div>
         <div class="derechos">
             <p>© 2024 GoodWatch. Todos los derechos reservados.</p>
+            <p class="pequeno">Universidad Autónoma de Aguascalientes - ISC 7A</p>
         </div>
     </section>
 </footer>
