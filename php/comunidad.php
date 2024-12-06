@@ -2,7 +2,7 @@
     //session_start();
     date_default_timezone_set('America/Mexico_City');
 
-    $servidor="localhost:33065";
+    $servidor="localhost";
     $cuenta='root';
     $password='';
     $bd='GOODWATCH';

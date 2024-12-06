@@ -37,7 +37,7 @@
                 }
 
                 // Paginación
-                $registrosPorPagina = 6; // Cambia según cuántas series mostrar por página
+                $registrosPorPagina = 12; // Cambia según cuántas series mostrar por página
                 $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
                 $offset = ($paginaActual - 1) * $registrosPorPagina;
 

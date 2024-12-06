@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,90 +20,98 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../imagenes/faviconi.png"/>
+    <link rel="icon" type="image/png" href="../imagenes/faviconi.png" />
 
     <!-- SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://kit.fontawesome.com/f3a304d792.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <!-- Encabezado -->
     <header>
         <?php
-            include ("encabezado.php");
+        include("encabezado.php");
         ?>
     </header>
 
     <div class="contpeliseries">
         <!-- Aquí muestro el total de películas y series -->
         <?php
-            $servername = 'localhost';
-            $cuenta = 'root';
-            $password = '';
-            $bd = 'goodWatch';
+        $servername = 'localhost';
+        $cuenta = 'root';
+        $password = '';
+        $bd = 'goodWatch';
 
-            // Conexión a la base de datos
-            $conexion = new mysqli($servername, $cuenta, $password, $bd);
+        // Conexión a la base de datos
+        $conexion = new mysqli($servername, $cuenta, $password, $bd);
 
-            if ($conexion->connect_errno) {
-                die('Error en la conexión');
-            }
+        if ($conexion->connect_errno) {
+            die('Error en la conexión');
+        }
 
-            // Consulta para contar películas y series
-            $consulta = "
+        // Consulta para contar películas y series
+        $consulta = "
                 SELECT 
                     (SELECT COUNT(*) FROM PELICULA) AS total_peliculas,
                     (SELECT COUNT(*) FROM SERIE) AS total_series
             ";
 
-            $resultado = $conexion->query($consulta);
-            if ($resultado->num_rows > 0) {
-                $conteo = $resultado->fetch_assoc();
-                $totalPeliculas = $conteo['total_peliculas'];
-                $totalSeries = $conteo['total_series'];
+        $resultado = $conexion->query($consulta);
+        if ($resultado->num_rows > 0) {
+            $conteo = $resultado->fetch_assoc();
+            $totalPeliculas = $conteo['total_peliculas'];
+            $totalSeries = $conteo['total_series'];
 
-                echo "<h3>Películas </h3> <p>$totalPeliculas</p>";
-                echo "<h3>Series </h3> <p> $totalSeries</p>";
-            } else {
-                echo "<p>No se pudo obtener el conteo de películas y series.</p>";
-            }
-            
+            echo "<h3>Películas </h3> <p>$totalPeliculas</p>";
+            echo "<h3>Series </h3> <p> $totalSeries</p>";
+        } else {
+            echo "<p>No se pudo obtener el conteo de películas y series.</p>";
+        }
+
         ?>
     </div>
 
     <!-- Contenido que muestra películas y series -->
     <div class="peliculas-sec">
-            <div class="colocacion">
-                <?php
-                function datos($conexion)
-                {
-                    $sql = "
-                    SELECT FI.ID_FILME, FI.NOMBRE, FI.IMAGEN, FI.CLASIFICACION, FI.FECHA_ESTRENO, P.DURACION AS DURACION_O_EPISODIOS, NULL AS TEMPORADA
+        <div class="colocacion">
+            <?php
+            // Obtener la página actual
+            $pagina_actual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+            $elementos_por_pagina = 12;
+
+            function datos($conexion, $pagina_actual, $elementos_por_pagina)
+            {
+                $offset = ($pagina_actual - 1) * $elementos_por_pagina;
+                $sql = "
+                    SELECT FI.ID_FILME, FI.NOMBRE, FI.IMAGEN, FI.CLASIFICACION, FI.FECHA_ESTRENO, 
+                           P.DURACION AS DURACION_O_EPISODIOS, NULL AS TEMPORADA
                     FROM FILME FI
                     JOIN PELICULA P ON FI.ID_FILME = P.ID_FILME
                     UNION
-                    SELECT FI.ID_FILME, FI.NOMBRE, S.IMAGENTEM AS IMAGEN, FI.CLASIFICACION, S.FECHA_ESTRENO, S.NUMERO_EPISODIOS AS DURACION_O_EPISODIOS, S.TEMPORADA
+                    SELECT FI.ID_FILME, FI.NOMBRE, S.IMAGENTEM AS IMAGEN, FI.CLASIFICACION, S.FECHA_ESTRENO, 
+                           S.NUMERO_EPISODIOS AS DURACION_O_EPISODIOS, S.TEMPORADA
                     FROM FILME FI
                     JOIN SERIE S ON FI.ID_FILME = S.ID_FILME
-                    ORDER BY FECHA_ESTRENO ASC;"; // Cambiar a DESC para orden descendente
+                    ORDER BY FECHA_ESTRENO ASC
+                    LIMIT $elementos_por_pagina OFFSET $offset;
+                ";
 
-                    $resultado = $conexion->query($sql);
-                    if ($resultado->num_rows > 0) {
-                        while ($fila = $resultado->fetch_assoc()) {
-                            // Convertir la fecha al formato DD/MM/YYYY
-                            $fechaEstreno = new DateTime($fila['FECHA_ESTRENO']);
-                            $fechaFormateada = $fechaEstreno->format('d/m/Y');
-                            $extraInfo = $fila['TEMPORADA'] ? "TEMPORADA {$fila['TEMPORADA']}" : "{$fila['DURACION_O_EPISODIOS']} min.";
-                            if($fila['TEMPORADA']){ ?> 
-                                <form action="Info_Series.php" method="POST" id="formulario" class="form1">
+                $resultado = $conexion->query($sql);
+                if ($resultado->num_rows > 0) {
+                    while ($fila = $resultado->fetch_assoc()) {
+                        $fechaEstreno = new DateTime($fila['FECHA_ESTRENO']);
+                        $fechaFormateada = $fechaEstreno->format('d/m/Y');
+                        $extraInfo = $fila['TEMPORADA'] ? "TEMPORADA {$fila['TEMPORADA']}" : "{$fila['DURACION_O_EPISODIOS']} min.";
+                        if ($fila['TEMPORADA']) { ?>
+                            <form action="Info_Series.php" method="POST" id="formulario" class="form1">
                                 <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>+<?php echo $fila['TEMPORADA']; ?>">
-                            <?php }else{ ?>
-                                <form action="Info_Peliculas.php" method="POST" id="formulario" class="form1">
+                        <?php } else { ?>
+                            <form action="Info_Peliculas.php" method="POST" id="formulario" class="form1">
                                 <button name="submit" type="submit" value="<?php echo $fila['ID_FILME']; ?>">
-                                <?php }
-                                echo $fila['ID_FILME'];
-                ?>
+                        <?php }
+                            ?>
                                 <div class="card-sep">
                                     <div class="card border-dark mb-3 card-size">
                                         <img src="../imagenes/<?php echo $fila['IMAGEN'] ?>" class="card-img-top" alt="Imagen">
@@ -118,27 +127,58 @@
                                         </div>
                                     </div>
                                 </div>
-                            </button>
-                        </form>
-
-                <?php
-                        }
-                    } else {
-                        echo "<p>No se encontraron filmes.</p>";
+                                </button>
+                            </form>
+            <?php
                     }
+                } else {
+                    echo "<p>No se encontraron filmes.</p>";
                 }
+            }
 
-                // Llamada a la función para mostrar los datos
-                datos($conexion);
-                ?>
-            </div>
+            datos($conexion, $pagina_actual, $elementos_por_pagina);
+            ?>
+        </div>
+    </div>
+
+    <!-- Paginación -->
+    <?php
+  $total_items_sql = "
+  SELECT COUNT(*) AS total 
+  FROM (
+      SELECT FI.ID_FILME
+      FROM FILME FI
+      JOIN PELICULA P ON FI.ID_FILME = P.ID_FILME
+      UNION ALL
+      SELECT FI.ID_FILME
+      FROM FILME FI
+      JOIN SERIE S ON FI.ID_FILME = S.ID_FILME
+  ) AS total_filmes;
+";
+
+    $total_resultado = $conexion->query($total_items_sql);
+    $total_items = $total_resultado->fetch_assoc()['total'];
+    $total_paginas = ceil($total_items / $elementos_por_pagina);
+    ?>
+
+    <div class="paginacion">
+        <nav aria-label="Paginación">
+            <ul class="pagination pagination-lg">
+                <?php for ($i = 1; $i <= $total_paginas; $i++) : ?>
+                    <li class="page-item <?php echo ($i == $pagina_actual) ? 'active' : ''; ?>">
+                        <a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+            </ul>
+        </nav>
     </div>
 
     <!-- Pie de página -->
     <footer>
         <?php
-        include ("footer.php");
+        include("footer.php");
         ?>
     </footer>
 </body>
+
 </html>
